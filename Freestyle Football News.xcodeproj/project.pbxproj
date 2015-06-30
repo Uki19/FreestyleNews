@@ -26,6 +26,7 @@
 		754BE77A1B318CBC00F758C9 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7791B318CBC00F758C9 /* NewsItem.m */; };
 		754BE77D1B319F4800F758C9 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE77C1B319F4800F758C9 /* NewsCell.m */; };
 		75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75683A5A1B34AB5000CC4085 /* ArticlesModel.m */; };
+		756D51401B42C735006018C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 756D513F1B42C735006018C4 /* .gitignore */; };
 		75D940351B323BB8008BE45A /* Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D940341B323BB8008BE45A /* Navigation.m */; };
 		75E6EC8A1B41FB270000DA58 /* VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E6EC891B41FB270000DA58 /* VideoPlayerView.m */; };
 		75EC15001B38A5CB00C5F768 /* ArchiveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75EC14FF1B38A5CB00C5F768 /* ArchiveTableView.m */; };
@@ -75,6 +76,7 @@
 		754BE77C1B319F4800F758C9 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
 		75683A591B34AB5000CC4085 /* ArticlesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesModel.h; sourceTree = "<group>"; };
 		75683A5A1B34AB5000CC4085 /* ArticlesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesModel.m; sourceTree = "<group>"; };
+		756D513F1B42C735006018C4 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		75B993B61B35CBB300A92B6E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		75B993B81B35CBC000A92B6E /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		75B993BA1B35CBC900A92B6E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -140,6 +142,7 @@
 		754BE7431B318B7900F758C9 = {
 			isa = PBXGroup;
 			children = (
+				756D513F1B42C735006018C4 /* .gitignore */,
 				75B994161B36384800A92B6E /* Frameworks */,
 				754BE74E1B318B7900F758C9 /* Freestyle Football News */,
 				754BE7681B318B7900F758C9 /* Freestyle Football NewsTests */,
@@ -353,6 +356,7 @@
 				754BE75B1B318B7900F758C9 /* Main.storyboard in Resources */,
 				754917E31B339C9700D55BD0 /* ArticleTableCell.xib in Resources */,
 				754BE7601B318B7900F758C9 /* LaunchScreen.xib in Resources */,
+				756D51401B42C735006018C4 /* .gitignore in Resources */,
 				754BE75D1B318B7900F758C9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
