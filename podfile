@@ -1,0 +1,5 @@
+platform:ios
+pod 'DTCoreText'
+pod 'youtube-ios-player-helper', '~> 0.1.3'
+pod 'Pushbots', '~> 1.1.0'
+

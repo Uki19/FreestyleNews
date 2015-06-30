@@ -1,0 +1,650 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26B269E9462FF258BE878966 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFDE6CEA17FB2B8F8075FAF /* libPods.a */; };
+		75131EE91B32CF4600457525 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75131EE81B32CF4600457525 /* TabBar.m */; };
+		7523DD221B345A5B00A7F658 /* ArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7523DD211B345A5B00A7F658 /* ArticleView.m */; };
+		7539CAE21B38C86000626682 /* ArchiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7539CAE11B38C86000626682 /* ArchiveTableViewCell.xib */; };
+		7539CAE51B38C9FE00626682 /* ArchiveViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7539CAE41B38C9FE00626682 /* ArchiveViewCell.m */; };
+		754917DB1B3395B900D55BD0 /* ArticlesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 754917DA1B3395B900D55BD0 /* ArticlesTableView.m */; };
+		754917E11B339BEA00D55BD0 /* ArticleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754917E01B339BEA00D55BD0 /* ArticleCell.m */; };
+		754917E31B339C9700D55BD0 /* ArticleTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754917E21B339C9700D55BD0 /* ArticleTableCell.xib */; };
+		754BE7521B318B7900F758C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7511B318B7900F758C9 /* main.m */; };
+		754BE7551B318B7900F758C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7541B318B7900F758C9 /* AppDelegate.m */; };
+		754BE7581B318B7900F758C9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7571B318B7900F758C9 /* ViewController.m */; };
+		754BE75B1B318B7900F758C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 754BE7591B318B7900F758C9 /* Main.storyboard */; };
+		754BE75D1B318B7900F758C9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 754BE75C1B318B7900F758C9 /* Images.xcassets */; };
+		754BE7601B318B7900F758C9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754BE75E1B318B7900F758C9 /* LaunchScreen.xib */; };
+		754BE76C1B318B7900F758C9 /* Freestyle_Football_NewsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE76B1B318B7900F758C9 /* Freestyle_Football_NewsTests.m */; };
+		754BE7771B318C8000F758C9 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7761B318C8000F758C9 /* NewsModel.m */; };
+		754BE77A1B318CBC00F758C9 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7791B318CBC00F758C9 /* NewsItem.m */; };
+		754BE77D1B319F4800F758C9 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE77C1B319F4800F758C9 /* NewsCell.m */; };
+		75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75683A5A1B34AB5000CC4085 /* ArticlesModel.m */; };
+		75D940351B323BB8008BE45A /* Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D940341B323BB8008BE45A /* Navigation.m */; };
+		75E6EC8A1B41FB270000DA58 /* VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E6EC891B41FB270000DA58 /* VideoPlayerView.m */; };
+		75EC15001B38A5CB00C5F768 /* ArchiveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75EC14FF1B38A5CB00C5F768 /* ArchiveTableView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		754BE7661B318B7900F758C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 754BE7441B318B7900F758C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 754BE74B1B318B7900F758C9;
+			remoteInfo = "Freestyle Football News";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		75131EE71B32CF4600457525 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
+		75131EE81B32CF4600457525 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
+		7523DD201B345A5B00A7F658 /* ArticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleView.h; sourceTree = "<group>"; };
+		7523DD211B345A5B00A7F658 /* ArticleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleView.m; sourceTree = "<group>"; };
+		7539CAE11B38C86000626682 /* ArchiveTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArchiveTableViewCell.xib; sourceTree = "<group>"; };
+		7539CAE31B38C9FE00626682 /* ArchiveViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveViewCell.h; sourceTree = "<group>"; };
+		7539CAE41B38C9FE00626682 /* ArchiveViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveViewCell.m; sourceTree = "<group>"; };
+		754917D91B3395B900D55BD0 /* ArticlesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticlesTableView.h; path = ../ArticlesTableView.h; sourceTree = "<group>"; };
+		754917DA1B3395B900D55BD0 /* ArticlesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticlesTableView.m; path = ../ArticlesTableView.m; sourceTree = "<group>"; };
+		754917DF1B339BEA00D55BD0 /* ArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ArticleCell.h; path = ../ArticleCell.h; sourceTree = "<group>"; };
+		754917E01B339BEA00D55BD0 /* ArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArticleCell.m; path = ../ArticleCell.m; sourceTree = "<group>"; };
+		754917E21B339C9700D55BD0 /* ArticleTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleTableCell.xib; sourceTree = "<group>"; };
+		754BE74C1B318B7900F758C9 /* Freestyle Football News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Freestyle Football News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		754BE7501B318B7900F758C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		754BE7511B318B7900F758C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		754BE7531B318B7900F758C9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		754BE7541B318B7900F758C9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		754BE7561B318B7900F758C9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		754BE7571B318B7900F758C9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		754BE75A1B318B7900F758C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		754BE75C1B318B7900F758C9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		754BE75F1B318B7900F758C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		754BE7651B318B7900F758C9 /* Freestyle Football NewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Freestyle Football NewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		754BE76A1B318B7900F758C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		754BE76B1B318B7900F758C9 /* Freestyle_Football_NewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freestyle_Football_NewsTests.m; sourceTree = "<group>"; };
+		754BE7751B318C8000F758C9 /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsModel.h; sourceTree = "<group>"; };
+		754BE7761B318C8000F758C9 /* NewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsModel.m; sourceTree = "<group>"; };
+		754BE7781B318CBC00F758C9 /* NewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsItem.h; sourceTree = "<group>"; };
+		754BE7791B318CBC00F758C9 /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItem.m; sourceTree = "<group>"; };
+		754BE77B1B319F4800F758C9 /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
+		754BE77C1B319F4800F758C9 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		75683A591B34AB5000CC4085 /* ArticlesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesModel.h; sourceTree = "<group>"; };
+		75683A5A1B34AB5000CC4085 /* ArticlesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesModel.m; sourceTree = "<group>"; };
+		75B993B61B35CBB300A92B6E /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		75B993B81B35CBC000A92B6E /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		75B993BA1B35CBC900A92B6E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		75B993BC1B35CBD700A92B6E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		75B993BE1B35CBE200A92B6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		75D940331B323BB8008BE45A /* Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Navigation.h; path = ../Navigation.h; sourceTree = "<group>"; };
+		75D940341B323BB8008BE45A /* Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Navigation.m; path = ../Navigation.m; sourceTree = "<group>"; };
+		75E6EC881B41FB270000DA58 /* VideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerView.h; sourceTree = "<group>"; };
+		75E6EC891B41FB270000DA58 /* VideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerView.m; sourceTree = "<group>"; };
+		75EC14FE1B38A5CB00C5F768 /* ArchiveTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveTableView.h; sourceTree = "<group>"; };
+		75EC14FF1B38A5CB00C5F768 /* ArchiveTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveTableView.m; sourceTree = "<group>"; };
+		773B96CB382834E519CDE3FB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7BFDE6CEA17FB2B8F8075FAF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE6319811071CE0787FD9D5C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		754BE7491B318B7900F758C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26B269E9462FF258BE878966 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		754BE7621B318B7900F758C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7523DD231B345A6500A7F658 /* Article View */ = {
+			isa = PBXGroup;
+			children = (
+				75E6EC881B41FB270000DA58 /* VideoPlayerView.h */,
+				75E6EC891B41FB270000DA58 /* VideoPlayerView.m */,
+				754917DF1B339BEA00D55BD0 /* ArticleCell.h */,
+				754917E01B339BEA00D55BD0 /* ArticleCell.m */,
+				754917D91B3395B900D55BD0 /* ArticlesTableView.h */,
+				754917DA1B3395B900D55BD0 /* ArticlesTableView.m */,
+				754917E21B339C9700D55BD0 /* ArticleTableCell.xib */,
+				7523DD211B345A5B00A7F658 /* ArticleView.m */,
+				7523DD201B345A5B00A7F658 /* ArticleView.h */,
+			);
+			name = "Article View";
+			sourceTree = "<group>";
+		};
+		7523DD241B345A9200A7F658 /* News Model */ = {
+			isa = PBXGroup;
+			children = (
+				754BE7751B318C8000F758C9 /* NewsModel.h */,
+				754BE7761B318C8000F758C9 /* NewsModel.m */,
+				754BE7781B318CBC00F758C9 /* NewsItem.h */,
+				754BE7791B318CBC00F758C9 /* NewsItem.m */,
+			);
+			name = "News Model";
+			sourceTree = "<group>";
+		};
+		754BE7431B318B7900F758C9 = {
+			isa = PBXGroup;
+			children = (
+				75B994161B36384800A92B6E /* Frameworks */,
+				754BE74E1B318B7900F758C9 /* Freestyle Football News */,
+				754BE7681B318B7900F758C9 /* Freestyle Football NewsTests */,
+				754BE74D1B318B7900F758C9 /* Products */,
+				787107384153AC77AAFC52FD /* Pods */,
+				B246CDC68E6D66CC641D1C74 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		754BE74D1B318B7900F758C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				754BE74C1B318B7900F758C9 /* Freestyle Football News.app */,
+				754BE7651B318B7900F758C9 /* Freestyle Football NewsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		754BE74E1B318B7900F758C9 /* Freestyle Football News */ = {
+			isa = PBXGroup;
+			children = (
+				75D940331B323BB8008BE45A /* Navigation.h */,
+				75D940341B323BB8008BE45A /* Navigation.m */,
+				754BE7531B318B7900F758C9 /* AppDelegate.h */,
+				754BE7541B318B7900F758C9 /* AppDelegate.m */,
+				75131EE71B32CF4600457525 /* TabBar.h */,
+				75131EE81B32CF4600457525 /* TabBar.m */,
+				75EC15011B38A5D200C5F768 /* Archive View */,
+				75683A541B34AA5500CC4085 /* News View */,
+				7523DD241B345A9200A7F658 /* News Model */,
+				75683A551B34AA8600CC4085 /* Article Model */,
+				7523DD231B345A6500A7F658 /* Article View */,
+				754BE7591B318B7900F758C9 /* Main.storyboard */,
+				754BE75C1B318B7900F758C9 /* Images.xcassets */,
+				754BE75E1B318B7900F758C9 /* LaunchScreen.xib */,
+				754BE74F1B318B7900F758C9 /* Supporting Files */,
+			);
+			path = "Freestyle Football News";
+			sourceTree = "<group>";
+		};
+		754BE74F1B318B7900F758C9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				754BE7501B318B7900F758C9 /* Info.plist */,
+				754BE7511B318B7900F758C9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		754BE7681B318B7900F758C9 /* Freestyle Football NewsTests */ = {
+			isa = PBXGroup;
+			children = (
+				754BE76B1B318B7900F758C9 /* Freestyle_Football_NewsTests.m */,
+				754BE7691B318B7900F758C9 /* Supporting Files */,
+			);
+			path = "Freestyle Football NewsTests";
+			sourceTree = "<group>";
+		};
+		754BE7691B318B7900F758C9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				754BE76A1B318B7900F758C9 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		75683A541B34AA5500CC4085 /* News View */ = {
+			isa = PBXGroup;
+			children = (
+				754BE7561B318B7900F758C9 /* ViewController.h */,
+				754BE7571B318B7900F758C9 /* ViewController.m */,
+				754BE77B1B319F4800F758C9 /* NewsCell.h */,
+				754BE77C1B319F4800F758C9 /* NewsCell.m */,
+			);
+			name = "News View";
+			sourceTree = "<group>";
+		};
+		75683A551B34AA8600CC4085 /* Article Model */ = {
+			isa = PBXGroup;
+			children = (
+				75683A591B34AB5000CC4085 /* ArticlesModel.h */,
+				75683A5A1B34AB5000CC4085 /* ArticlesModel.m */,
+			);
+			name = "Article Model";
+			sourceTree = "<group>";
+		};
+		75B994161B36384800A92B6E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				75B993BE1B35CBE200A92B6E /* MobileCoreServices.framework */,
+				75B993BC1B35CBD700A92B6E /* CoreText.framework */,
+				75B993BA1B35CBC900A92B6E /* QuartzCore.framework */,
+				75B993B81B35CBC000A92B6E /* ImageIO.framework */,
+				75B993B61B35CBB300A92B6E /* libxml2.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		75EC15011B38A5D200C5F768 /* Archive View */ = {
+			isa = PBXGroup;
+			children = (
+				75EC14FE1B38A5CB00C5F768 /* ArchiveTableView.h */,
+				75EC14FF1B38A5CB00C5F768 /* ArchiveTableView.m */,
+				7539CAE11B38C86000626682 /* ArchiveTableViewCell.xib */,
+				7539CAE31B38C9FE00626682 /* ArchiveViewCell.h */,
+				7539CAE41B38C9FE00626682 /* ArchiveViewCell.m */,
+			);
+			name = "Archive View";
+			sourceTree = "<group>";
+		};
+		787107384153AC77AAFC52FD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AE6319811071CE0787FD9D5C /* Pods.debug.xcconfig */,
+				773B96CB382834E519CDE3FB /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B246CDC68E6D66CC641D1C74 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7BFDE6CEA17FB2B8F8075FAF /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		754BE74B1B318B7900F758C9 /* Freestyle Football News */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 754BE76F1B318B7900F758C9 /* Build configuration list for PBXNativeTarget "Freestyle Football News" */;
+			buildPhases = (
+				5D72DC618A979C097031B834 /* Check Pods Manifest.lock */,
+				754BE7481B318B7900F758C9 /* Sources */,
+				754BE7491B318B7900F758C9 /* Frameworks */,
+				754BE74A1B318B7900F758C9 /* Resources */,
+				BD547DBF8F70CA266326382A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Freestyle Football News";
+			productName = "Freestyle Football News";
+			productReference = 754BE74C1B318B7900F758C9 /* Freestyle Football News.app */;
+			productType = "com.apple.product-type.application";
+		};
+		754BE7641B318B7900F758C9 /* Freestyle Football NewsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 754BE7721B318B7900F758C9 /* Build configuration list for PBXNativeTarget "Freestyle Football NewsTests" */;
+			buildPhases = (
+				754BE7611B318B7900F758C9 /* Sources */,
+				754BE7621B318B7900F758C9 /* Frameworks */,
+				754BE7631B318B7900F758C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				754BE7671B318B7900F758C9 /* PBXTargetDependency */,
+			);
+			name = "Freestyle Football NewsTests";
+			productName = "Freestyle Football NewsTests";
+			productReference = 754BE7651B318B7900F758C9 /* Freestyle Football NewsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		754BE7441B318B7900F758C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Uros Zivaljevic";
+				TargetAttributes = {
+					754BE74B1B318B7900F758C9 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+					754BE7641B318B7900F758C9 = {
+						CreatedOnToolsVersion = 6.3.2;
+						TestTargetID = 754BE74B1B318B7900F758C9;
+					};
+				};
+			};
+			buildConfigurationList = 754BE7471B318B7900F758C9 /* Build configuration list for PBXProject "Freestyle Football News" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 754BE7431B318B7900F758C9;
+			productRefGroup = 754BE74D1B318B7900F758C9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				754BE74B1B318B7900F758C9 /* Freestyle Football News */,
+				754BE7641B318B7900F758C9 /* Freestyle Football NewsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		754BE74A1B318B7900F758C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7539CAE21B38C86000626682 /* ArchiveTableViewCell.xib in Resources */,
+				754BE75B1B318B7900F758C9 /* Main.storyboard in Resources */,
+				754917E31B339C9700D55BD0 /* ArticleTableCell.xib in Resources */,
+				754BE7601B318B7900F758C9 /* LaunchScreen.xib in Resources */,
+				754BE75D1B318B7900F758C9 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		754BE7631B318B7900F758C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5D72DC618A979C097031B834 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BD547DBF8F70CA266326382A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		754BE7481B318B7900F758C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754BE7771B318C8000F758C9 /* NewsModel.m in Sources */,
+				754BE7581B318B7900F758C9 /* ViewController.m in Sources */,
+				754917E11B339BEA00D55BD0 /* ArticleCell.m in Sources */,
+				75EC15001B38A5CB00C5F768 /* ArchiveTableView.m in Sources */,
+				7523DD221B345A5B00A7F658 /* ArticleView.m in Sources */,
+				75E6EC8A1B41FB270000DA58 /* VideoPlayerView.m in Sources */,
+				754BE77D1B319F4800F758C9 /* NewsCell.m in Sources */,
+				75D940351B323BB8008BE45A /* Navigation.m in Sources */,
+				75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */,
+				754917DB1B3395B900D55BD0 /* ArticlesTableView.m in Sources */,
+				754BE7551B318B7900F758C9 /* AppDelegate.m in Sources */,
+				7539CAE51B38C9FE00626682 /* ArchiveViewCell.m in Sources */,
+				754BE77A1B318CBC00F758C9 /* NewsItem.m in Sources */,
+				754BE7521B318B7900F758C9 /* main.m in Sources */,
+				75131EE91B32CF4600457525 /* TabBar.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		754BE7611B318B7900F758C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754BE76C1B318B7900F758C9 /* Freestyle_Football_NewsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		754BE7671B318B7900F758C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 754BE74B1B318B7900F758C9 /* Freestyle Football News */;
+			targetProxy = 754BE7661B318B7900F758C9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		754BE7591B318B7900F758C9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				754BE75A1B318B7900F758C9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		754BE75E1B318B7900F758C9 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				754BE75F1B318B7900F758C9 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		754BE76D1B318B7900F758C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LINK_WITH_STANDARD_LIBRARIES = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		754BE76E1B318B7900F758C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LINK_WITH_STANDARD_LIBRARIES = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "$(inherited)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		754BE7701B318B7900F758C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE6319811071CE0787FD9D5C /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				INFOPLIST_FILE = "Freestyle Football News/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4c3d6d91-46e1-4287-8318-4d98f3bfb5d1";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		754BE7711B318B7900F758C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 773B96CB382834E519CDE3FB /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				INFOPLIST_FILE = "Freestyle Football News/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4c3d6d91-46e1-4287-8318-4d98f3bfb5d1";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+		754BE7731B318B7900F758C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Freestyle Football NewsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Freestyle Football News.app/Freestyle Football News";
+			};
+			name = Debug;
+		};
+		754BE7741B318B7900F758C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Freestyle Football NewsTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Freestyle Football News.app/Freestyle Football News";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		754BE7471B318B7900F758C9 /* Build configuration list for PBXProject "Freestyle Football News" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				754BE76D1B318B7900F758C9 /* Debug */,
+				754BE76E1B318B7900F758C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		754BE76F1B318B7900F758C9 /* Build configuration list for PBXNativeTarget "Freestyle Football News" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				754BE7701B318B7900F758C9 /* Debug */,
+				754BE7711B318B7900F758C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		754BE7721B318B7900F758C9 /* Build configuration list for PBXNativeTarget "Freestyle Football NewsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				754BE7731B318B7900F758C9 /* Debug */,
+				754BE7741B318B7900F758C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 754BE7441B318B7900F758C9 /* Project object */;
+}
