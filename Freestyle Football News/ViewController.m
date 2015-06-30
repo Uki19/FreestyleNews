@@ -124,7 +124,7 @@ static NSString *cellID=@"NewsCell";
 }
 
 
--(void)initNewsView{
+-(void)initNewsView {
     UICollectionViewFlowLayout *flowlayout=[[UICollectionViewFlowLayout alloc] init];
    
     newsView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:flowlayout];
@@ -147,16 +147,16 @@ static NSString *cellID=@"NewsCell";
     [newsView addGestureRecognizer:swipeGestureLeft];
 }
 
--(void)swipe:(UISwipeGestureRecognizer*)swipe{
-    if(swipe.direction==UISwipeGestureRecognizerDirectionLeft){
-        if(segment.selectedSegmentIndex<segment.numberOfSegments-1){
+-(void)swipe:(UISwipeGestureRecognizer*)swipe {
+    if(swipe.direction==UISwipeGestureRecognizerDirectionLeft) {
+        if(segment.selectedSegmentIndex<segment.numberOfSegments-1) {
            segment.selectedSegmentIndex++;
             NSString* selectedItemTitle=[segment titleForSegmentAtIndex:segment.selectedSegmentIndex];
             if([selectedItemTitle isEqual:@"Comps"]) selectedItemTitle=@"Competitions";
             [self setArticlesForCategory:selectedItemTitle];
         }
     }
-    else{
+    else {
         if(segment.selectedSegmentIndex>0){
             segment.selectedSegmentIndex--;
             NSString* selectedItemTitle=[segment titleForSegmentAtIndex:segment.selectedSegmentIndex];
@@ -168,7 +168,7 @@ static NSString *cellID=@"NewsCell";
 
 #pragma mark - CollectionView delegate and datasource methods
 
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     NewsCell *cell=nil;
     NewsItem *newsItem=[news objectAtIndex:indexPath.row];
@@ -176,23 +176,20 @@ static NSString *cellID=@"NewsCell";
         cell=[newsView dequeueReusableCellWithReuseIdentifier:@"Prvi Cell" forIndexPath:indexPath];
     else
         cell=[newsView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
-
-    
-    
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
-        if(indexPath.row==0 || newsItem.important)
+        if(indexPath.row==0 || newsItem.important) {
             cell.title.font=[UIFont fontWithName:nil size:35];
-        else
+        } else {
             cell.title.font=[UIFont fontWithName:nil size:24];
+        }
         cell.category.font=[UIFont fontWithName:nil size:20];
-    }
-    else
-    {
-        if(indexPath.row==0 || newsItem.important)
+    } else {
+        if(indexPath.row==0 || newsItem.important) {
             cell.title.font=[UIFont fontWithName:nil size:25];
-        else
+        } else {
             cell.title.font=[UIFont fontWithName:nil size:14];
+        }
         cell.category.font=[UIFont fontWithName:nil size:14];
     }
     
