@@ -28,6 +28,7 @@
 		75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75683A5A1B34AB5000CC4085 /* ArticlesModel.m */; };
 		756D51401B42C735006018C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 756D513F1B42C735006018C4 /* .gitignore */; };
 		75D940351B323BB8008BE45A /* Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D940341B323BB8008BE45A /* Navigation.m */; };
+		75E053331B42D24900382430 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E053321B42D24900382430 /* iAd.framework */; };
 		75E6EC8A1B41FB270000DA58 /* VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E6EC891B41FB270000DA58 /* VideoPlayerView.m */; };
 		75EC15001B38A5CB00C5F768 /* ArchiveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75EC14FF1B38A5CB00C5F768 /* ArchiveTableView.m */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,7 @@
 		75B993BE1B35CBE200A92B6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		75D940331B323BB8008BE45A /* Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigation.h; sourceTree = "<group>"; };
 		75D940341B323BB8008BE45A /* Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Navigation.m; sourceTree = "<group>"; };
+		75E053321B42D24900382430 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		75E6EC881B41FB270000DA58 /* VideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerView.h; sourceTree = "<group>"; };
 		75E6EC891B41FB270000DA58 /* VideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerView.m; sourceTree = "<group>"; };
 		75EC14FE1B38A5CB00C5F768 /* ArchiveTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveTableView.h; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75E053331B42D24900382430 /* iAd.framework in Frameworks */,
 				26B269E9462FF258BE878966 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -232,6 +235,7 @@
 		75B994161B36384800A92B6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75E053321B42D24900382430 /* iAd.framework */,
 				75B993BE1B35CBE200A92B6E /* MobileCoreServices.framework */,
 				75B993BC1B35CBD700A92B6E /* CoreText.framework */,
 				75B993BA1B35CBC900A92B6E /* QuartzCore.framework */,

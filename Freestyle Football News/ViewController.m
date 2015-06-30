@@ -338,17 +338,17 @@ static NSString *cellID=@"NewsCell";
     [super viewDidLoad];
     self.category=self.title;
     
-    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+    adView = [[ADBannerView alloc] initWithFrame:self.tabBarController.tabBar.frame];
     
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        adView.frame = CGRectOffset(adView.frame, 0, 748.0f);
-    } else {
-        adView.frame = CGRectOffset(adView.frame, 0, 480.0f);
-    }
+//    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+//        adView.frame = CGRectOffset(adView.frame, 0, 748.0f);
+//    } else {
+//        adView.frame = CGRectOffset(adView.frame, 0, 480.0f);
+//    }
     
     adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
     adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-    [self.view addSubview:adView];
+    
     adView.delegate = self;
     self.bannerIsVisible = NO;
    
@@ -356,6 +356,7 @@ static NSString *cellID=@"NewsCell";
     [self initNavbarButtons];
     [self initNewsModelAndData];
     [self initSegmentedControl];
+    [self.view addSubview:adView];
 }
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner {
@@ -363,9 +364,10 @@ static NSString *cellID=@"NewsCell";
     if (!self.bannerIsVisible) {
         
         [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
-        banner.frame = CGRectOffset(banner.frame, 0, -66.0f);
+        banner.frame = CGRectOffset(banner.frame, 0, -adView.frame.size.height);
         [UIView commitAnimations];
         self.bannerIsVisible = YES;
+        self.newsView.frame=CGRectMake(0, 0, self.newsView.frame.size.width, self.newsView.frame.size.height-adView.frame.size.height);
         
     }
 }
@@ -375,7 +377,8 @@ static NSString *cellID=@"NewsCell";
     if (self.bannerIsVisible) {
         
         [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
-        banner.frame = CGRectOffset(banner.frame, 0, 66.0f);
+        banner.frame = CGRectOffset(banner.frame, 0, adView.frame.size.height);
+        self.newsView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
         [UIView commitAnimations];
         self.bannerIsVisible = NO;
         
