@@ -40,13 +40,7 @@ static NSString *cellID=@"NewsCell";
 
 #pragma mark - Refresh and Archive buttons and actions
 
--(void)initNavbarButtons{
-    
-    UIBarButtonItem *refreshButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshAction)];
-    self.navigationItem.rightBarButtonItem=refreshButton;
-    UIBarButtonItem *archiveButton=[[UIBarButtonItem alloc] initWithTitle:@"Archive" style:UIBarButtonItemStylePlain target:self action:@selector(pushArchiveView)];
-    self.navigationItem.leftBarButtonItem=archiveButton;
-}
+
 
 -(void)refreshAction{
     [loading startAnimating];
