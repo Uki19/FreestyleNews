@@ -38,10 +38,11 @@ static NSString *cellID=@"NewsCell";
 @synthesize swipeGestureRight;
 @synthesize swipeGestureLeft;
 
+@synthesize bannerIsVisible;
+
 #pragma mark - Refresh and Archive buttons and actions
 
 -(void)initNavbarButtons{
-    
     UIBarButtonItem *refreshButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshAction)];
     self.navigationItem.rightBarButtonItem=refreshButton;
     UIBarButtonItem *archiveButton=[[UIBarButtonItem alloc] initWithTitle:@"Archive" style:UIBarButtonItemStylePlain target:self action:@selector(pushArchiveView)];
@@ -52,7 +53,6 @@ static NSString *cellID=@"NewsCell";
     [loading startAnimating];
     
     [newsModel downloadDataAtUrl:databaseURL];
-    
 }
 
 -(void)pushArchiveView{
@@ -77,15 +77,15 @@ static NSString *cellID=@"NewsCell";
 }
 
 -(void)segmentControlAction:(UISegmentedControl*)sender{
-    
     NSString *selectedTitle=[sender titleForSegmentAtIndex:[sender selectedSegmentIndex]];
     if([selectedTitle isEqualToString:@"Comps"]) selectedTitle=@"Competitions";
     [self setArticlesForCategory:selectedTitle];
-    if(![selectedTitle isEqualToString:@"All"])
+    
+    if(![selectedTitle isEqualToString:@"All"]) {
         self.category=selectedTitle;
-    else
+    } else {
         self.category=@"Home";
-   
+    }
 }
 
 
@@ -237,8 +237,7 @@ static NSString *cellID=@"NewsCell";
 
 #pragma mark - Observer update methods
 
--(void)updateWithItems:(NSArray *)items{
-   
+-(void)updateWithItems:(NSArray *)items {
     int numberImportant=0;
     news=items;
     self.newsCopy=news;
@@ -253,12 +252,12 @@ static NSString *cellID=@"NewsCell";
         else
             image=[self imageWithImage:image scaledToSize:CGSizeMake(400, 400) andCompressedTo:0.6];
         if(image){
-            if(![self.imgs containsObject:image]){
+            if(![self.imgs containsObject:image]) {
                 [self.imgs addObject:image];
             }
-        }
-        else
+        } else {
             [self.imgs addObject:[UIImage imageNamed:@"home"]];
+        }
     }
     NSMutableArray *array;
     if(numberImportant%2==0) {
@@ -273,9 +272,9 @@ static NSString *cellID=@"NewsCell";
     [loading stopAnimating];
 }
 
--(void)failedToDownloadWithError:(NSError *)error{
+-(void)failedToDownloadWithError:(NSError *)error {
     
-    if([UIAlertController class]){
+    if([UIAlertController class]) {
         
         UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"Failed to connect" message:@"Make sure you are connected to the internet and retry." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *retryAction=[UIAlertAction actionWithTitle:@"Retry" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
@@ -289,9 +288,7 @@ static NSString *cellID=@"NewsCell";
         [alert addAction:cancelAction];
      
         [self presentViewController:alert animated:YES completion:nil];
-    }
-    else{
-        
+    } else {
         UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Failed to connect" message:@"Make sure you are connected to the internet and retry." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
         [alertView setAlertViewStyle:UIAlertViewStyleDefault];
         
@@ -302,17 +299,16 @@ static NSString *cellID=@"NewsCell";
 
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex==[alertView cancelButtonIndex])
-         [loading stopAnimating];
-    
-    else
+    if(buttonIndex==[alertView cancelButtonIndex]) {
+        [loading stopAnimating];
+    } else {
         [newsModel downloadDataAtUrl:databaseURL];
-
+    }
 }
 
 #pragma mark - Image scale and compress method
 
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize andCompressedTo:(CGFloat)compression{
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize andCompressedTo:(CGFloat)compression {
     CGFloat min=image.size.height<image.size.width?image.size.height:image.size.width;
     CGFloat velikoS=image.size.width;
     CGFloat velikoV=image.size.height;
@@ -329,30 +325,62 @@ static NSString *cellID=@"NewsCell";
     return newImage;
 }
 
--(UIImage *)addPlayIconOnImage:(UIImage* )image{
-    
+-(UIImage *)addPlayIconOnImage:(UIImage* )image {
     UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
     [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
     [[UIImage imageNamed:@"playicon"] drawInRect:CGRectMake(image.size.width/2-image.size.width/6,image.size.height/2-image.size.height/6, image.size.width/3, image.size.height/3)];
     UIImage *resultImage=UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return resultImage;
-    
 }
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.category=self.title;
+    
+    adView = [[ADBannerView alloc] initWithFrame:CGRectZero];
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        adView.frame = CGRectOffset(adView.frame, 0, 748.0f);
+    } else {
+        adView.frame = CGRectOffset(adView.frame, 0, 480.0f);
+    }
+    
+    adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
+    adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+    [self.view addSubview:adView];
+    adView.delegate = self;
+    self.bannerIsVisible = NO;
    
     [self initNewsView];
     [self initNavbarButtons];
-     [self initNewsModelAndData];
+    [self initNewsModelAndData];
     [self initSegmentedControl];
-   
 }
 
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    
+    if (!self.bannerIsVisible) {
+        
+        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+        banner.frame = CGRectOffset(banner.frame, 0, -66.0f);
+        [UIView commitAnimations];
+        self.bannerIsVisible = YES;
+        
+    }
+}
 
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    
+    if (self.bannerIsVisible) {
+        
+        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+        banner.frame = CGRectOffset(banner.frame, 0, 66.0f);
+        [UIView commitAnimations];
+        self.bannerIsVisible = NO;
+        
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
