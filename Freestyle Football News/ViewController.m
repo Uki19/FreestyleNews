@@ -15,7 +15,7 @@
 #import "YTPlayerView.h"
 #import "VideoPlayerView.h"
 
-static NSString *cellID=@"NewsCell";
+static NSString *cellID = @"NewsCell";
 
 @interface ViewController ()
 
@@ -57,9 +57,7 @@ static NSString *cellID=@"NewsCell";
 
 -(void)pushArchiveView{
     ArchiveTableView *archiveTableView=[[ArchiveTableView alloc] init];
-    
     archiveTableView.category=category;
-    
     [self.navigationController pushViewController:archiveTableView animated:YES];
 }
 
@@ -76,7 +74,7 @@ static NSString *cellID=@"NewsCell";
     [self.view addSubview:segment];
 }
 
--(void)segmentControlAction:(UISegmentedControl*)sender{
+-(void)segmentControlAction:(UISegmentedControl*)sender {
     NSString *selectedTitle=[sender titleForSegmentAtIndex:[sender selectedSegmentIndex]];
     if([selectedTitle isEqualToString:@"Comps"]) selectedTitle=@"Competitions";
     [self setArticlesForCategory:selectedTitle];
@@ -89,10 +87,10 @@ static NSString *cellID=@"NewsCell";
 }
 
 
--(void)setArticlesForCategory:(NSString*)categ{
+-(void)setArticlesForCategory:(NSString*)categ {
     NSMutableArray *tmp=[[NSMutableArray alloc] init];
     NSMutableArray *tmpImgs=[[NSMutableArray alloc] init];
-    for (NewsItem* item in self.newsCopy) {
+    for(NewsItem* item in self.newsCopy) {
         if([item.category isEqualToString:categ] || [categ isEqualToString:@"All"]){
             [tmp addObject:item];
             [tmpImgs addObject:[self.imgsCopy objectAtIndex:[self.newsCopy indexOfObject:item]]];
@@ -100,25 +98,27 @@ static NSString *cellID=@"NewsCell";
     }
     self.imgs=tmpImgs;
     news=tmp;
-     [newsView reloadData];
+    [newsView reloadData];
 }
 
 
 #pragma mark - init news Model and NewsView(CollectionView)
 
--(void)initNewsModelAndData{
-    
+-(void)initNewsModelAndData {
     self.newsImages=[[NSMutableDictionary alloc] init];
     loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     loading.center=self.view.center;
     [self.view addSubview:loading];
     [loading startAnimating];
+    
     newsModel=[[NewsModel alloc] init];
     news=[[NSArray alloc] init];
     newsModel.delegate=self;
     databaseURL=@"http://ineco-posredovanje.co.rs/apptest/getnews.php";
-    if(![category isEqualToString:@"Home"])
+    
+    if(![category isEqualToString:@"Home"]) {
         databaseURL=[databaseURL stringByAppendingString:[NSString stringWithFormat:@"?category=%@&archive=0",category]];
+    }
         
     [newsModel downloadDataAtUrl:databaseURL];
 }
@@ -169,13 +169,14 @@ static NSString *cellID=@"NewsCell";
 #pragma mark - CollectionView delegate and datasource methods
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NewsCell *cell = nil;
+    NewsItem *newsItem = [news objectAtIndex:indexPath.row];
     
-    NewsCell *cell=nil;
-    NewsItem *newsItem=[news objectAtIndex:indexPath.row];
-    if(indexPath.row==0 || newsItem.important)
+    if(indexPath.row == 0 || newsItem.important) {
         cell=[newsView dequeueReusableCellWithReuseIdentifier:@"Prvi Cell" forIndexPath:indexPath];
-    else
+    } else {
         cell=[newsView dequeueReusableCellWithReuseIdentifier:cellID forIndexPath:indexPath];
+    }
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         if(indexPath.row==0 || newsItem.important) {
@@ -193,30 +194,32 @@ static NSString *cellID=@"NewsCell";
         cell.category.font=[UIFont fontWithName:nil size:14];
     }
     
-    if([newsItem.category isEqualToString:@"Videos"])
+    if([newsItem.category isEqualToString:@"Videos"]) {
         cell.newsImage.image=[self addPlayIconOnImage:[self.imgs objectAtIndex:indexPath.row]];
-    else
+    } else {
         cell.newsImage.image=[self.imgs objectAtIndex:indexPath.row];
+    }
+    
     cell.category.text=newsItem.category;
     cell.title.text=newsItem.title;
     [cell reloadLabels];
     return cell;
 }
 
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return news.count;
 }
 
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if([(NewsItem*)[news objectAtIndex:indexPath.row] important] || indexPath.row==0){
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if([(NewsItem*)[news objectAtIndex:indexPath.row] important] || indexPath.row==0) {
         return CGSizeMake(newsView.frame.size.width-6, newsView.frame.size.width-6);
-       }
-    else
+    } else {
         return CGSizeMake(newsView.frame.size.width/2-5, newsView.frame.size.width/2-5);
+    }
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -230,27 +233,35 @@ static NSString *cellID=@"NewsCell";
         VideoPlayerView *videoPlayer=[[VideoPlayerView alloc] init];
         videoPlayer.videoURL=item.content;
         [self presentViewController:videoPlayer animated:YES completion:NULL];
-    }
-    else
+    } else {
         [self.navigationController pushViewController:newsItemView animated:YES];
+    }
 }
 
 #pragma mark - Observer update methods
 
 -(void)updateWithItems:(NSArray *)items {
-    int numberImportant=0;
-    news=items;
+    int numberImportant = 0;
+    int lastImportantIndex = 0;
+    news = items;
     self.newsCopy=news;
     self.imgs=[[NSMutableArray alloc] init];
-    for(int i=0;i<news.count;i++){
-        if([(NewsItem*)[news objectAtIndex:i] important]) numberImportant++;
-        NSURL *imgurl=[NSURL URLWithString:((NewsItem*)news[i]).imageURL];
-        NSData *imgData=[NSData dataWithContentsOfURL:imgurl];
-        UIImage *image=[UIImage imageWithData:imgData];
-        if(i==0)
+    
+    for(int i=0; i<news.count; i++){
+        if([(NewsItem*)[news objectAtIndex:i] important]) {
+            numberImportant++;
+        }
+        
+        NSURL *imgurl = [NSURL URLWithString:((NewsItem *)news[i]).imageURL];
+        NSData *imgData = [NSData dataWithContentsOfURL:imgurl];
+        UIImage *image = [UIImage imageWithData:imgData];
+        
+        if((i==0) || ([(NewsItem*)[news objectAtIndex:i] important])) {
             image=[self imageWithImage:image scaledToSize:CGSizeMake(500, 500) andCompressedTo:1];
-        else
+        } else {
             image=[self imageWithImage:image scaledToSize:CGSizeMake(400, 400) andCompressedTo:0.6];
+        }
+        
         if(image){
             if(![self.imgs containsObject:image]) {
                 [self.imgs addObject:image];
@@ -259,11 +270,35 @@ static NSString *cellID=@"NewsCell";
             [self.imgs addObject:[UIImage imageNamed:@"home"]];
         }
     }
+    
+    
+    //algoritam za zamjenu vijesti ako je neparan broj prije sljedece vazne vijesti
+    for(int i=1; i<news.count; i++){
+        if([(NewsItem*)[news objectAtIndex:i] important]) {
+            if((i - lastImportantIndex) % 2 == 0) {
+                NSMutableArray *array;
+                array = [NSMutableArray arrayWithArray:news];
+                
+                NewsItem *previousNews = [news objectAtIndex:i-1];
+                NewsItem *importantNews = [news objectAtIndex:i];
+                
+                [array insertObject:previousNews atIndex:i];
+                [array insertObject:importantNews atIndex:i-1];
+                
+                news = array;
+            }
+            
+            lastImportantIndex = i;
+        }
+    }
+    
+    
+    
     NSMutableArray *array;
-    if(numberImportant%2==0) {
-        array=[NSMutableArray arrayWithArray:news];
+    if(numberImportant % 2 == 0) {
+        array = [NSMutableArray arrayWithArray:news];
         [array removeLastObject];
-        news=array;
+        news = array;
     }
     [newsView reloadData];
     self.imgsCopy=self.imgs;
@@ -273,9 +308,7 @@ static NSString *cellID=@"NewsCell";
 }
 
 -(void)failedToDownloadWithError:(NSError *)error {
-    
     if([UIAlertController class]) {
-        
         UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"Failed to connect" message:@"Make sure you are connected to the internet and retry." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *retryAction=[UIAlertAction actionWithTitle:@"Retry" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             [newsModel downloadDataAtUrl:databaseURL];
