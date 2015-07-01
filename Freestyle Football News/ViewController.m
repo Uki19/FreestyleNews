@@ -117,7 +117,10 @@ static NSString *cellID = @"NewsCell";
 -(void)initNewsModelAndData {
     self.newsImages=[[NSMutableDictionary alloc] init];
     loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    loading.color=[UIColor grayColor];
+    loading.backgroundColor=[UIColor colorWithRed:0.0/255.0 green:138.0/255.0 blue:229.0/255.0 alpha:0.5];
+    CALayer *loadingLayer=loading.layer;
+    [loadingLayer setMasksToBounds:YES];
+    [loadingLayer setCornerRadius:4.0f];
     loading.center=self.view.center;
     [self.view addSubview:loading];
     [loading startAnimating];
@@ -262,7 +265,7 @@ static NSString *cellID = @"NewsCell";
     self.newsCopy=news;
     self.imgs=[[NSMutableArray alloc] init];
     
-    
+    int brImportant=0;
     //algoritam za zamjenu vijesti ako je neparan broj prije sljedece vazne vijesti
     for(int i=1; i<news.count; i++){
         if([(NewsItem*)[news objectAtIndex:i] important]) {
@@ -280,8 +283,8 @@ static NSString *cellID = @"NewsCell";
                 
                 news = array;
             }
-            
-            lastImportantIndex = i-1;
+            brImportant++;
+            lastImportantIndex = i-brImportant;
         }
     }
     
