@@ -30,10 +30,9 @@
     selectedImages=[[NSMutableArray alloc] init];
     
     
-    [self.tabBar setBarTintColor:[UIColor colorWithRed:51.0/255.0 green:153.0/255.0 blue:1 alpha:1]];
+    [self.tabBar setBarTintColor:[UIColor  colorWithRed:11.0/255.0 green:120.0/255.0 blue:228.0/255.0 alpha:1]];
     [self.tabBar setTintColor:[UIColor whiteColor]];
-    [self.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blueColor],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
-    
+    [self.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:0 green:154.0/255.0 blue:1 alpha:1],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
 //    [self.tabBar setTranslucent:NO];
     
     ViewController *home=[[ViewController alloc] init];
@@ -84,7 +83,7 @@
     [self setViewControllers:navs animated:YES];
     
     for (UITabBarItem* tabItem in self.tabBar.items) {
-        [tabItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:29.0/255.0 green:85.0/255.0 blue:143.0/255.0 alpha:1],NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+        [tabItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:0 green:154.0/255.0 blue:1 alpha:1],NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
         [tabItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
         [tabItem setImage:[normalImages objectAtIndex:[self.tabBar.items indexOfObject:tabItem]]];
         [tabItem setSelectedImage:[selectedImages objectAtIndex:[self.tabBar.items indexOfObject:tabItem]]];

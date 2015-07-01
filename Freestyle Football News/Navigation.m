@@ -19,13 +19,15 @@
 -(void)initNavigationBar{
     
     [self.navigationBar setTintColor:[UIColor whiteColor]];
-    self.navigationBar.barTintColor=[UIColor colorWithRed:51.0/255.0 green:153.0/255.0 blue:1 alpha:1];
+    self.navigationBar.barTintColor=[UIColor colorWithRed:11.0/255.0 green:120.0/255.0 blue:228.0/255.0 alpha:1];
     self.navigationBar.titleTextAttributes=[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil];
 //    [self.navigationBar setTranslucent:NO];
 //    self.navigationBar.translucent = NO; 
 //    UIBarButtonItem *backBtn=[[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
 //    [self.navigationController.navigationItem setBackBarButtonItem:backBtn];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjects:@[[UIFont fontWithName:@"HelveticaNeue-Thin" size:18]] forKeys:@[NSFontAttributeName]] forState:UIControlStateNormal];
     
+//    
     for (UIView *view in self.navigationBar.subviews) {
         for (UIView *view2 in view.subviews) {
             if ([view2 isKindOfClass:[UIImageView class]]) {

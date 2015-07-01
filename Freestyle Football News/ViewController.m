@@ -43,7 +43,7 @@ static NSString *cellID = @"NewsCell";
 #pragma mark - Refresh and Archive buttons and actions
 
 -(void)initNavbarButtons{
-    UIBarButtonItem *refreshButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshAction)];
+    UIBarButtonItem *refreshButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(refreshAction)];
     self.navigationItem.rightBarButtonItem=refreshButton;
     UIBarButtonItem *archiveButton=[[UIBarButtonItem alloc] initWithTitle:@"Archive" style:UIBarButtonItemStylePlain target:self action:@selector(pushArchiveView)];
     self.navigationItem.leftBarButtonItem=archiveButton;
@@ -66,40 +66,50 @@ static NSString *cellID = @"NewsCell";
 -(void)initSegmentedControl{
     segment=[[UISegmentedControl alloc] initWithItems:@[@"All",@"Comps",@"Videos",@"Other"]];
     segment.frame=CGRectMake(-2, self.navigationController.navigationBar.frame.size.height+19,self.view.frame.size.width+4, 30);
-    segment.backgroundColor=[UIColor colorWithRed:0.0/255.0 green:138.0/255.0 blue:230.0/255.0 alpha:1];
-    segment.tintColor=[UIColor colorWithRed:0 green:124.0/255.0 blue:207.0/255.0 alpha:1];
-    [segment setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateNormal];
+    segment.backgroundColor=[UIColor colorWithRed:0.0/255.0 green:138.0/255.0 blue:229.0/255.0 alpha:1];
+    segment.tintColor=[UIColor colorWithRed:0 green:154.0/255.0 blue:255.0/255.0 alpha:1];
+    [segment setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Thin" size:14]} forState:UIControlStateNormal];
     [segment setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     [segment addTarget:self action:@selector(segmentControlAction:) forControlEvents:UIControlEventValueChanged];
+    segment.selectedSegmentIndex=0;
     [self.view addSubview:segment];
 }
 
 -(void)segmentControlAction:(UISegmentedControl*)sender {
+    [loading startAnimating];
     NSString *selectedTitle=[sender titleForSegmentAtIndex:[sender selectedSegmentIndex]];
     if([selectedTitle isEqualToString:@"Comps"]) selectedTitle=@"Competitions";
-    [self setArticlesForCategory:selectedTitle];
+//    [self setArticlesForCategory:selectedTitle];
     
     if(![selectedTitle isEqualToString:@"All"]) {
         self.category=selectedTitle;
     } else {
         self.category=@"Home";
     }
-}
-
-
--(void)setArticlesForCategory:(NSString*)categ {
-    NSMutableArray *tmp=[[NSMutableArray alloc] init];
-    NSMutableArray *tmpImgs=[[NSMutableArray alloc] init];
-    for(NewsItem* item in self.newsCopy) {
-        if([item.category isEqualToString:categ] || [categ isEqualToString:@"All"]){
-            [tmp addObject:item];
-            [tmpImgs addObject:[self.imgsCopy objectAtIndex:[self.newsCopy indexOfObject:item]]];
-        }
+    
+    databaseURL=@"http://ineco-posredovanje.co.rs/apptest/getnews.php";
+    
+    if(![category isEqualToString:@"Home"]) {
+        databaseURL=[databaseURL stringByAppendingString:[NSString stringWithFormat:@"?category=%@&archive=0",category]];
     }
-    self.imgs=tmpImgs;
-    news=tmp;
-    [newsView reloadData];
+    
+    [newsModel downloadDataAtUrl:databaseURL];
 }
+
+//
+//-(void)setArticlesForCategory:(NSString*)categ {
+//    NSMutableArray *tmp=[[NSMutableArray alloc] init];
+//    NSMutableArray *tmpImgs=[[NSMutableArray alloc] init];
+//    for(NewsItem* item in self.newsCopy) {
+//        if([item.category isEqualToString:categ] || [categ isEqualToString:@"All"]){
+//            [tmp addObject:item];
+//            [tmpImgs addObject:[self.imgsCopy objectAtIndex:[self.newsCopy indexOfObject:item]]];
+//        }
+//    }
+//    self.imgs=tmpImgs;
+//    news=tmp;
+//    [newsView reloadData];
+//}
 
 
 #pragma mark - init news Model and NewsView(CollectionView)
@@ -107,6 +117,7 @@ static NSString *cellID = @"NewsCell";
 -(void)initNewsModelAndData {
     self.newsImages=[[NSMutableDictionary alloc] init];
     loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loading.color=[UIColor grayColor];
     loading.center=self.view.center;
     [self.view addSubview:loading];
     [loading startAnimating];
@@ -128,10 +139,10 @@ static NSString *cellID = @"NewsCell";
     UICollectionViewFlowLayout *flowlayout=[[UICollectionViewFlowLayout alloc] init];
    
     newsView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:flowlayout];
-    flowlayout.sectionInset=UIEdgeInsetsMake(33.0f, 3.0f, 1.0f, 3.0f);
+    flowlayout.sectionInset=UIEdgeInsetsMake(38.0f, 8.0f, 1.0f, 8.0f);
     flowlayout.minimumInteritemSpacing=3.0f;
     flowlayout.minimumLineSpacing=3.0f;
-    newsView.backgroundColor=[UIColor blackColor];
+    newsView.backgroundColor=[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1];
     newsView.delegate=self;
    
     newsView.dataSource=self;
@@ -147,23 +158,24 @@ static NSString *cellID = @"NewsCell";
     [newsView addGestureRecognizer:swipeGestureLeft];
 }
 
+#pragma mark - Swipe gesture
+
 -(void)swipe:(UISwipeGestureRecognizer*)swipe {
+    BOOL hasNext;
     if(swipe.direction==UISwipeGestureRecognizerDirectionLeft) {
         if(segment.selectedSegmentIndex<segment.numberOfSegments-1) {
            segment.selectedSegmentIndex++;
-            NSString* selectedItemTitle=[segment titleForSegmentAtIndex:segment.selectedSegmentIndex];
-            if([selectedItemTitle isEqual:@"Comps"]) selectedItemTitle=@"Competitions";
-            [self setArticlesForCategory:selectedItemTitle];
+            hasNext=YES;
         }
     }
     else {
         if(segment.selectedSegmentIndex>0){
             segment.selectedSegmentIndex--;
-            NSString* selectedItemTitle=[segment titleForSegmentAtIndex:segment.selectedSegmentIndex];
-            if([selectedItemTitle isEqual:@"Comps"]) selectedItemTitle=@"Competitions";
-            [self setArticlesForCategory:selectedItemTitle];
+            hasNext=YES;
         }
     }
+    if(hasNext)
+        [self segmentControlAction:segment];
 }
 
 #pragma mark - CollectionView delegate and datasource methods
@@ -181,17 +193,20 @@ static NSString *cellID = @"NewsCell";
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         if(indexPath.row==0 || newsItem.important) {
             cell.title.font=[UIFont fontWithName:nil size:35];
+            cell.category.font=[UIFont boldSystemFontOfSize:20];
         } else {
             cell.title.font=[UIFont fontWithName:nil size:24];
+            cell.category.font=[UIFont boldSystemFontOfSize:14];
         }
-        cell.category.font=[UIFont fontWithName:nil size:20];
     } else {
         if(indexPath.row==0 || newsItem.important) {
             cell.title.font=[UIFont fontWithName:nil size:25];
+            cell.category.font=[UIFont boldSystemFontOfSize:14];
         } else {
             cell.title.font=[UIFont fontWithName:nil size:14];
+            cell.category.font=[UIFont boldSystemFontOfSize:8];
         }
-        cell.category.font=[UIFont fontWithName:nil size:14];
+        
     }
     
     if([newsItem.category isEqualToString:@"Videos"]) {
@@ -216,9 +231,9 @@ static NSString *cellID = @"NewsCell";
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if([(NewsItem*)[news objectAtIndex:indexPath.row] important] || indexPath.row==0) {
-        return CGSizeMake(newsView.frame.size.width-6, newsView.frame.size.width-6);
+        return CGSizeMake(newsView.frame.size.width-16, newsView.frame.size.width-16);
     } else {
-        return CGSizeMake(newsView.frame.size.width/2-5, newsView.frame.size.width/2-5);
+        return CGSizeMake(newsView.frame.size.width/2-10, newsView.frame.size.width/2-10);
     }
 }
 
@@ -247,6 +262,29 @@ static NSString *cellID = @"NewsCell";
     self.newsCopy=news;
     self.imgs=[[NSMutableArray alloc] init];
     
+    
+    //algoritam za zamjenu vijesti ako je neparan broj prije sljedece vazne vijesti
+    for(int i=1; i<news.count; i++){
+        if([(NewsItem*)[news objectAtIndex:i] important]) {
+            if((i - lastImportantIndex) % 2 == 0) {
+                NSMutableArray *array;
+                array = [NSMutableArray arrayWithArray:news];
+                
+                NewsItem *previousNews = [news objectAtIndex:i-1];
+                NewsItem *importantNews = [news objectAtIndex:i];
+                
+                
+                [array replaceObjectAtIndex:i withObject:previousNews];
+                [array replaceObjectAtIndex:i-1 withObject:importantNews];
+                
+                
+                news = array;
+            }
+            
+            lastImportantIndex = i-1;
+        }
+    }
+    
     for(int i=0; i<news.count; i++){
         if([(NewsItem*)[news objectAtIndex:i] important]) {
             numberImportant++;
@@ -271,26 +309,7 @@ static NSString *cellID = @"NewsCell";
         }
     }
     
-    
-    //algoritam za zamjenu vijesti ako je neparan broj prije sljedece vazne vijesti
-    for(int i=1; i<news.count; i++){
-        if([(NewsItem*)[news objectAtIndex:i] important]) {
-            if((i - lastImportantIndex) % 2 == 0) {
-                NSMutableArray *array;
-                array = [NSMutableArray arrayWithArray:news];
-                
-                NewsItem *previousNews = [news objectAtIndex:i-1];
-                NewsItem *importantNews = [news objectAtIndex:i];
-                
-                [array insertObject:previousNews atIndex:i];
-                [array insertObject:importantNews atIndex:i-1];
-                
-                news = array;
-            }
-            
-            lastImportantIndex = i;
-        }
-    }
+ 
     
     
     
@@ -302,8 +321,8 @@ static NSString *cellID = @"NewsCell";
     }
     [newsView reloadData];
     self.imgsCopy=self.imgs;
-    [segment setSelectedSegmentIndex:0];
-    self.category=@"Home";
+//    [segment setSelectedSegmentIndex:0];
+//    self.category=@"Home";
     [loading stopAnimating];
 }
 
@@ -379,8 +398,8 @@ static NSString *cellID = @"NewsCell";
 //        adView.frame = CGRectOffset(adView.frame, 0, 480.0f);
 //    }
     
-    adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
-    adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+//    adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
+//    adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
     
     adView.delegate = self;
     self.bannerIsVisible = NO;
@@ -389,6 +408,7 @@ static NSString *cellID = @"NewsCell";
     [self initNavbarButtons];
     [self initNewsModelAndData];
     [self initSegmentedControl];
+
     [self.view addSubview:adView];
 }
 
