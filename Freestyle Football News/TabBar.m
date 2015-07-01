@@ -12,6 +12,10 @@
 #import "ArticlesTableView.h"
 #import "ArchiveTableView.h"
 
+static CGRect adFrame;
+
+static BOOL bannerIsVisible;
+
 @interface TabBar ()
 
 @end
@@ -20,6 +24,8 @@
 
 @synthesize normalImages;
 @synthesize selectedImages;
+
+@synthesize adView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +48,7 @@
     navigationView=nil;
     [normalImages addObject:[[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [selectedImages addObject:[[UIImage imageNamed:@"home-selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+
     
   
 //    ViewController *competitions=[[ViewController alloc] init];
@@ -87,6 +94,62 @@
         [tabItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
         [tabItem setImage:[normalImages objectAtIndex:[self.tabBar.items indexOfObject:tabItem]]];
         [tabItem setSelectedImage:[selectedImages objectAtIndex:[self.tabBar.items indexOfObject:tabItem]]];
+    }
+    
+    adView = [[ADBannerView alloc] initWithFrame:self.tabBar.frame];
+    adFrame=adView.frame;
+    
+    //    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    //        adView.frame = CGRectOffset(adView.frame, 0, 748.0f);
+    //    } else {
+    //        adView.frame = CGRectOffset(adView.frame, 0, 480.0f);
+    //    }
+    
+    //    adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
+    //    adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
+    
+    adView.delegate = self;
+    bannerIsVisible = NO;
+    
+    [self.view addSubview:adView];
+    [self.view bringSubviewToFront:self.tabBar];
+    
+}
+
++(CGRect)adFrame{
+    return adFrame;
+}
+
++(BOOL)bannerIsVisible{
+    return bannerIsVisible;
+}
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    
+    if (!bannerIsVisible) {
+        
+        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+        banner.frame = CGRectOffset(banner.frame, 0, -adView.frame.size.height);
+        [UIView commitAnimations];
+        bannerIsVisible = YES;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"adIsLoaded" object:nil];
+//        self.newsView.frame=CGRectMake(0, 0, self.newsView.frame.size.width, self.newsView.frame.size.height-adView.frame.size.height);
+        NSLog(@"LOADED iADs");
+    }
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    
+    if (bannerIsVisible) {
+        
+        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+        banner.frame = CGRectOffset(banner.frame, 0, adView.frame.size.height);
+//        self.newsView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+        [UIView commitAnimations];
+        bannerIsVisible = NO;
+         [[NSNotificationCenter defaultCenter] postNotificationName:@"adFailedToLoad" object:nil];
+        NSLog(@"FAILED TO LOAD iADs");
+        
     }
 }
 

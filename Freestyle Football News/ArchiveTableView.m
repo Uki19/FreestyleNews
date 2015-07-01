@@ -10,6 +10,7 @@
 #import "ArchiveViewCell.h"
 #import "NewsItem.h"
 #import "ArticleView.h"
+#import "TabBar.h"
 
 static NSString* cellID=@"ArchiveCell";
 
@@ -97,6 +98,13 @@ static NSString* cellID=@"ArchiveCell";
     else self.title=[NSString stringWithFormat:@"%@ Archive",category];
     [self.tableView registerNib:[UINib nibWithNibName:@"ArchiveTableViewCell" bundle:nil] forCellReuseIdentifier:cellID];
     [self.view setBackgroundColor:[UIColor colorWithRed:233.0/255.0 green:233.0/255.0 blue:233.0/255.0 alpha:1]];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
+
+    if([TabBar bannerIsVisible]){
+        [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -184,6 +192,21 @@ static NSString* cellID=@"ArchiveCell";
     }
 }
 
+
+
+#pragma mark - Notification Center updates
+
+-(void)notificationCenterAdLoaded:(NSNotification*) notification{
+
+        self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-[TabBar adFrame].size.height);
+        NSLog(@"ARCHIVE GET");
+
+}
+
+-(void)notificationCenterAdFailed:(NSNotification*) notification{
+    self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+[TabBar adFrame].size.height);
+    NSLog(@"Failed in archive");
+}
 
 
 @end

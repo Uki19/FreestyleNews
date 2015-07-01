@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <iAd/iAd.h>
 
-@interface TabBar : UITabBarController 
+@interface TabBar : UITabBarController <ADBannerViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *normalImages;
 @property (strong, nonatomic) NSMutableArray *selectedImages;
+@property (strong, nonatomic) ADBannerView  *adView;
+
++(CGRect)adFrame;
++(BOOL)bannerIsVisible;
 
 @end

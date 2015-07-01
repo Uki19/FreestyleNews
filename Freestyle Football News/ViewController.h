@@ -10,10 +10,7 @@
 #import <iAd/iAd.h>
 #import "NewsModel.h"
 
-@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, Observable, UICollectionViewDelegateFlowLayout, UIAlertViewDelegate, ADBannerViewDelegate> {
-    ADBannerView *adView;
-    BOOL bannerIsVisible;
-}
+@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, Observable, UICollectionViewDelegateFlowLayout, UIAlertViewDelegate>
 
 @property (strong, nonatomic) UICollectionView *newsView;
 @property (strong, nonatomic) NSArray *news;
@@ -25,7 +22,6 @@
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeGestureLeft;
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeGestureRight;
 
-@property (nonatomic, assign) BOOL bannerIsVisible;
 
 @end
 

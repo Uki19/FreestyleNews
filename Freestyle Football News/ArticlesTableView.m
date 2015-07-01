@@ -10,6 +10,7 @@
 #import "ArticleCell.h"
 #import "NewsItem.h"
 #import "ArticleView.h"
+#import "TabBar.h"
 
 static NSString* cellID=@"CelijaZaArticle";
 
@@ -125,7 +126,14 @@ static NSString* cellID=@"CelijaZaArticle";
     [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1]];
     [self.tableView setBackgroundColor:[UIColor colorWithRed:223.0/255.0 green:223.0/255.0 blue:223.0/255.0 alpha:1]];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
+    
     [self initModelAndData];
+    
+    if([TabBar bannerIsVisible]){
+        [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
+    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -179,13 +187,16 @@ static NSString* cellID=@"CelijaZaArticle";
 }
 
 
-#pragma mark - Navigation
+#pragma mark - Notification Center updates
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)notificationCenterAdLoaded:(NSNotification*) notification{
+    self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-[TabBar adFrame].size.height);
 }
+
+-(void)notificationCenterAdFailed:(NSNotification*) notification{
+    self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+[TabBar adFrame].size.height);
+}
+
 
 
 @end

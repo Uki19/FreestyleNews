@@ -14,6 +14,7 @@
 #import "ArchiveTableView.h"
 #import "YTPlayerView.h"
 #import "VideoPlayerView.h"
+#import "TabBar.h"
 
 static NSString *cellID = @"NewsCell";
 
@@ -38,7 +39,6 @@ static NSString *cellID = @"NewsCell";
 @synthesize swipeGestureRight;
 @synthesize swipeGestureLeft;
 
-@synthesize bannerIsVisible;
 
 #pragma mark - Refresh and Archive buttons and actions
 
@@ -121,9 +121,6 @@ static NSString *cellID = @"NewsCell";
     CALayer *loadingLayer=loading.layer;
     [loadingLayer setMasksToBounds:YES];
     [loadingLayer setCornerRadius:4.0f];
-    [loadingLayer setBorderWidth:5.0f];
-//    [loadingLayer setFrame:CGRectMake(-50, -50, 50, 50)];
-    [loadingLayer setBorderColor:[UIColor colorWithRed:0.0/255.0 green:138.0/255.0 blue:229.0/255.0 alpha:0.5].CGColor];
     loading.center=self.view.center;
     [self.view addSubview:loading];
     [loading startAnimating];
@@ -395,53 +392,25 @@ static NSString *cellID = @"NewsCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.category=self.title;
-    
-    adView = [[ADBannerView alloc] initWithFrame:self.tabBarController.tabBar.frame];
-    
-//    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-//        adView.frame = CGRectOffset(adView.frame, 0, 748.0f);
-//    } else {
-//        adView.frame = CGRectOffset(adView.frame, 0, 480.0f);
-//    }
-    
-//    adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
-//    adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-    
-    adView.delegate = self;
-    self.bannerIsVisible = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
+
    
     [self initNewsView];
     [self initNavbarButtons];
     [self initNewsModelAndData];
     [self initSegmentedControl];
 
-    [self.view addSubview:adView];
 }
 
-- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
-    
-    if (!self.bannerIsVisible) {
-        
-        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
-        banner.frame = CGRectOffset(banner.frame, 0, -adView.frame.size.height);
-        [UIView commitAnimations];
-        self.bannerIsVisible = YES;
-        self.newsView.frame=CGRectMake(0, 0, self.newsView.frame.size.width, self.newsView.frame.size.height-adView.frame.size.height);
-        
-    }
+#pragma mark - Notification Center updates
+
+-(void)notificationCenterAdLoaded:(NSNotification*) notification{
+    self.newsView.frame=CGRectMake(0, 0, self.newsView.frame.size.width, self.newsView.frame.size.height-[TabBar adFrame].size.height);
 }
 
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    
-    if (self.bannerIsVisible) {
-        
-        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
-        banner.frame = CGRectOffset(banner.frame, 0, adView.frame.size.height);
-        self.newsView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-        [UIView commitAnimations];
-        self.bannerIsVisible = NO;
-        
-    }
+-(void)notificationCenterAdFailed:(NSNotification*) notification{
+    self.newsView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
 }
 
 - (void)didReceiveMemoryWarning {

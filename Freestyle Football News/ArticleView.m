@@ -10,6 +10,7 @@
 #import "DTCoreText.h"
 #import "DTTiledLayerWithoutFade.h"
 #import "ViewController.h"
+#import "TabBar.h"
 
 @interface ArticleView ()
 
@@ -155,7 +156,10 @@
 
 -(void)initScrollView{
     articleScrollView=[[UIScrollView alloc] initWithFrame:self.view.frame];
- 
+    
+    if([TabBar bannerIsVisible])
+        articleScrollView.contentInset=UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0);
+    
     [self.view addSubview:articleScrollView];
 
 }
@@ -172,6 +176,8 @@
     
     [self setScrollViewSize];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -269,7 +275,14 @@
     [articleContentTextView relayoutText];
 }
 
+#pragma mark - Notification Center updates
 
+-(void)notificationCenterAdLoaded:(NSNotification*) notification{
+     self.articleScrollView.frame=CGRectMake(0, 0, self.articleScrollView.frame.size.width, self.articleScrollView.frame.size.height-[TabBar adFrame].size.height);
+}
 
+-(void)notificationCenterAdFailed:(NSNotification*) notification{
+     self.articleScrollView.frame=CGRectMake(0, 0, self.articleScrollView.frame.size.width, self.articleScrollView.frame.size.height+[TabBar adFrame].size.height);
+}
 
 @end
