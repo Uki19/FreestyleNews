@@ -34,8 +34,8 @@
      
         title=[[UILabel alloc] initWithFrame:CGRectMake(2, self.frame.size.height, self.frame.size.width, 100)];
         
-        [title setShadowColor:[UIColor blackColor]];
-        [title setShadowOffset:CGSizeMake(1, 1)];
+//        [title setShadowColor:[UIColor blackColor]];
+//        [title setShadowOffset:CGSizeMake(1, 1)];
         title.textColor=[UIColor whiteColor];
         title.lineBreakMode=NSLineBreakByTruncatingTail;
         title.numberOfLines=0;
