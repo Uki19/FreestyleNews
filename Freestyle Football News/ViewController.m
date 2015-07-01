@@ -65,7 +65,7 @@ static NSString *cellID = @"NewsCell";
 
 -(void)initSegmentedControl{
     segment=[[UISegmentedControl alloc] initWithItems:@[@"All",@"Comps",@"Videos",@"Other"]];
-    segment.frame=CGRectMake(-2, self.navigationController.navigationBar.frame.size.height+19,self.view.frame.size.width+4, 30);
+    segment.frame=CGRectMake(-2, self.navigationController.navigationBar.frame.size.height+20,self.view.frame.size.width+4, 30);
     segment.backgroundColor=[UIColor colorWithRed:0.0/255.0 green:138.0/255.0 blue:229.0/255.0 alpha:1];
     segment.tintColor=[UIColor colorWithRed:0 green:154.0/255.0 blue:255.0/255.0 alpha:1];
     [segment setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Thin" size:14]} forState:UIControlStateNormal];
