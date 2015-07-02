@@ -197,15 +197,11 @@ static NSString* cellID=@"ArchiveCell";
 #pragma mark - Notification Center updates
 
 -(void)notificationCenterAdLoaded:(NSNotification*) notification{
-
-        self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-[TabBar adFrame].size.height);
-        NSLog(@"ARCHIVE GET");
-
+    self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-[TabBar adFrame].size.height);
 }
 
 -(void)notificationCenterAdFailed:(NSNotification*) notification{
     self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+[TabBar adFrame].size.height);
-    NSLog(@"Failed in archive");
 }
 
 

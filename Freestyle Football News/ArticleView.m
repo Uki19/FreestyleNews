@@ -15,7 +15,7 @@
 @interface ArticleView ()
 
 @property NSMutableArray *articleImages;
-
+@property UIView* articleContentBackground;
 
 @end
 
@@ -41,14 +41,18 @@
 
 -(void)initArticleTitle{
     
-    articleTitleLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, 20, self.view.frame.size.width-20, 300)];
+    self.articleContentBackground=[[UIView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width-20, 0)];
+    self.articleContentBackground.backgroundColor=[UIColor colorWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1];
+    [self addRadius:self.articleContentBackground.layer angle:10];
+    [articleScrollView addSubview:self.articleContentBackground];
+    articleTitleLabel=[[UILabel alloc] initWithFrame:CGRectMake(15, 20, self.view.frame.size.width-30, 300)];
     articleTitleLabel.font=[UIFont boldSystemFontOfSize:28];
     articleTitleLabel.lineBreakMode=NSLineBreakByTruncatingTail;
     articleTitleLabel.numberOfLines=0;
     articleTitleLabel.text=item.title;
     [articleTitleLabel sizeToFit];
     CGRect titleFrame=articleTitleLabel.frame;
-    UIView *borderBottom=[[UIView alloc] initWithFrame:CGRectMake(10, titleFrame.size.height+titleFrame.origin.y+10, self.view.frame.size.width-20, 1)];
+    UIView *borderBottom=[[UIView alloc] initWithFrame:CGRectMake(15, titleFrame.size.height+titleFrame.origin.y+10, self.view.frame.size.width-30, 1)];
     borderBottom.backgroundColor=[UIColor lightGrayColor];
     [articleScrollView addSubview:borderBottom];
     [articleScrollView addSubview:articleTitleLabel];
@@ -58,12 +62,12 @@
 -(void)initArticleAuthor{
     CGRect titleFrame=articleTitleLabel.frame;
    
-    dateLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, titleFrame.size.height+titleFrame.origin.y+20, self.view.frame.size.width, 300)];
+    dateLabel=[[UILabel alloc] initWithFrame:CGRectMake(15, titleFrame.size.height+titleFrame.origin.y+20, self.view.frame.size.width, 300)];
     dateLabel.text=[NSString stringWithFormat:@"Date added: %@",item.date];
     dateLabel.textColor=[UIColor grayColor];
     dateLabel.font=[UIFont italicSystemFontOfSize:14];
     [dateLabel sizeToFit];
-    articleAuthorLabel=[[UILabel alloc] initWithFrame:CGRectMake(10, titleFrame.size.height+titleFrame.origin.y+55, self.view.frame.size.width, 300)];
+    articleAuthorLabel=[[UILabel alloc] initWithFrame:CGRectMake(15, titleFrame.size.height+titleFrame.origin.y+55, self.view.frame.size.width, 300)];
     if(authorImage)
         articleAuthorLabel.text=[NSString stringWithFormat:@"Written by: %@",item.author];
     else
@@ -71,7 +75,7 @@
     articleAuthorLabel.textColor=[UIColor grayColor];
     articleAuthorLabel.font=[UIFont italicSystemFontOfSize:14];
     [articleAuthorLabel sizeToFit];
-    UIImageView *authorImgView=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width-69, dateLabel.frame.origin.y-5, 64, 64)];
+    UIImageView *authorImgView=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width-79, dateLabel.frame.origin.y-5, 64, 64)];
     authorImgView.image=authorImage;
     [self addRadius:authorImgView.layer angle:20];
     [articleScrollView addSubview:authorImgView];
@@ -101,12 +105,11 @@
     [articleContentTextView setBackgroundColor:[UIColor clearColor]];
 
     [articleContentTextView sizeToFit];
-       CGFloat labelHeight=articleContentTextView.frame.size.height;
+    CGFloat labelHeight=articleContentTextView.frame.size.height;
     CGFloat labelY=articleContentTextView.frame.origin.y;
-    UIView *articleContentBackground=[[UIView alloc] initWithFrame:CGRectMake(5, labelY-10, self.view.frame.size.width-10, labelHeight+30)];
-    articleContentBackground.backgroundColor=[UIColor colorWithRed:242.0/255.0 green:242.0/255.0 blue:242.0/255.0 alpha:1];
-    [self addRadius:articleContentBackground.layer angle:10];
-    [articleScrollView addSubview:articleContentBackground];
+    CGRect backFrame=self.articleContentBackground.frame;
+    backFrame.size.height=labelY+labelHeight+30;
+    self.articleContentBackground.frame=backFrame;
     [articleScrollView addSubview:articleContentTextView];
 
 }
@@ -233,8 +236,6 @@
         imageView.image=[UIImage imageWithData:UIImageJPEGRepresentation([(DTImageTextAttachment *)attachment image], 0.6)];
      
         imageView.url = attachment.contentURL;
-    
-
     
         return imageView;
     }
