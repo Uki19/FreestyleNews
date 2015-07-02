@@ -217,7 +217,6 @@ static NSString *cellID = @"NewsCell";
     } else {
         cell.newsImage.image=[self.imgs objectAtIndex:indexPath.row];
     }
-    
     cell.category.text=newsItem.category;
     cell.title.text=newsItem.title;
     [cell reloadLabels];
@@ -234,6 +233,8 @@ static NSString *cellID = @"NewsCell";
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     if([(NewsItem*)[news objectAtIndex:indexPath.row] important] || indexPath.row==0) {
+         if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+              return CGSizeMake(newsView.frame.size.width-16, newsView.frame.size.width/2-10);
         return CGSizeMake(newsView.frame.size.width-16, newsView.frame.size.width-16);
     } else {
         return CGSizeMake(newsView.frame.size.width/2-10, newsView.frame.size.width/2-10);
@@ -298,9 +299,9 @@ static NSString *cellID = @"NewsCell";
         UIImage *image = [UIImage imageWithData:imgData];
         
         if((i==0) || ([(NewsItem*)[news objectAtIndex:i] important])) {
-            image=[self imageWithImage:image scaledToSize:CGSizeMake(500, 500) andCompressedTo:1];
+            image=[self imageWithImage:image scaledToSize:CGSizeMake(500, 500) andCompressedTo:1 isBig:YES];
         } else {
-            image=[self imageWithImage:image scaledToSize:CGSizeMake(400, 400) andCompressedTo:0.6];
+            image=[self imageWithImage:image scaledToSize:CGSizeMake(400, 400) andCompressedTo:0.6 isBig:NO];
         }
         
         if(image){
@@ -363,11 +364,18 @@ static NSString *cellID = @"NewsCell";
 
 #pragma mark - Image scale and compress method
 
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize andCompressedTo:(CGFloat)compression {
-    CGFloat min=image.size.height<image.size.width?image.size.height:image.size.width;
-    CGFloat velikoS=image.size.width;
-    CGFloat velikoV=image.size.height;
-    CGRect rect=CGRectMake((velikoS-min)/2, (velikoV-min)/2, min, min);
+- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize andCompressedTo:(CGFloat)compression isBig:(BOOL)isBig{
+    CGRect rect;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && isBig){
+        rect=CGRectMake(0, (image.size.height-image.size.width/2)/2, image.size.width, image.size.width/2);
+        newSize=CGSizeMake(newSize.width, newSize.width/2);
+    }
+    else{
+        CGFloat min=image.size.height<image.size.width?image.size.height:image.size.width;
+        CGFloat velikoS=image.size.width;
+        CGFloat velikoV=image.size.height;
+        rect=CGRectMake((velikoS-min)/2, (velikoV-min)/2, min, min);
+    }
     CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
     UIImage *cropped = [UIImage imageWithCGImage:imageRef];
     CGImageRelease(imageRef);
@@ -383,7 +391,7 @@ static NSString *cellID = @"NewsCell";
 -(UIImage *)addPlayIconOnImage:(UIImage* )image {
     UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
     [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-    [[UIImage imageNamed:@"playicon"] drawInRect:CGRectMake(image.size.width/2-image.size.width/6,image.size.height/2-image.size.height/6, image.size.width/3, image.size.height/3)];
+    [[UIImage imageNamed:@"playicon"] drawInRect:CGRectMake(image.size.width/2-image.size.height/6,image.size.height/2-image.size.height/6, image.size.height/3, image.size.height/3)];
     UIImage *resultImage=UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return resultImage;
