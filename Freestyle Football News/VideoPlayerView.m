@@ -26,8 +26,9 @@
     [self.view addSubview:playerView];
     playerView.delegate=self;
     [playerView loadWithVideoId:[videoURL substringFromIndex:videoURL.length-11]];
-    UIButton *cancelButton=[[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x-40, playerView.frame.origin.y+playerView.frame.size.height+20, 80, 25)];
-    [cancelButton setTitle:@"Hide" forState:UIControlStateNormal];
+    UIButton *cancelButton=[[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x-40, playerView.frame.origin.y+playerView.frame.size.height+20, 80, 60)];
+//    [cancelButton setTitle:@"Hide" forState:UIControlStateNormal];
+    [cancelButton setImage:[UIImage imageNamed:@"hideIcon"] forState:UIControlStateNormal];
     [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelButton];
@@ -59,5 +60,6 @@
     // Pass the selected object to the new view controller.
 }
 */
+
 
 @end
