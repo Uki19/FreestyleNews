@@ -10,6 +10,9 @@
 
 @interface VideoPlayerView ()
 
+@property UISwipeGestureRecognizer *swipe;
+
+
 @end
 
 @implementation VideoPlayerView
@@ -32,6 +35,10 @@
     [cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [cancelButton addTarget:self action:@selector(cancelAction) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelButton];
+    
+    self.swipe=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(cancelAction)];
+    [self.swipe setDirection:UISwipeGestureRecognizerDirectionDown];
+    [self.view addGestureRecognizer:self.swipe];
 }
 
 -(void)cancelAction{
