@@ -90,7 +90,7 @@ static BOOL bannerIsVisible;
     [self setViewControllers:navs animated:YES];
     
     for (UITabBarItem* tabItem in self.tabBar.items) {
-        [tabItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:0 green:154.0/255.0 blue:1 alpha:1],NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
+        [tabItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:128.0/255.0 green:204.0/255.0 blue:1 alpha:1],NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];
         [tabItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
         [tabItem setImage:[normalImages objectAtIndex:[self.tabBar.items indexOfObject:tabItem]]];
         [tabItem setSelectedImage:[selectedImages objectAtIndex:[self.tabBar.items indexOfObject:tabItem]]];
