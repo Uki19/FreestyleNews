@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "754BE74B1B318B7900F758C9"
                BuildableName = "TheArtball.app"
-               BlueprintName = "TheArtball"
-               ReferencedContainer = "container:TheArtball.xcodeproj">
+               BlueprintName = "The Artball"
+               ReferencedContainer = "container:The Artball.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,8 +30,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "754BE7641B318B7900F758C9"
                BuildableName = "TheArtballTests.xctest"
-               BlueprintName = "TheArtballTests"
-               ReferencedContainer = "container:TheArtball.xcodeproj">
+               BlueprintName = "The ArtballTests"
+               ReferencedContainer = "container:The Artball.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,8 +48,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "754BE7641B318B7900F758C9"
                BuildableName = "TheArtballTests.xctest"
-               BlueprintName = "TheArtballTests"
-               ReferencedContainer = "container:TheArtball.xcodeproj">
+               BlueprintName = "The ArtballTests"
+               ReferencedContainer = "container:The Artball.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,8 +58,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "754BE74B1B318B7900F758C9"
             BuildableName = "TheArtball.app"
-            BlueprintName = "TheArtball"
-            ReferencedContainer = "container:TheArtball.xcodeproj">
+            BlueprintName = "The Artball"
+            ReferencedContainer = "container:The Artball.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -78,8 +78,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "754BE74B1B318B7900F758C9"
             BuildableName = "TheArtball.app"
-            BlueprintName = "TheArtball"
-            ReferencedContainer = "container:TheArtball.xcodeproj">
+            BlueprintName = "The Artball"
+            ReferencedContainer = "container:The Artball.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -97,8 +97,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "754BE74B1B318B7900F758C9"
             BuildableName = "TheArtball.app"
-            BlueprintName = "TheArtball"
-            ReferencedContainer = "container:TheArtball.xcodeproj">
+            BlueprintName = "The Artball"
+            ReferencedContainer = "container:The Artball.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
