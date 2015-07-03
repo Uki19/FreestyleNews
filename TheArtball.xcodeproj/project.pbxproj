@@ -56,7 +56,7 @@
 		754917DF1B339BEA00D55BD0 /* ArticleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleCell.h; sourceTree = "<group>"; };
 		754917E01B339BEA00D55BD0 /* ArticleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleCell.m; sourceTree = "<group>"; };
 		754917E21B339C9700D55BD0 /* ArticleTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleTableCell.xib; sourceTree = "<group>"; };
-		754BE74C1B318B7900F758C9 /* Freestyle Football News.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Freestyle Football News.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		754BE74C1B318B7900F758C9 /* TheArtball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheArtball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		754BE7501B318B7900F758C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		754BE7511B318B7900F758C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		754BE7531B318B7900F758C9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 		754BE75A1B318B7900F758C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		754BE75C1B318B7900F758C9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		754BE75F1B318B7900F758C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		754BE7651B318B7900F758C9 /* Freestyle Football NewsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Freestyle Football NewsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		754BE7651B318B7900F758C9 /* TheArtballTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheArtballTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		754BE76A1B318B7900F758C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		754BE76B1B318B7900F758C9 /* Freestyle_Football_NewsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Freestyle_Football_NewsTests.m; sourceTree = "<group>"; };
 		754BE7751B318C8000F758C9 /* NewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsModel.h; sourceTree = "<group>"; };
@@ -158,8 +158,8 @@
 		754BE74D1B318B7900F758C9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				754BE74C1B318B7900F758C9 /* Freestyle Football News.app */,
-				754BE7651B318B7900F758C9 /* Freestyle Football NewsTests.xctest */,
+				754BE74C1B318B7900F758C9 /* TheArtball.app */,
+				754BE7651B318B7900F758C9 /* TheArtballTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -277,9 +277,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		754BE74B1B318B7900F758C9 /* Freestyle Football News */ = {
+		754BE74B1B318B7900F758C9 /* TheArtball */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 754BE76F1B318B7900F758C9 /* Build configuration list for PBXNativeTarget "Freestyle Football News" */;
+			buildConfigurationList = 754BE76F1B318B7900F758C9 /* Build configuration list for PBXNativeTarget "TheArtball" */;
 			buildPhases = (
 				5D72DC618A979C097031B834 /* Check Pods Manifest.lock */,
 				754BE7481B318B7900F758C9 /* Sources */,
@@ -291,14 +291,14 @@
 			);
 			dependencies = (
 			);
-			name = "Freestyle Football News";
+			name = TheArtball;
 			productName = "Freestyle Football News";
-			productReference = 754BE74C1B318B7900F758C9 /* Freestyle Football News.app */;
+			productReference = 754BE74C1B318B7900F758C9 /* TheArtball.app */;
 			productType = "com.apple.product-type.application";
 		};
-		754BE7641B318B7900F758C9 /* Freestyle Football NewsTests */ = {
+		754BE7641B318B7900F758C9 /* TheArtballTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 754BE7721B318B7900F758C9 /* Build configuration list for PBXNativeTarget "Freestyle Football NewsTests" */;
+			buildConfigurationList = 754BE7721B318B7900F758C9 /* Build configuration list for PBXNativeTarget "TheArtballTests" */;
 			buildPhases = (
 				754BE7611B318B7900F758C9 /* Sources */,
 				754BE7621B318B7900F758C9 /* Frameworks */,
@@ -309,9 +309,9 @@
 			dependencies = (
 				754BE7671B318B7900F758C9 /* PBXTargetDependency */,
 			);
-			name = "Freestyle Football NewsTests";
+			name = TheArtballTests;
 			productName = "Freestyle Football NewsTests";
-			productReference = 754BE7651B318B7900F758C9 /* Freestyle Football NewsTests.xctest */;
+			productReference = 754BE7651B318B7900F758C9 /* TheArtballTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -332,7 +332,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 754BE7471B318B7900F758C9 /* Build configuration list for PBXProject "Freestyle Football News" */;
+			buildConfigurationList = 754BE7471B318B7900F758C9 /* Build configuration list for PBXProject "TheArtball" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -345,8 +345,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				754BE74B1B318B7900F758C9 /* Freestyle Football News */,
-				754BE7641B318B7900F758C9 /* Freestyle Football NewsTests */,
+				754BE74B1B318B7900F758C9 /* TheArtball */,
+				754BE7641B318B7900F758C9 /* TheArtballTests */,
 			);
 		};
 /* End PBXProject section */
@@ -443,7 +443,7 @@
 /* Begin PBXTargetDependency section */
 		754BE7671B318B7900F758C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 754BE74B1B318B7900F758C9 /* Freestyle Football News */;
+			target = 754BE74B1B318B7900F758C9 /* TheArtball */;
 			targetProxy = 754BE7661B318B7900F758C9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -504,7 +504,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -544,7 +544,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -565,7 +565,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TheArtball;
 				PROVISIONING_PROFILE = "4c3d6d91-46e1-4287-8318-4d98f3bfb5d1";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -582,7 +582,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TheArtball;
 				PROVISIONING_PROFILE = "4c3d6d91-46e1-4287-8318-4d98f3bfb5d1";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -602,7 +602,7 @@
 				);
 				INFOPLIST_FILE = "Freestyle Football NewsTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TheArtballTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Freestyle Football News.app/Freestyle Football News";
 			};
 			name = Debug;
@@ -617,7 +617,7 @@
 				);
 				INFOPLIST_FILE = "Freestyle Football NewsTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = TheArtballTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Freestyle Football News.app/Freestyle Football News";
 			};
 			name = Release;
@@ -625,7 +625,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		754BE7471B318B7900F758C9 /* Build configuration list for PBXProject "Freestyle Football News" */ = {
+		754BE7471B318B7900F758C9 /* Build configuration list for PBXProject "TheArtball" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				754BE76D1B318B7900F758C9 /* Debug */,
@@ -634,7 +634,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		754BE76F1B318B7900F758C9 /* Build configuration list for PBXNativeTarget "Freestyle Football News" */ = {
+		754BE76F1B318B7900F758C9 /* Build configuration list for PBXNativeTarget "TheArtball" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				754BE7701B318B7900F758C9 /* Debug */,
@@ -643,7 +643,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		754BE7721B318B7900F758C9 /* Build configuration list for PBXNativeTarget "Freestyle Football NewsTests" */ = {
+		754BE7721B318B7900F758C9 /* Build configuration list for PBXNativeTarget "TheArtballTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				754BE7731B318B7900F758C9 /* Debug */,

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "754BE74B1B318B7900F758C9"
-               BuildableName = "Freestyle Football News.app"
-               BlueprintName = "Freestyle Football News"
-               ReferencedContainer = "container:Freestyle Football News.xcodeproj">
+               BuildableName = "TheArtball.app"
+               BlueprintName = "TheArtball"
+               ReferencedContainer = "container:TheArtball.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "754BE7641B318B7900F758C9"
-               BuildableName = "Freestyle Football NewsTests.xctest"
-               BlueprintName = "Freestyle Football NewsTests"
-               ReferencedContainer = "container:Freestyle Football News.xcodeproj">
+               BuildableName = "TheArtballTests.xctest"
+               BlueprintName = "TheArtballTests"
+               ReferencedContainer = "container:TheArtball.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "754BE7641B318B7900F758C9"
-               BuildableName = "Freestyle Football NewsTests.xctest"
-               BlueprintName = "Freestyle Football NewsTests"
-               ReferencedContainer = "container:Freestyle Football News.xcodeproj">
+               BuildableName = "TheArtballTests.xctest"
+               BlueprintName = "TheArtballTests"
+               ReferencedContainer = "container:TheArtball.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "754BE74B1B318B7900F758C9"
-            BuildableName = "Freestyle Football News.app"
-            BlueprintName = "Freestyle Football News"
-            ReferencedContainer = "container:Freestyle Football News.xcodeproj">
+            BuildableName = "TheArtball.app"
+            BlueprintName = "TheArtball"
+            ReferencedContainer = "container:TheArtball.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "754BE74B1B318B7900F758C9"
-            BuildableName = "Freestyle Football News.app"
-            BlueprintName = "Freestyle Football News"
-            ReferencedContainer = "container:Freestyle Football News.xcodeproj">
+            BuildableName = "TheArtball.app"
+            BlueprintName = "TheArtball"
+            ReferencedContainer = "container:TheArtball.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "754BE74B1B318B7900F758C9"
-            BuildableName = "Freestyle Football News.app"
-            BlueprintName = "Freestyle Football News"
-            ReferencedContainer = "container:Freestyle Football News.xcodeproj">
+            BuildableName = "TheArtball.app"
+            BlueprintName = "TheArtball"
+            ReferencedContainer = "container:TheArtball.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
