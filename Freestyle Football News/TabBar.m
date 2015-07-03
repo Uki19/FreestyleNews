@@ -168,4 +168,8 @@ static BOOL bannerIsVisible;
 }
 */
 
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
 @end

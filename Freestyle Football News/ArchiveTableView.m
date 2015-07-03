@@ -11,6 +11,7 @@
 #import "NewsItem.h"
 #import "ArticleView.h"
 #import "TabBar.h"
+#import "VideoPlayerView.h"
 
 static NSString* cellID=@"ArchiveCell";
 
@@ -142,15 +143,25 @@ static NSString* cellID=@"ArchiveCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    ArticleView *articleView=[[ArticleView alloc] init];
+  
     NewsItem *item=nil;
     if(tableView==self.searchDisplayController.searchResultsTableView)
         item=[self.searchResults objectAtIndex:indexPath.row];
     else
         item=[downloadedData objectAtIndex:indexPath.row];
-    articleView.item=item;
-    articleView.title=@"News";
-    [self.navigationController pushViewController:articleView animated:YES];
+    if([item.category isEqual:@"Videos"]){
+        VideoPlayerView *videoView=[[VideoPlayerView alloc] init];
+        videoView.videoURL=item.content;
+         [self presentViewController:videoView animated:YES completion:NULL];
+    }
+    else{
+        ArticleView *articleView=[[ArticleView alloc] init];
+        articleView.item=item;
+        articleView.title=@"News";
+         [self.navigationController pushViewController:articleView animated:YES];
+    }
+    
+   
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
