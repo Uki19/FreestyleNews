@@ -95,7 +95,7 @@
     
     NSString* content=[self addImgTagsToText:item.content];
     
-    DTCSSStylesheet *style=[[DTCSSStylesheet alloc] initWithStyleBlock:@"b{font:HelveticaNeue;}"];
+    DTCSSStylesheet *style=[[DTCSSStylesheet alloc] initWithStyleBlock:@"p{font:HelveticaNeue;}"];
     DTHTMLAttributedStringBuilder *stringBuilder=[[DTHTMLAttributedStringBuilder alloc] initWithHTML:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{DTDefaultTextColor:[UIColor colorWithRed:70.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1],DTDefaultFontSize:@15,DTDefaultFontName:@"HelveticaNeue",DTDefaultLineHeightMultiplier:@1.3,DTDefaultLinkColor:[UIColor colorWithRed:0 green:153.0/255.0 blue:1 alpha:1],DTDefaultStyleSheet:style} documentAttributes:nil];
     
     articleContentTextView.shouldDrawImages=NO;

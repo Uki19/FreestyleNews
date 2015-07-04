@@ -116,11 +116,11 @@ static NSString *cellID = @"NewsCell";
 
 -(void)initNewsModelAndData {
     self.newsImages=[[NSMutableDictionary alloc] init];
-    loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    loading.backgroundColor=[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.76];
-    CALayer *loadingLayer=loading.layer;
-    [loadingLayer setMasksToBounds:YES];
-    [loadingLayer setCornerRadius:4.0f];
+    loading=[[NewsActivityIndicator alloc] init];
+////    loading.backgroundColor=[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.76];
+//    CALayer *loadingLayer=loading.layer;
+//    [loadingLayer setMasksToBounds:YES];
+//    [loadingLayer setCornerRadius:4.0f];
     loading.center=self.view.center;
     [self.view addSubview:loading];
     [loading startAnimating];

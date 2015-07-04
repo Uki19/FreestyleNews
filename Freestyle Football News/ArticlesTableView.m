@@ -131,6 +131,7 @@ static NSString* cellID=@"CelijaZaArticle";
     
     [self initModelAndData];
     
+    
     if([TabBar bannerIsVisible]){
         [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
     }
@@ -190,11 +191,11 @@ static NSString* cellID=@"CelijaZaArticle";
 #pragma mark - Notification Center updates
 
 -(void)notificationCenterAdLoaded:(NSNotification*) notification{
-    self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-[TabBar adFrame].size.height);
+    self.tableView.frame=CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height-[TabBar adFrame].size.height);
 }
 
 -(void)notificationCenterAdFailed:(NSNotification*) notification{
-    self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+[TabBar adFrame].size.height);
+    self.tableView.frame=CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height+[TabBar adFrame].size.height);
 }
 
 
