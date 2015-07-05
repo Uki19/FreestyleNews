@@ -130,7 +130,8 @@ static NSString* cellID=@"CelijaZaArticle";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
     
     [self initModelAndData];
-    
+  
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     if([TabBar bannerIsVisible]){
         [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
@@ -191,11 +192,13 @@ static NSString* cellID=@"CelijaZaArticle";
 #pragma mark - Notification Center updates
 
 -(void)notificationCenterAdLoaded:(NSNotification*) notification{
-   [self.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height+20, 0, [TabBar adFrame].size.height+self.tabBarController.tabBar.frame.size.height, 0)];
+//   [self.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height+20, 0, [TabBar adFrame].size.height+self.tabBarController.tabBar.frame.size.height, 0)];
+     [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
 }
 
 -(void)notificationCenterAdFailed:(NSNotification*) notification{
-   [self.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height+20, 0, self.tabBarController.tabBar.frame.size.height, 0)];
+//   [self.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height+20, 0, self.tabBarController.tabBar.frame.size.height, 0)];
+     [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 }
 
 
