@@ -62,6 +62,13 @@ static NSString* cellID=@"ArchiveCell";
     return YES;
 }
 
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        [self.tableView insertSubview:self.searchDisplayController.searchBar aboveSubview:self.tableView];
+    }
+}
+
 
 #pragma mark - News model init
 
@@ -99,7 +106,7 @@ static NSString* cellID=@"ArchiveCell";
     self.navigationController.view.backgroundColor = [UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:195.0/255.0 alpha:1];
     if([TabBar bannerIsVisible]){
         [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
-        [self.search.searchResultsTableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
+//        [self.search.searchResultsTableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
     }
 }
 
