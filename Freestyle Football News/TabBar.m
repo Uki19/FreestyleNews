@@ -172,4 +172,8 @@ static BOOL bannerIsVisible;
     return UIInterfaceOrientationMaskPortrait;
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 @end
