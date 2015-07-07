@@ -158,8 +158,8 @@
 }
 
 -(void)initScrollView{
-    articleScrollView=[[UIScrollView alloc] initWithFrame:self.view.frame];
-    
+    articleScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-(self.navigationController.navigationBar.frame.size.height+20+self.tabBarController.tabBar.frame.size.height))];
+    self.edgesForExtendedLayout=UIRectEdgeBottom;
     if([TabBar bannerIsVisible])
         articleScrollView.contentInset=UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0);
     
@@ -279,11 +279,11 @@
 #pragma mark - Notification Center updates
 
 -(void)notificationCenterAdLoaded:(NSNotification*) notification{
-     self.articleScrollView.frame=CGRectMake(0, 0, self.articleScrollView.frame.size.width, self.articleScrollView.frame.size.height-[TabBar adFrame].size.height);
+    articleScrollView.contentInset=UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0);
 }
 
 -(void)notificationCenterAdFailed:(NSNotification*) notification{
-     self.articleScrollView.frame=CGRectMake(0, 0, self.articleScrollView.frame.size.width, self.articleScrollView.frame.size.height+[TabBar adFrame].size.height);
+     articleScrollView.contentInset=UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
 @end

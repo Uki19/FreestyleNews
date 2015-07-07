@@ -65,7 +65,7 @@ static NSString *cellID = @"NewsCell";
 
 -(void)initSegmentedControl{
     segment=[[UISegmentedControl alloc] initWithItems:@[@"All",@"Comps",@"Videos",@"Other"]];
-    segment.frame=CGRectMake(-2, self.navigationController.navigationBar.frame.size.height+20,self.view.frame.size.width+4, 30);
+    segment.frame=CGRectMake(-2, 0,self.view.frame.size.width+4, 30);
     segment.backgroundColor=[UIColor colorWithRed:0.0/255.0 green:138.0/255.0 blue:229.0/255.0 alpha:1];
     segment.tintColor=[UIColor colorWithRed:0 green:154.0/255.0 blue:255.0/255.0 alpha:1];
     [segment setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Thin" size:14]} forState:UIControlStateNormal];
@@ -96,32 +96,15 @@ static NSString *cellID = @"NewsCell";
     [newsModel downloadDataAtUrl:databaseURL];
 }
 
-//
-//-(void)setArticlesForCategory:(NSString*)categ {
-//    NSMutableArray *tmp=[[NSMutableArray alloc] init];
-//    NSMutableArray *tmpImgs=[[NSMutableArray alloc] init];
-//    for(NewsItem* item in self.newsCopy) {
-//        if([item.category isEqualToString:categ] || [categ isEqualToString:@"All"]){
-//            [tmp addObject:item];
-//            [tmpImgs addObject:[self.imgsCopy objectAtIndex:[self.newsCopy indexOfObject:item]]];
-//        }
-//    }
-//    self.imgs=tmpImgs;
-//    news=tmp;
-//    [newsView reloadData];
-//}
-
 
 #pragma mark - init news Model and NewsView(CollectionView)
 
 -(void)initNewsModelAndData {
     self.newsImages=[[NSMutableDictionary alloc] init];
     loading=[[NewsActivityIndicator alloc] init];
-////    loading.backgroundColor=[UIColor colorWithRed:0.1 green:0.1 blue:0.1 alpha:0.76];
-//    CALayer *loadingLayer=loading.layer;
-//    [loadingLayer setMasksToBounds:YES];
-//    [loadingLayer setCornerRadius:4.0f];
+
     loading.center=self.view.center;
+    loading.frame=CGRectOffset(loading.frame, 0, -self.navigationController.navigationBar.frame.size.height-20);
     [self.view addSubview:loading];
     [loading startAnimating];
     
@@ -141,7 +124,8 @@ static NSString *cellID = @"NewsCell";
 -(void)initNewsView {
     UICollectionViewFlowLayout *flowlayout=[[UICollectionViewFlowLayout alloc] init];
    
-    newsView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:flowlayout];
+    newsView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-(segment.frame.size.height+self.navigationController.navigationBar.frame.size.height+20+self.tabBarController.tabBar.frame.size.height)) collectionViewLayout:flowlayout];
+   
     flowlayout.sectionInset=UIEdgeInsetsMake(38.0f, 8.0f, 1.0f, 8.0f);
     flowlayout.minimumInteritemSpacing=3.0f;
     flowlayout.minimumLineSpacing=3.0f;
@@ -409,16 +393,18 @@ static NSString *cellID = @"NewsCell";
     [self initNewsModelAndData];
     [self initSegmentedControl];
 
+
 }
 
 #pragma mark - Notification Center updates
 
 -(void)notificationCenterAdLoaded:(NSNotification*) notification{
-    self.newsView.frame=CGRectMake(0, 0, self.newsView.frame.size.width, self.newsView.frame.size.height-[TabBar adFrame].size.height);
+    [newsView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
+//    self.newsView.frame=CGRectMake(0, 0, self.newsView.frame.size.width, self.newsView.frame.size.height-[TabBar adFrame].size.height);
 }
 
 -(void)notificationCenterAdFailed:(NSNotification*) notification{
-    self.newsView.frame=CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    [newsView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -131,7 +131,6 @@ static NSString* cellID=@"CelijaZaArticle";
     
     [self initModelAndData];
   
-    self.edgesForExtendedLayout = UIRectEdgeNone;
     
     if([TabBar bannerIsVisible]){
         [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];

@@ -62,6 +62,7 @@ static NSString* cellID=@"ArchiveCell";
     return YES;
 }
 
+
 - (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
 {
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
@@ -102,11 +103,8 @@ static NSString* cellID=@"ArchiveCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
 
-    self.edgesForExtendedLayout = UIRectEdgeNone;
-    self.navigationController.view.backgroundColor = [UIColor colorWithRed:189.0/255.0 green:189.0/255.0 blue:195.0/255.0 alpha:1];
     if([TabBar bannerIsVisible]){
         [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
-//        [self.search.searchResultsTableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
     }
 }
 
