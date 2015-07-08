@@ -95,7 +95,7 @@
     
     NSString* content=[self addImgTagsToText:item.content];
     
-    DTCSSStylesheet *style=[[DTCSSStylesheet alloc] initWithStyleBlock:@"p{font:HelveticaNeue;}"];
+    DTCSSStylesheet *style=[[DTCSSStylesheet alloc] initWithStyleBlock:@"b{font:HelveticaNeue;}"];
     DTHTMLAttributedStringBuilder *stringBuilder=[[DTHTMLAttributedStringBuilder alloc] initWithHTML:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{DTDefaultTextColor:[UIColor colorWithRed:70.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1],DTDefaultFontSize:@15,DTDefaultFontName:@"HelveticaNeue",DTDefaultLineHeightMultiplier:@1.3,DTDefaultLinkColor:[UIColor colorWithRed:0 green:153.0/255.0 blue:1 alpha:1],DTDefaultStyleSheet:style} documentAttributes:nil];
     
     articleContentTextView.shouldDrawImages=NO;
@@ -158,8 +158,8 @@
 }
 
 -(void)initScrollView{
-    articleScrollView=[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-(self.navigationController.navigationBar.frame.size.height+20+self.tabBarController.tabBar.frame.size.height))];
-    self.edgesForExtendedLayout=UIRectEdgeBottom;
+    articleScrollView=[[UIScrollView alloc] initWithFrame:self.view.frame];
+    
     if([TabBar bannerIsVisible])
         articleScrollView.contentInset=UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0);
     
@@ -279,11 +279,11 @@
 #pragma mark - Notification Center updates
 
 -(void)notificationCenterAdLoaded:(NSNotification*) notification{
-    articleScrollView.contentInset=UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0);
+     self.articleScrollView.frame=CGRectMake(0, 0, self.articleScrollView.frame.size.width, self.articleScrollView.frame.size.height-[TabBar adFrame].size.height);
 }
 
 -(void)notificationCenterAdFailed:(NSNotification*) notification{
-     articleScrollView.contentInset=UIEdgeInsetsMake(0, 0, 0, 0);
+     self.articleScrollView.frame=CGRectMake(0, 0, self.articleScrollView.frame.size.width, self.articleScrollView.frame.size.height+[TabBar adFrame].size.height);
 }
 
 @end
