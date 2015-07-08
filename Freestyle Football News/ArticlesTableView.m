@@ -190,13 +190,11 @@ static NSString* cellID=@"CelijaZaArticle";
 #pragma mark - Notification Center updates
 
 -(void)notificationCenterAdLoaded:(NSNotification*) notification{
-    self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-[TabBar adFrame].size.height);
+    [self.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height+20, 0, [TabBar adFrame].size.height+self.tabBarController.tabBar.frame.size.height, 0)];
 }
 
 -(void)notificationCenterAdFailed:(NSNotification*) notification{
-    self.tableView.frame=CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+[TabBar adFrame].size.height);
+    [self.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height+20, 0, self.tabBarController.tabBar.frame.size.height, 0)];
 }
-
-
 
 @end

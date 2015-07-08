@@ -7,11 +7,12 @@
 //
 
 #import "VideoPlayerView.h"
+#import "AppDelegate.h"
 
 @interface VideoPlayerView ()
 
 @property UISwipeGestureRecognizer *swipe;
-
+@property UIActivityIndicatorView *loading;
 
 @end
 
@@ -23,10 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor blackColor];
+    self.loading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.loading.center = self.view.center;
     
     playerView=[[YTPlayerView alloc] initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.width)];
     playerView.center=self.view.center;
     [self.view addSubview:playerView];
+    [self.view addSubview:self.loading];
+    [self.loading startAnimating];
     playerView.delegate=self;
     [playerView loadWithVideoId:[videoURL substringFromIndex:videoURL.length-11]];
     UIButton *cancelButton=[[UIButton alloc] initWithFrame:CGRectMake(self.view.center.x-40, playerView.frame.origin.y+playerView.frame.size.height+20, 80, 60)];
@@ -41,21 +46,21 @@
     [self.view addGestureRecognizer:self.swipe];
 }
 
--(void)cancelAction{
+- (void)playerViewDidBecomeReady:(YTPlayerView *)playerView{
+    [self.loading stopAnimating];
+}
+
+- (void)cancelAction{
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void)playerView:(YTPlayerView *)playerView didChangeToState:(YTPlayerState)state{
-//    
-//    if(state==kYTPlayerStatePaused){
-//        [self cancelAction];
-//    }
-    
 }
 
 /*

@@ -39,7 +39,7 @@ static BOOL bannerIsVisible;
     [self.tabBar setBarTintColor:[UIColor  colorWithRed:11.0/255.0 green:120.0/255.0 blue:228.0/255.0 alpha:1]];
     [self.tabBar setTintColor:[UIColor whiteColor]];
     [self.tabBarItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:0 green:154.0/255.0 blue:1 alpha:1],NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
-//    [self.tabBar setTranslucent:NO];
+    [self.tabBar setTranslucent:NO];
     
     ViewController *home=[[ViewController alloc] init];
     home.title=@"Home";
@@ -153,9 +153,16 @@ static BOOL bannerIsVisible;
     }
 }
 
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-   
 }
 
 /*

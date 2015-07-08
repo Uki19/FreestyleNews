@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C7B09D61B4D23C50001CC6A /* NewsActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B09D51B4D23C50001CC6A /* NewsActivityIndicator.m */; };
 		26B269E9462FF258BE878966 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFDE6CEA17FB2B8F8075FAF /* libPods.a */; };
 		75131EE91B32CF4600457525 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75131EE81B32CF4600457525 /* TabBar.m */; };
 		7523DD221B345A5B00A7F658 /* ArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7523DD211B345A5B00A7F658 /* ArticleView.m */; };
@@ -44,6 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C7B09D41B4D23C50001CC6A /* NewsActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsActivityIndicator.h; sourceTree = "<group>"; };
+		0C7B09D51B4D23C50001CC6A /* NewsActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsActivityIndicator.m; sourceTree = "<group>"; };
 		75131EE71B32CF4600457525 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
 		75131EE81B32CF4600457525 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
 		7523DD201B345A5B00A7F658 /* ArticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleView.h; sourceTree = "<group>"; };
@@ -125,8 +128,8 @@
 				754917D91B3395B900D55BD0 /* ArticlesTableView.h */,
 				754917DA1B3395B900D55BD0 /* ArticlesTableView.m */,
 				754917E21B339C9700D55BD0 /* ArticleTableCell.xib */,
-				7523DD211B345A5B00A7F658 /* ArticleView.m */,
 				7523DD201B345A5B00A7F658 /* ArticleView.h */,
+				7523DD211B345A5B00A7F658 /* ArticleView.m */,
 			);
 			name = "Article View";
 			sourceTree = "<group>";
@@ -167,6 +170,8 @@
 		754BE74E1B318B7900F758C9 /* Freestyle Football News */ = {
 			isa = PBXGroup;
 			children = (
+				0C7B09D41B4D23C50001CC6A /* NewsActivityIndicator.h */,
+				0C7B09D51B4D23C50001CC6A /* NewsActivityIndicator.m */,
 				75D940331B323BB8008BE45A /* Navigation.h */,
 				75D940341B323BB8008BE45A /* Navigation.m */,
 				754BE7531B318B7900F758C9 /* AppDelegate.h */,
@@ -421,6 +426,7 @@
 				754BE77D1B319F4800F758C9 /* NewsCell.m in Sources */,
 				75D940351B323BB8008BE45A /* Navigation.m in Sources */,
 				75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */,
+				0C7B09D61B4D23C50001CC6A /* NewsActivityIndicator.m in Sources */,
 				754917DB1B3395B900D55BD0 /* ArticlesTableView.m in Sources */,
 				754BE7551B318B7900F758C9 /* AppDelegate.m in Sources */,
 				7539CAE51B38C9FE00626682 /* ArchiveViewCell.m in Sources */,

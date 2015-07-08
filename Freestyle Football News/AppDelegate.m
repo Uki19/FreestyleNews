@@ -63,18 +63,5 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-//- (NSUInteger)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-//    
-//    id presentedViewController = [window.rootViewController presentedViewController];
-//    NSString *className = presentedViewController ? NSStringFromClass([presentedViewController class]) : nil;
-//    
-//    if (window && ([className isEqualToString:@"AVFullScreenViewController"] || [className isEqualToString:@"MPInlineVideoFullscreenViewController"])) {
-//        return UIInterfaceOrientationMaskAll;
-//    } else {
-//        return UIInterfaceOrientationMaskPortrait;
-//    }
-//}
-
-
 
 @end
