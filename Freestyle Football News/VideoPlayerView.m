@@ -24,8 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor blackColor];
-    self.loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    self.loading.center=self.view.center;
+    self.loading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    self.loading.center = self.view.center;
     
     playerView=[[YTPlayerView alloc] initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.width)];
     playerView.center=self.view.center;
@@ -46,21 +46,22 @@
     [self.view addGestureRecognizer:self.swipe];
 }
 
-
--(void)playerViewDidBecomeReady:(YTPlayerView *)playerView{
+- (void)playerViewDidBecomeReady:(YTPlayerView *)playerView{
     [self.loading stopAnimating];
 }
 
--(void)cancelAction{
+- (void)cancelAction{
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskPortrait;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 /*
 #pragma mark - Navigation
@@ -72,8 +73,5 @@
 }
 */
 
--(NSUInteger)supportedInterfaceOrientations{
-    return UIInterfaceOrientationMaskPortrait;
-}
 
 @end

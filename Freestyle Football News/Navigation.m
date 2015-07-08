@@ -27,7 +27,6 @@
 //    [self.navigationController.navigationItem setBackBarButtonItem:backBtn];
     [[UIBarButtonItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjects:@[[UIFont fontWithName:@"HelveticaNeue-Thin" size:18]] forKeys:@[NSFontAttributeName]] forState:UIControlStateNormal];
     
-//    
     for (UIView *view in self.navigationBar.subviews) {
         for (UIView *view2 in view.subviews) {
             if ([view2 isKindOfClass:[UIImageView class]]) {
@@ -41,7 +40,6 @@
     [super viewDidLoad];
     [self initNavigationBar];
    
-
 }
 
 

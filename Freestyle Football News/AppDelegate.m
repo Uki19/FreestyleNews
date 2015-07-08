@@ -16,7 +16,6 @@
 @implementation AppDelegate
 
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
     [Pushbots sharedInstanceWithAppId:@"558aa7c217795924738b4567"];
@@ -63,9 +62,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
-
-
 
 
 @end

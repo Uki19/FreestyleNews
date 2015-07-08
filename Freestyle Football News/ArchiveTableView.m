@@ -56,25 +56,24 @@ static NSString* cellID=@"ArchiveCell";
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];
     self.searchResults = [downloadedData filteredArrayUsingPredicate:resultPredicate];
 }
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
     
     [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    
     return YES;
 }
 
-
-- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
-{
+- (void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller {
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         [self.tableView insertSubview:self.searchDisplayController.searchBar aboveSubview:self.tableView];
     }
 }
 
+
 -(void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
     if([TabBar bannerIsVisible])
       [tableView setContentInset:UIEdgeInsetsMake(search.searchBar.frame.size.height+20, 0, [TabBar adFrame].size.height, 0)];
 }
+
 
 #pragma mark - News model init
 
@@ -107,7 +106,7 @@ static NSString* cellID=@"ArchiveCell";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
-
+    
     if([TabBar bannerIsVisible]){
         [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
     }
@@ -151,25 +150,23 @@ static NSString* cellID=@"ArchiveCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-  
-    NewsItem *item=nil;
-    if(tableView==self.searchDisplayController.searchResultsTableView)
-        item=[self.searchResults objectAtIndex:indexPath.row];
-    else
-        item=[downloadedData objectAtIndex:indexPath.row];
-    if([item.category isEqual:@"Videos"]){
+    NewsItem *item = nil;
+    if(tableView == self.searchDisplayController.searchResultsTableView) {
+        item = [self.searchResults objectAtIndex:indexPath.row];
+    } else {
+        item = [downloadedData objectAtIndex:indexPath.row];
+    }
+    
+    if([item.category isEqual:@"Videos"]) {
         VideoPlayerView *videoView=[[VideoPlayerView alloc] init];
         videoView.videoURL=item.content;
-         [self presentViewController:videoView animated:YES completion:NULL];
-    }
-    else{
+        [self presentViewController:videoView animated:YES completion:NULL];
+    } else {
         ArticleView *articleView=[[ArticleView alloc] init];
         articleView.item=item;
         articleView.title=@"News";
-         [self.navigationController pushViewController:articleView animated:YES];
+        [self.navigationController pushViewController:articleView animated:YES];
     }
-    
-   
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -216,13 +213,13 @@ static NSString* cellID=@"ArchiveCell";
 #pragma mark - Notification Center updates
 
 -(void)notificationCenterAdLoaded:(NSNotification*) notification{
+    //   [self.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height+20, 0, [TabBar adFrame].size.height+self.tabBarController.tabBar.frame.size.height, 0)];
     [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
-//    [self.searchDisplayController.searchResultsTableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height+20, 0, [TabBar adFrame].size.height+self.tabBarController.tabBar.frame.size.height, 0)];
 }
 
 -(void)notificationCenterAdFailed:(NSNotification*) notification{
+    //   [self.tableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height+20, 0, self.tabBarController.tabBar.frame.size.height, 0)];
     [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-//    [self.searchDisplayController.searchResultsTableView setContentInset:UIEdgeInsetsMake(self.navigationController.navigationBar.frame.size.height+20, 0, self.tabBarController.tabBar.frame.size.height, 0)];
 }
 
 

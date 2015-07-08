@@ -64,14 +64,14 @@ static NSString *cellID = @"NewsCell";
 #pragma mark - SegmentedControl init and actions
 
 -(void)initSegmentedControl{
-    segment=[[UISegmentedControl alloc] initWithItems:@[@"All",@"Comps",@"Videos",@"Other"]];
-    segment.frame=CGRectMake(-2, 0,self.view.frame.size.width+4, 30);
-    segment.backgroundColor=[UIColor colorWithRed:0.0/255.0 green:138.0/255.0 blue:229.0/255.0 alpha:1];
-    segment.tintColor=[UIColor colorWithRed:0 green:154.0/255.0 blue:255.0/255.0 alpha:1];
+    segment = [[UISegmentedControl alloc] initWithItems:@[@"All",@"Comps",@"Videos",@"Other"]];
+    segment.frame = CGRectMake(-2, 0,self.view.frame.size.width+4, 30);
+    segment.backgroundColor = [UIColor colorWithRed:0.0/255.0 green:138.0/255.0 blue:229.0/255.0 alpha:1];
+    segment.tintColor = [UIColor colorWithRed:0 green:154.0/255.0 blue:255.0/255.0 alpha:1];
     [segment setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Thin" size:14]} forState:UIControlStateNormal];
     [segment setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     [segment addTarget:self action:@selector(segmentControlAction:) forControlEvents:UIControlEventValueChanged];
-    segment.selectedSegmentIndex=0;
+    segment.selectedSegmentIndex = 0;
     [self.view addSubview:segment];
 }
 
@@ -96,25 +96,23 @@ static NSString *cellID = @"NewsCell";
     [newsModel downloadDataAtUrl:databaseURL];
 }
 
-
 #pragma mark - init news Model and NewsView(CollectionView)
 
 -(void)initNewsModelAndData {
-    self.newsImages=[[NSMutableDictionary alloc] init];
-    loading=[[NewsActivityIndicator alloc] init];
-
-    loading.center=self.view.center;
-    loading.frame=CGRectOffset(loading.frame, 0, -self.navigationController.navigationBar.frame.size.height-20);
+    self.newsImages = [[NSMutableDictionary alloc] init];
+    loading = [[NewsActivityIndicator alloc] init];
+    loading.center = self.view.center;
+    loading.frame = CGRectOffset(loading.frame, 0, -self.navigationController.navigationBar.frame.size.height-20);
     [self.view addSubview:loading];
     [loading startAnimating];
     
-    newsModel=[[NewsModel alloc] init];
-    news=[[NSArray alloc] init];
-    newsModel.delegate=self;
-    databaseURL=@"http://ineco-posredovanje.co.rs/apptest/getnews.php";
+    newsModel = [[NewsModel alloc] init];
+    news = [[NSArray alloc] init];
+    newsModel.delegate = self;
+    databaseURL = @"http://ineco-posredovanje.co.rs/apptest/getnews.php";
     
     if(![category isEqualToString:@"Home"]) {
-        databaseURL=[databaseURL stringByAppendingString:[NSString stringWithFormat:@"?category=%@&archive=0",category]];
+        databaseURL = [databaseURL stringByAppendingString:[NSString stringWithFormat:@"?category=%@&archive=0",category]];
     }
         
     [newsModel downloadDataAtUrl:databaseURL];
@@ -122,25 +120,24 @@ static NSString *cellID = @"NewsCell";
 
 
 -(void)initNewsView {
-    UICollectionViewFlowLayout *flowlayout=[[UICollectionViewFlowLayout alloc] init];
+    UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
    
-    newsView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-(segment.frame.size.height+self.navigationController.navigationBar.frame.size.height+20+self.tabBarController.tabBar.frame.size.height)) collectionViewLayout:flowlayout];
+    newsView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-(segment.frame.size.height+self.navigationController.navigationBar.frame.size.height+20+self.tabBarController.tabBar.frame.size.height)) collectionViewLayout:flowlayout];
+    flowlayout.sectionInset = UIEdgeInsetsMake(38.0f, 8.0f, 1.0f, 8.0f);
+    flowlayout.minimumInteritemSpacing = 3.0f;
+    flowlayout.minimumLineSpacing = 3.0f;
+    newsView.backgroundColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1];
+    newsView.delegate = self;
    
-    flowlayout.sectionInset=UIEdgeInsetsMake(38.0f, 8.0f, 1.0f, 8.0f);
-    flowlayout.minimumInteritemSpacing=3.0f;
-    flowlayout.minimumLineSpacing=3.0f;
-    newsView.backgroundColor=[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1];
-    newsView.delegate=self;
-   
-    newsView.dataSource=self;
+    newsView.dataSource = self;
     [newsView registerClass:[NewsCell class] forCellWithReuseIdentifier:cellID];
     [newsView registerClass:[NewsCell class] forCellWithReuseIdentifier:@"Prvi Cell"];
     [self.view addSubview:newsView];
     
-    swipeGestureRight=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+    swipeGestureRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
     [swipeGestureRight setDirection:UISwipeGestureRecognizerDirectionRight];
     [newsView addGestureRecognizer:swipeGestureRight];
-    swipeGestureLeft=[[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
+    swipeGestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
     [swipeGestureLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
     [newsView addGestureRecognizer:swipeGestureLeft];
 }
@@ -149,20 +146,21 @@ static NSString *cellID = @"NewsCell";
 
 -(void)swipe:(UISwipeGestureRecognizer*)swipe {
     BOOL hasNext;
-    if(swipe.direction==UISwipeGestureRecognizerDirectionLeft) {
+    if(swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
         if(segment.selectedSegmentIndex<segment.numberOfSegments-1) {
-           segment.selectedSegmentIndex++;
-            hasNext=YES;
+            segment.selectedSegmentIndex++;
+            hasNext = YES;
         }
     }
     else {
-        if(segment.selectedSegmentIndex>0){
+        if(segment.selectedSegmentIndex > 0) {
             segment.selectedSegmentIndex--;
-            hasNext=YES;
+            hasNext = YES;
         }
     }
-    if(hasNext)
+    if(hasNext) {
         [self segmentControlAction:segment];
+    }
 }
 
 #pragma mark - CollectionView delegate and datasource methods
@@ -393,14 +391,12 @@ static NSString *cellID = @"NewsCell";
     [self initNewsModelAndData];
     [self initSegmentedControl];
 
-
 }
 
 #pragma mark - Notification Center updates
 
 -(void)notificationCenterAdLoaded:(NSNotification*) notification{
     [newsView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
-//    self.newsView.frame=CGRectMake(0, 0, self.newsView.frame.size.width, self.newsView.frame.size.height-[TabBar adFrame].size.height);
 }
 
 -(void)notificationCenterAdFailed:(NSNotification*) notification{
