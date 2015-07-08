@@ -384,8 +384,7 @@ static NSString *cellID = @"NewsCell";
     self.category=self.title;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
-
-   
+    
     [self initNewsView];
     [self initNavbarButtons];
     [self initNewsModelAndData];
