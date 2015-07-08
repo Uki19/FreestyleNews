@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "754BE74B1B318B7900F758C9"
                BuildableName = "The Artball.app"
-               BlueprintName = "The Artball"
-               ReferencedContainer = "container:The Artball.xcodeproj">
+               BlueprintName = "Freestyle Football News"
+               ReferencedContainer = "container:Freestyle Football News.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -30,8 +30,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "754BE7641B318B7900F758C9"
                BuildableName = "The ArtballTests.xctest"
-               BlueprintName = "The ArtballTests"
-               ReferencedContainer = "container:The Artball.xcodeproj">
+               BlueprintName = "Freestyle Football NewsTests"
+               ReferencedContainer = "container:Freestyle Football News.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,8 +48,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "754BE7641B318B7900F758C9"
                BuildableName = "The ArtballTests.xctest"
-               BlueprintName = "The ArtballTests"
-               ReferencedContainer = "container:The Artball.xcodeproj">
+               BlueprintName = "Freestyle Football NewsTests"
+               ReferencedContainer = "container:Freestyle Football News.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,8 +58,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "754BE74B1B318B7900F758C9"
             BuildableName = "The Artball.app"
-            BlueprintName = "The Artball"
-            ReferencedContainer = "container:The Artball.xcodeproj">
+            BlueprintName = "Freestyle Football News"
+            ReferencedContainer = "container:Freestyle Football News.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -78,8 +78,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "754BE74B1B318B7900F758C9"
             BuildableName = "The Artball.app"
-            BlueprintName = "The Artball"
-            ReferencedContainer = "container:The Artball.xcodeproj">
+            BlueprintName = "Freestyle Football News"
+            ReferencedContainer = "container:Freestyle Football News.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -97,8 +97,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "754BE74B1B318B7900F758C9"
             BuildableName = "The Artball.app"
-            BlueprintName = "The Artball"
-            ReferencedContainer = "container:The Artball.xcodeproj">
+            BlueprintName = "Freestyle Football News"
+            ReferencedContainer = "container:Freestyle Football News.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
