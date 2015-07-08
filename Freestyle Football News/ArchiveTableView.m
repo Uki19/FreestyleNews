@@ -47,6 +47,7 @@ static NSString* cellID=@"ArchiveCell";
     search.delegate=self;
     searchBar.delegate=self;
     search.searchResultsDataSource=self;
+    search.searchBar.translucent=NO;
     
 }
 
@@ -70,6 +71,10 @@ static NSString* cellID=@"ArchiveCell";
     }
 }
 
+-(void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
+    if([TabBar bannerIsVisible])
+      [tableView setContentInset:UIEdgeInsetsMake(search.searchBar.frame.size.height+20, 0, [TabBar adFrame].size.height, 0)];
+}
 
 #pragma mark - News model init
 
@@ -106,12 +111,15 @@ static NSString* cellID=@"ArchiveCell";
     if([TabBar bannerIsVisible]){
         [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
     }
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
 }
+
+
 
 #pragma mark - Table view data source
 
