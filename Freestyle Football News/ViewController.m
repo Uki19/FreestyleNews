@@ -201,6 +201,7 @@ static NSString *cellID = @"NewsCell";
     }
     cell.category.text=newsItem.category;
     cell.title.text=newsItem.title;
+
     [cell reloadLabels];
     return cell;
 }
@@ -279,13 +280,11 @@ static NSString *cellID = @"NewsCell";
         NSURL *imgurl = [NSURL URLWithString:((NewsItem *)news[i]).imageURL];
         NSData *imgData = [NSData dataWithContentsOfURL:imgurl];
         UIImage *image = [UIImage imageWithData:imgData];
-        
         if((i==0) || ([(NewsItem*)[news objectAtIndex:i] important])) {
-            image=[self imageWithImage:image scaledToSize:CGSizeMake(500, 500) andCompressedTo:1 isBig:YES];
+            image=[self imageWithImage:image scaledWithFactor:0.6 andCompressedTo:1];
         } else {
-            image=[self imageWithImage:image scaledToSize:CGSizeMake(400, 400) andCompressedTo:0.6 isBig:NO];
+            image=[self imageWithImage:image scaledWithFactor:0.6 andCompressedTo:0.6];
         }
-        
         if(image){
             if(![self.imgs containsObject:image]) {
                 [self.imgs addObject:image];
@@ -295,10 +294,6 @@ static NSString *cellID = @"NewsCell";
         }
     }
     
- 
-    
-    
-    
     NSMutableArray *array;
     if(numberImportant % 2 == 0) {
         array = [NSMutableArray arrayWithArray:news];
@@ -307,8 +302,6 @@ static NSString *cellID = @"NewsCell";
     }
     [newsView reloadData];
     self.imgsCopy=self.imgs;
-//    [segment setSelectedSegmentIndex:0];
-//    self.category=@"Home";
     [loading stopAnimating];
 }
 
@@ -346,34 +339,24 @@ static NSString *cellID = @"NewsCell";
 
 #pragma mark - Image scale and compress method
 
-- (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize andCompressedTo:(CGFloat)compression isBig:(BOOL)isBig{
-    CGRect rect;
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && isBig){
-        rect=CGRectMake(0, (image.size.height-image.size.width/2)/2, image.size.width, image.size.width/2);
-        newSize=CGSizeMake(newSize.width, newSize.width/2);
+- (UIImage *)imageWithImage:(UIImage *)image scaledWithFactor:(CGFloat)scaleFactor andCompressedTo:(CGFloat)compression{
+    UIImage *newImage=image;
+    if(image.size.height > 700 || image.size.width >700){
+        CGSize newSize=CGSizeMake(image.size.width*scaleFactor, image.size.height*scaleFactor);
+        UIGraphicsBeginImageContext(newSize);
+        [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+        newImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
     }
-    else{
-        CGFloat min=image.size.height<image.size.width?image.size.height:image.size.width;
-        CGFloat velikoS=image.size.width;
-        CGFloat velikoV=image.size.height;
-        rect=CGRectMake((velikoS-min)/2, (velikoV-min)/2, min, min);
-    }
-    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], rect);
-    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    
-    UIGraphicsBeginImageContext(newSize);
-    [cropped drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
     newImage=[UIImage imageWithData: UIImageJPEGRepresentation(newImage, compression)];
+    
     return newImage;
 }
 
 -(UIImage *)addPlayIconOnImage:(UIImage* )image {
     UIGraphicsBeginImageContextWithOptions(image.size, NO, 0.0f);
     [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
-    [[UIImage imageNamed:@"playicon"] drawInRect:CGRectMake(image.size.width/2-image.size.height/6,image.size.height/2-image.size.height/6, image.size.height/3, image.size.height/3)];
+    [[UIImage imageNamed:@"playicon"] drawInRect:CGRectMake(image.size.width/2-100,image.size.height/2-100, 200, 200)];
     UIImage *resultImage=UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return resultImage;

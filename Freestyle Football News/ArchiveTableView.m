@@ -135,7 +135,7 @@ static NSString* cellID=@"ArchiveCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ArchiveViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    
+
     NewsItem *item=nil;
     if(tableView == self.searchDisplayController.searchResultsTableView)
         item=[self.searchResults objectAtIndex:indexPath.row];

@@ -28,8 +28,8 @@
     
         
 //        [self addSubview:category];
-//        [newsImage setContentMode:UIViewContentModeScaleAspectFit];
-      
+        [newsImage setContentMode:UIViewContentModeScaleAspectFill];
+        [newsImage setClipsToBounds:YES];
        
      
         title=[[UILabel alloc] initWithFrame:CGRectMake(2, self.frame.size.height, self.frame.size.width, 100)];
