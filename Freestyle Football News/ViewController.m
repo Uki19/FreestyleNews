@@ -24,6 +24,14 @@ static NSString *cellID = @"NewsCell";
 @property NSMutableArray *imgs;
 @property NSMutableArray *imgsCopy;
 @property NSArray *newsCopy;
+@property NSArray *videoNews;
+@property NSArray *compNews;
+@property NSArray *otherNews;
+@property NSArray *allNews;
+@property NSMutableArray *videoNewsImages;
+@property NSMutableArray *compNewsImages;
+@property NSMutableArray *otherNewsImages;
+@property NSMutableArray *allNewsImages;
 
 @end
 
@@ -51,6 +59,11 @@ static NSString *cellID = @"NewsCell";
 
 -(void)refreshAction{
     [loading startAnimating];
+    databaseURL=@"http://ineco-posredovanje.co.rs/apptest/getnews.php";
+    
+    if(![category isEqualToString:@"Home"]) {
+        databaseURL=[databaseURL stringByAppendingString:[NSString stringWithFormat:@"?category=%@&archive=0",category]];
+    }
     
     [newsModel downloadDataAtUrl:databaseURL];
 }
@@ -76,7 +89,7 @@ static NSString *cellID = @"NewsCell";
 }
 
 -(void)segmentControlAction:(UISegmentedControl*)sender {
-    [loading startAnimating];
+    
     NSString *selectedTitle=[sender titleForSegmentAtIndex:[sender selectedSegmentIndex]];
     if([selectedTitle isEqualToString:@"Comps"]) selectedTitle=@"Competitions";
 //    [self setArticlesForCategory:selectedTitle];
@@ -87,6 +100,38 @@ static NSString *cellID = @"NewsCell";
         self.category=@"Home";
     }
     
+    if([category isEqualToString:@"Videos"])
+    {
+        if(self.videoNews){
+            news=self.videoNews;
+            self.imgs=self.videoNewsImages;
+            [newsView reloadData];
+            return;
+            
+        }
+    } else if([category isEqualToString:@"Competitions"]){
+        if(self.compNews){
+            news=self.compNews;
+            self.imgs=self.compNewsImages;
+            [newsView reloadData];
+            return;
+        }
+    } else if([category isEqualToString:@"Other"]){
+        if(self.otherNews){
+            news=self.otherNews;
+            self.imgs=self.otherNewsImages;
+            [newsView reloadData];
+            return;
+        }
+    } else{
+        if(self.allNews){
+            news=self.allNews;
+            self.imgs=self.allNewsImages;
+            [newsView reloadData];
+            return;
+        }
+    }
+    [loading startAnimating];
     databaseURL=@"http://ineco-posredovanje.co.rs/apptest/getnews.php";
     
     if(![category isEqualToString:@"Home"]) {
@@ -300,8 +345,26 @@ static NSString *cellID = @"NewsCell";
         [array removeLastObject];
         news = array;
     }
+    
+    if([self.category isEqualToString:@"Videos"]){
+        self.videoNews=news;
+        self.videoNewsImages=self.imgs;
+    }
+    
+    if([self.category isEqualToString:@"Competitions"]){
+        self.compNews=news;
+        self.compNewsImages=self.imgs;
+    }
+    if([self.category isEqualToString:@"Other"]){
+        self.otherNews=news;
+        self.otherNewsImages=self.imgs;
+    }
+    if([self.category isEqualToString:@"Home"]){
+        self.allNews=news;
+        self.allNewsImages=self.imgs;
+    }
+    
     [newsView reloadData];
-    self.imgsCopy=self.imgs;
     [loading stopAnimating];
 }
 
@@ -361,6 +424,7 @@ static NSString *cellID = @"NewsCell";
     UIGraphicsEndImageContext();
     return resultImage;
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
