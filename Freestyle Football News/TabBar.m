@@ -11,6 +11,7 @@
 #import "Navigation.h"
 #import "ArticlesTableView.h"
 #import "ArchiveTableView.h"
+#import "AboutViewController.h"
 
 static CGRect adFrame;
 
@@ -49,25 +50,6 @@ static BOOL bannerIsVisible;
     [normalImages addObject:[[UIImage imageNamed:@"home"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [selectedImages addObject:[[UIImage imageNamed:@"home-selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
 
-    
-  
-//    ViewController *competitions=[[ViewController alloc] init];
-//    competitions.title=@"Competitions";
-//    navigationView=[[Navigation alloc] initWithRootViewController:competitions];
-//    [navs addObject:navigationView];
-//    navigationView=nil;
-//    [normalImages addObject:[[UIImage imageNamed:@"trophy"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-//    [selectedImages addObject:[[UIImage imageNamed:@"trophy-selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-//
-//    
-//    ViewController *videos=[[ViewController alloc] init];
-//    videos.title=@"Videos";
-//    navigationView=[[Navigation alloc] initWithRootViewController:videos];
-//    [navs addObject:navigationView];
-//    navigationView=nil;
-//    [normalImages addObject:[[UIImage imageNamed:@"video"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-//    [selectedImages addObject:[[UIImage imageNamed:@"video-selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-//    
    
     ArticlesTableView *articles=[[ArticlesTableView alloc] init];
     articles.title=@"Articles";
@@ -76,14 +58,14 @@ static BOOL bannerIsVisible;
     navigationView=nil;
     [normalImages addObject:[[UIImage imageNamed:@"article"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [selectedImages addObject:[[UIImage imageNamed:@"article-selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-//   
-//    ViewController *other=[[ViewController alloc] init];
-//    other.title=@"Other";
-//    navigationView=[[Navigation alloc] initWithRootViewController:other];
-//    [navs addObject:navigationView];
-//    navigationView=nil;
-//    [normalImages addObject:[[UIImage imageNamed:@"other"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-//    [selectedImages addObject:[[UIImage imageNamed:@"other-selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+  
+    AboutViewController *about=[[AboutViewController alloc] init];
+    about.title=@"About";
+    navigationView=[[Navigation alloc] initWithRootViewController:about];
+    [navs addObject:navigationView];
+    navigationView=nil;
+    [normalImages addObject:[[UIImage imageNamed:@"about"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [selectedImages addObject:[[UIImage imageNamed:@"about-selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     
   
     
@@ -95,19 +77,10 @@ static BOOL bannerIsVisible;
         [tabItem setImage:[normalImages objectAtIndex:[self.tabBar.items indexOfObject:tabItem]]];
         [tabItem setSelectedImage:[selectedImages objectAtIndex:[self.tabBar.items indexOfObject:tabItem]]];
     }
-    
+
     adView = [[ADBannerView alloc] initWithFrame:self.tabBar.frame];
     adFrame=adView.frame;
-    
-    //    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-    //        adView.frame = CGRectOffset(adView.frame, 0, 748.0f);
-    //    } else {
-    //        adView.frame = CGRectOffset(adView.frame, 0, 480.0f);
-    //    }
-    
-    //    adView.requiredContentSizeIdentifiers = [NSSet setWithObject:ADBannerContentSizeIdentifierPortrait];
-    //    adView.currentContentSizeIdentifier = ADBannerContentSizeIdentifierPortrait;
-    
+
     adView.delegate = self;
     bannerIsVisible = NO;
     
