@@ -293,7 +293,7 @@ static NSString *cellID = @"NewsCell";
     news = items;
     self.newsCopy=news;
     self.imgs=[[NSMutableArray alloc] init];
-    
+    [[news objectAtIndex:0] setImportant:YES];
     int brImportant=0;
     //algoritam za zamjenu vijesti ako je neparan broj prije sljedece vazne vijesti
     for(int i=1; i<news.count; i++){
