@@ -245,8 +245,8 @@ static NSString *cellID = @"NewsCell";
         cell.newsImage.image=[self.imgs objectAtIndex:indexPath.row];
     }
     cell.category.text=newsItem.category;
+//    cell.title.attributedText=[[NSAttributedString alloc] initWithData:[newsItem.title dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.title.text=newsItem.title;
-
     [cell reloadLabels];
     return cell;
 }
@@ -293,7 +293,7 @@ static NSString *cellID = @"NewsCell";
     news = items;
     self.newsCopy=news;
     self.imgs=[[NSMutableArray alloc] init];
-    [[news objectAtIndex:0] setImportant:YES];
+//    [[news objectAtIndex:0] setImportant:YES];
     int brImportant=0;
     //algoritam za zamjenu vijesti ako je neparan broj prije sljedece vazne vijesti
     for(int i=1; i<news.count; i++){
@@ -342,7 +342,8 @@ static NSString *cellID = @"NewsCell";
     NSMutableArray *array;
     if(numberImportant % 2 == 0) {
         array = [NSMutableArray arrayWithArray:news];
-        [array removeLastObject];
+        if(![[array objectAtIndex:array.count-1] important])
+            [array removeLastObject];
         news = array;
     }
     
