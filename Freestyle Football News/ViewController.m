@@ -294,7 +294,6 @@ static NSString *cellID = @"NewsCell";
     self.newsCopy=news;
     self.imgs=[[NSMutableArray alloc] init];
 //    [[news objectAtIndex:0] setImportant:YES];
-    int brImportant=0;
     //algoritam za zamjenu vijesti ako je neparan broj prije sljedece vazne vijesti
     for(int i=1; i<news.count; i++){
         if([(NewsItem*)[news objectAtIndex:i] important]) {
@@ -311,14 +310,16 @@ static NSString *cellID = @"NewsCell";
                 
                 
                 news = array;
+                lastImportantIndex = i-1;
             }
-            brImportant++;
-            lastImportantIndex = i-brImportant;
+            else
+            lastImportantIndex = i;
+            
         }
     }
     
     for(int i=0; i<news.count; i++){
-        if([(NewsItem*)[news objectAtIndex:i] important]) {
+        if([(NewsItem*)[news objectAtIndex:i] important] && i>0) {
             numberImportant++;
         }
         
@@ -326,7 +327,7 @@ static NSString *cellID = @"NewsCell";
         NSData *imgData = [NSData dataWithContentsOfURL:imgurl];
         UIImage *image = [UIImage imageWithData:imgData];
         if((i==0) || ([(NewsItem*)[news objectAtIndex:i] important])) {
-            image=[self imageWithImage:image scaledWithFactor:0.6 andCompressedTo:1];
+            image=[self imageWithImage:image scaledWithFactor:0.6 andCompressedTo:0.8];
         } else {
             image=[self imageWithImage:image scaledWithFactor:0.6 andCompressedTo:0.6];
         }
@@ -340,7 +341,7 @@ static NSString *cellID = @"NewsCell";
     }
     
     NSMutableArray *array;
-    if(numberImportant % 2 == 0) {
+    if(numberImportant % 2 == 1) {
         array = [NSMutableArray arrayWithArray:news];
         if(![[array objectAtIndex:array.count-1] important])
             [array removeLastObject];
