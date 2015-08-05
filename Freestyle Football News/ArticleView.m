@@ -223,32 +223,28 @@
 
 #pragma mark - DTAttributedText parse images and videos
 
-- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame
-{
-   
-     if ([attachment isKindOfClass:[DTImageTextAttachment class]])
-    {
-       DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
+- (UIView *)attributedTextContentView:(DTAttributedTextContentView *)attributedTextContentView viewForAttachment:(DTTextAttachment *)attachment frame:(CGRect)frame {
+    if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
+        DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
         imageView.shouldShowProgressiveDownload=YES;
         imageView.contentMode=UIViewContentModeScaleAspectFit;
         imageView.delegate = self;
-   
-//        imageView.image = [self imageWithImage:[(DTImageTextAttachment *)attachment image] scaledToSize:CGSizeMake(self.view.frame.size.width, 250)];
+        
+        //imageView.image = [self imageWithImage:[(DTImageTextAttachment *)attachment image] scaledToSize:CGSizeMake(self.view.frame.size.width, 250)];
         imageView.image=[UIImage imageWithData:UIImageJPEGRepresentation([(DTImageTextAttachment *)attachment image], 0.6)];
-     
         imageView.url = attachment.contentURL;
-    
+        
         return imageView;
     }
-    if ([attachment isKindOfClass:[DTIframeTextAttachment class]]){
-        
+    
+    if ([attachment isKindOfClass:[DTIframeTextAttachment class]]) {
         YTPlayerView *ytPlayer=[[YTPlayerView alloc] initWithFrame:frame];
         NSString* ytLink=[NSString stringWithFormat:@"%@",attachment.contentURL];
         NSString* ytVideoID=[ytLink substringFromIndex:ytLink.length-11];
         [ytPlayer loadWithVideoId:ytVideoID];
         return ytPlayer;
-        
     }
+    
     return nil;
 }
 
@@ -262,13 +258,8 @@
     
     BOOL didUpdate = NO;
    
-    
-
-   
-    for (DTTextAttachment *oneAttachment in [articleContentTextView.layoutFrame textAttachmentsWithPredicate:pred])
-    {
-            if (CGSizeEqualToSize(oneAttachment.originalSize, CGSizeZero))
-        {
+    for (DTTextAttachment *oneAttachment in [articleContentTextView.layoutFrame textAttachmentsWithPredicate:pred]) {
+        if (CGSizeEqualToSize(oneAttachment.originalSize, CGSizeZero)) {
             oneAttachment.originalSize = imageSize;
             didUpdate = YES;
         }

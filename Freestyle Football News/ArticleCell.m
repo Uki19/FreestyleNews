@@ -18,11 +18,11 @@
 - (void)awakeFromNib {
     CALayer* l=articleImage.layer;
     [l setMasksToBounds:YES];
-    [l setCornerRadius:10.0f];
+    //[l setCornerRadius:10.0f];
     
     CALayer* b=backView.layer;
     [b setMasksToBounds:YES];
-    [b setCornerRadius:10.0f];
+    //[b setCornerRadius:10.0f];
     
 }
 

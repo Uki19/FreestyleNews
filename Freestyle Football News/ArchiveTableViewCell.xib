@@ -15,13 +15,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="0.0" translatesAutoresizingMaskIntoConstraints="NO" id="6GU-yl-axK">
-                        <rect key="frame" x="22" y="8" width="290" height="36"/>
+                        <rect key="frame" x="8" y="8" width="304" height="36"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rd9-A0-cUE">
-                        <rect key="frame" x="22" y="44" width="290" height="16"/>
+                        <rect key="frame" x="8" y="44" width="304" height="16"/>
                         <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                         <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -29,9 +29,9 @@
                 </subviews>
                 <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="Rd9-A0-cUE" firstAttribute="leading" secondItem="tHW-0M-Cmy" secondAttribute="leadingMargin" constant="14" id="2Lc-b5-N4U"/>
+                    <constraint firstItem="Rd9-A0-cUE" firstAttribute="leading" secondItem="tHW-0M-Cmy" secondAttribute="leadingMargin" id="2Lc-b5-N4U"/>
                     <constraint firstItem="Rd9-A0-cUE" firstAttribute="trailing" secondItem="tHW-0M-Cmy" secondAttribute="trailingMargin" id="6Zg-KG-u3G"/>
-                    <constraint firstItem="6GU-yl-axK" firstAttribute="leading" secondItem="tHW-0M-Cmy" secondAttribute="leadingMargin" constant="14" id="Dd4-48-6Hj"/>
+                    <constraint firstItem="6GU-yl-axK" firstAttribute="leading" secondItem="tHW-0M-Cmy" secondAttribute="leadingMargin" id="Dd4-48-6Hj"/>
                     <constraint firstAttribute="centerY" secondItem="6GU-yl-axK" secondAttribute="centerY" constant="8" id="Eae-sb-aTH"/>
                     <constraint firstItem="Rd9-A0-cUE" firstAttribute="top" secondItem="6GU-yl-axK" secondAttribute="bottom" id="dze-ju-ev4"/>
                     <constraint firstItem="6GU-yl-axK" firstAttribute="top" secondItem="tHW-0M-Cmy" secondAttribute="topMargin" id="hfh-Lq-27e"/>
@@ -45,7 +45,7 @@
                 <outlet property="categoryLabel" destination="Rd9-A0-cUE" id="Ece-9F-mbs"/>
                 <outlet property="titleLabel" destination="6GU-yl-axK" id="22Y-R8-zcE"/>
             </connections>
-            <point key="canvasLocation" x="288" y="429.5"/>
+            <point key="canvasLocation" x="263" y="214.5"/>
         </tableViewCell>
     </objects>
 </document>

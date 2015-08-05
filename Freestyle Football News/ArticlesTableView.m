@@ -27,20 +27,18 @@ static NSString* cellID=@"CelijaZaArticle";
 
 #pragma mark - Article Model init
 
--(void)initModelAndData{
-    
-    loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    loading.color=[UIColor grayColor];
-    loading.center=CGPointMake(self.view.center.x, loading.frame.size.height);
+-(void)initModelAndData {
+    loading = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    loading.color = [UIColor grayColor];
+    loading.center = CGPointMake(self.view.center.x, loading.frame.size.height);
     [self.view addSubview:loading];
     [loading startAnimating];
-    articlesModel=[[ArticlesModel alloc] init];
-    articles=[[NSArray alloc] init];
+    articlesModel = [[ArticlesModel alloc] init];
+    articles = [[NSArray alloc] init];
     
     articlesModel.delegate=self;
     
     [articlesModel downloadData];
-    
 }
 
 #pragma mark - Image scale and compress method
@@ -65,29 +63,27 @@ static NSString* cellID=@"CelijaZaArticle";
 #pragma mark - Observer update methods
 
 -(void)updateWithItems:(NSArray *)items{
-    
-    articleImages=[[NSMutableArray alloc] init];
-    articles=items;
+    articleImages = [[NSMutableArray alloc] init];
+    articles = items;
     
     for (NewsItem* item in articles) {
         NSURL *imgUrl=[NSURL URLWithString:item.imageURL];
         NSData *imgData=[NSData dataWithContentsOfURL:imgUrl];
         UIImage *image=[UIImage imageWithData:imgData];
         image=[self imageWithImage:image scaledToSize:CGSizeMake(100, 100)];
-        if(image==nil)
-            image=[UIImage imageNamed:@"profiledefault"];
+        if(image == nil) {
+            image = [UIImage imageNamed:@"profiledefault"];
+        }
         
         [articleImages addObject:image];
     }
+    
     [loading stopAnimating];
     [self.tableView reloadData];
-    
 }
 
 -(void)failedToDownloadWithError:(NSError *)error{
-    
     if([UIAlertController class]){
-        
         UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"Failed to connect" message:@"Make sure you are connected to the internet and retry." preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *retryAction=[UIAlertAction actionWithTitle:@"Retry" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
             [articlesModel downloadData];
@@ -100,9 +96,7 @@ static NSString* cellID=@"CelijaZaArticle";
         [alert addAction:cancelAction];
         
         [self presentViewController:alert animated:YES completion:nil];
-    }
-    else{
-        
+    } else {
         UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Failed to connect" message:@"Make sure you are connected to the internet and retry." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Retry", nil];
         [alertView setAlertViewStyle:UIAlertViewStyleDefault];
         
@@ -118,9 +112,6 @@ static NSString* cellID=@"CelijaZaArticle";
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"ArticleTableCell" bundle:nil] forCellReuseIdentifier:cellID];
     [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1]];
@@ -147,7 +138,6 @@ static NSString* cellID=@"CelijaZaArticle";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return articles.count;
 }
 
