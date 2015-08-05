@@ -319,7 +319,7 @@ static NSString *cellID = @"NewsCell";
     }
     
     for(int i=0; i<news.count; i++){
-        if([(NewsItem*)[news objectAtIndex:i] important] && i>0) {
+        if(![(NewsItem*)[news objectAtIndex:i] important] && i>0) {
             numberImportant++;
         }
         
