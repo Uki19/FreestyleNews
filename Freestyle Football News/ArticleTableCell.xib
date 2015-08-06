@@ -27,13 +27,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wia-e2-Ukg">
-                                <rect key="frame" x="9" y="57" width="220" height="21"/>
+                                <rect key="frame" x="9" y="51" width="220" height="21"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
                                 <color key="textColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.90890879953379944" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="eIt-L9-FEK" firstAttribute="leading" secondItem="3uf-59-xan" secondAttribute="leading" constant="9" id="5dW-qV-kD9"/>
                             <constraint firstAttribute="trailing" secondItem="eIt-L9-FEK" secondAttribute="trailing" constant="12" id="8Xx-W0-rYD"/>
@@ -42,18 +41,18 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZaC-lc-0u5">
-                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="0I4-jz-0FS"/>
-                            <constraint firstAttribute="height" constant="80" id="wCp-Gr-Hp5"/>
+                            <constraint firstAttribute="width" constant="70" id="0I4-jz-0FS"/>
+                            <constraint firstAttribute="height" constant="70" id="wCp-Gr-Hp5"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.87435351110000004" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="3uf-59-xan" firstAttribute="leading" secondItem="ZaC-lc-0u5" secondAttribute="trailing" id="GdG-kl-uiV"/>
-                    <constraint firstItem="ZaC-lc-0u5" firstAttribute="top" secondItem="1ha-ah-Tgo" secondAttribute="topMargin" constant="-8" id="XwJ-dB-A0L"/>
-                    <constraint firstItem="ZaC-lc-0u5" firstAttribute="leading" secondItem="1ha-ah-Tgo" secondAttribute="leadingMargin" constant="-15" id="YY8-RC-GSL"/>
+                    <constraint firstItem="ZaC-lc-0u5" firstAttribute="top" secondItem="1ha-ah-Tgo" secondAttribute="topMargin" constant="-4" id="XwJ-dB-A0L"/>
+                    <constraint firstItem="ZaC-lc-0u5" firstAttribute="leading" secondItem="1ha-ah-Tgo" secondAttribute="leadingMargin" constant="-12" id="YY8-RC-GSL"/>
                     <constraint firstAttribute="centerY" secondItem="3uf-59-xan" secondAttribute="centerY" constant="-0.5" id="f80-rR-Rk5"/>
                     <constraint firstAttribute="trailingMargin" secondItem="3uf-59-xan" secondAttribute="trailing" constant="-14" id="fNT-br-hu0"/>
                 </constraints>
