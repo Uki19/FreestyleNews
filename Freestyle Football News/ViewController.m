@@ -15,6 +15,7 @@
 #import "YTPlayerView.h"
 #import "VideoPlayerView.h"
 #import "TabBar.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 static NSString *cellID = @"NewsCell";
 
@@ -239,11 +240,13 @@ static NSString *cellID = @"NewsCell";
         
     }
     
-    if([newsItem.category isEqualToString:@"Videos"]) {
-        cell.newsImage.image=[self addPlayIconOnImage:[self.imgs objectAtIndex:indexPath.row]];
-    } else {
-        cell.newsImage.image=[self.imgs objectAtIndex:indexPath.row];
-    }
+//    if([newsItem.category isEqualToString:@"Videos"]) {
+//        cell.newsImage.image=[self addPlayIconOnImage:[self.imgs objectAtIndex:indexPath.row]];
+//    } else {
+//        cell.newsImage.image=[self.imgs objectAtIndex:indexPath.row];
+//    }
+    [cell.newsImage sd_setImageWithURL:[NSURL URLWithString:newsItem.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
+    
     cell.category.text=newsItem.category;
 //    cell.title.attributedText=[[NSAttributedString alloc] initWithData:[newsItem.title dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.title.text=newsItem.title;
@@ -321,22 +324,6 @@ static NSString *cellID = @"NewsCell";
     for(int i=0; i<news.count; i++){
         if(![(NewsItem*)[news objectAtIndex:i] important] && i>0) {
             numberImportant++;
-        }
-        
-        NSURL *imgurl = [NSURL URLWithString:((NewsItem *)news[i]).imageURL];
-        NSData *imgData = [NSData dataWithContentsOfURL:imgurl];
-        UIImage *image = [UIImage imageWithData:imgData];
-        if((i==0) || ([(NewsItem*)[news objectAtIndex:i] important])) {
-            image=[self imageWithImage:image scaledWithFactor:0.6 andCompressedTo:0.8];
-        } else {
-            image=[self imageWithImage:image scaledWithFactor:0.6 andCompressedTo:0.6];
-        }
-        if(image){
-            if(![self.imgs containsObject:image]) {
-                [self.imgs addObject:image];
-            }
-        } else {
-            [self.imgs addObject:[UIImage imageNamed:@"home"]];
         }
     }
     

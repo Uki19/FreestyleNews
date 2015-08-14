@@ -11,6 +11,7 @@
 #import "NewsItem.h"
 #import "ArticleView.h"
 #import "TabBar.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 static NSString* cellID=@"CelijaZaArticle";
 
@@ -65,18 +66,18 @@ static NSString* cellID=@"CelijaZaArticle";
 -(void)updateWithItems:(NSArray *)items{
     articleImages = [[NSMutableArray alloc] init];
     articles = items;
-    
-    for (NewsItem* item in articles) {
-        NSURL *imgUrl=[NSURL URLWithString:item.imageURL];
-        NSData *imgData=[NSData dataWithContentsOfURL:imgUrl];
-        UIImage *image=[UIImage imageWithData:imgData];
-        image=[self imageWithImage:image scaledToSize:CGSizeMake(100, 100)];
-        if(image == nil) {
-            image = [UIImage imageNamed:@"profiledefault"];
-        }
-        
-        [articleImages addObject:image];
-    }
+//    
+//    for (NewsItem* item in articles) {
+//        NSURL *imgUrl=[NSURL URLWithString:item.imageURL];
+//        NSData *imgData=[NSData dataWithContentsOfURL:imgUrl];
+//        UIImage *image=[UIImage imageWithData:imgData];
+//        image=[self imageWithImage:image scaledToSize:CGSizeMake(100, 100)];
+//        if(image == nil) {
+//            image = [UIImage imageNamed:@"profiledefault"];
+//        }
+//        
+//        [articleImages addObject:image];
+//    }
     
     [loading stopAnimating];
     [self.tableView reloadData];
@@ -169,8 +170,8 @@ static NSString* cellID=@"CelijaZaArticle";
     
     cell.articleTitle.text=item.title;
     cell.articleAuthor.text=[NSString stringWithFormat:@"By: %@",item.author];
-    cell.articleImage.image=[articleImages objectAtIndex:[indexPath row]];
-    
+//    cell.articleImage.image=[articleImages objectAtIndex:[indexPath row]];
+    [cell.articleImage sd_setImageWithURL:[NSURL URLWithString:item.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
     cell.backgroundColor = [UIColor clearColor];
     
     return cell;
