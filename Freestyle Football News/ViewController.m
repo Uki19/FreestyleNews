@@ -245,7 +245,7 @@ static NSString *cellID = @"NewsCell";
 //    } else {
 //        cell.newsImage.image=[self.imgs objectAtIndex:indexPath.row];
 //    }
-    [cell.newsImage sd_setImageWithURL:[NSURL URLWithString:newsItem.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
+    [cell.newsImage sd_setImageWithURL:[NSURL URLWithString:newsItem.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     cell.category.text=newsItem.category;
 //    cell.title.attributedText=[[NSAttributedString alloc] initWithData:[newsItem.title dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];

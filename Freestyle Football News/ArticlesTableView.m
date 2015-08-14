@@ -156,7 +156,7 @@ static NSString* cellID=@"CelijaZaArticle";
     
 
     articleView.item=article;
-    articleView.authorImage=[articleImages objectAtIndex:indexPath.row];
+    articleView.authorImage=[((ArticleCell*)[tableView cellForRowAtIndexPath:indexPath]) articleImage].image;
     articleView.title=@"Article";
     [self.navigationController pushViewController:articleView animated:YES];
     [loading stopAnimating];
@@ -171,7 +171,7 @@ static NSString* cellID=@"CelijaZaArticle";
     cell.articleTitle.text=item.title;
     cell.articleAuthor.text=[NSString stringWithFormat:@"By: %@",item.author];
 //    cell.articleImage.image=[articleImages objectAtIndex:[indexPath row]];
-    [cell.articleImage sd_setImageWithURL:[NSURL URLWithString:item.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder.jpg"]];
+    [cell.articleImage sd_setImageWithURL:[NSURL URLWithString:item.imageURL] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     cell.backgroundColor = [UIColor clearColor];
     
     return cell;

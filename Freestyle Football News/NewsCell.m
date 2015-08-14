@@ -64,6 +64,8 @@
     category.backgroundColor=[UIColor orangeColor];
 //  title.textAlignment=NSTextAlignmentCenter;
     [self.title setTextColor:[UIColor whiteColor]];
+    NSNumber *shade=[NSNumber numberWithFloat:self.title.frame.origin.y/self.frame.size.height-0.1];
+    gradientLayer.locations=@[shade,@([shade floatValue]+0.1),@1.0];
     
 }
 

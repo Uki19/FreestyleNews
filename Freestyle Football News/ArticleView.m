@@ -77,6 +77,8 @@
     [articleAuthorLabel sizeToFit];
     UIImageView *authorImgView=[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width-79, dateLabel.frame.origin.y-5, 64, 64)];
     authorImgView.image=authorImage;
+    authorImgView.contentMode=UIViewContentModeScaleAspectFill;
+    authorImgView.clipsToBounds=YES;
     [self addRadius:authorImgView.layer angle:20];
     [articleScrollView addSubview:authorImgView];
     [articleScrollView addSubview:dateLabel];
