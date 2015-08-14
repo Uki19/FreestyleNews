@@ -60,7 +60,7 @@ static NSString *cellID = @"NewsCell";
 
 -(void)refreshAction{
     [loading startAnimating];
-    databaseURL=@"http://ineco-posredovanje.co.rs/apptest/getnews.php";
+    databaseURL=@"http://www.theartball.com/admin/iOS/getnews.php";
     
     if(![category isEqualToString:@"Home"]) {
         databaseURL=[databaseURL stringByAppendingString:[NSString stringWithFormat:@"?category=%@&archive=0",category]];
@@ -133,7 +133,7 @@ static NSString *cellID = @"NewsCell";
         }
     }
     [loading startAnimating];
-    databaseURL=@"http://ineco-posredovanje.co.rs/apptest/getnews.php";
+    databaseURL=@"http://www.theartball.com/admin/iOS/getnews.php";
     
     if(![category isEqualToString:@"Home"]) {
         databaseURL=[databaseURL stringByAppendingString:[NSString stringWithFormat:@"?category=%@&archive=0",category]];
@@ -155,7 +155,7 @@ static NSString *cellID = @"NewsCell";
     newsModel = [[NewsModel alloc] init];
     news = [[NSArray alloc] init];
     newsModel.delegate = self;
-    databaseURL = @"http://ineco-posredovanje.co.rs/apptest/getnews.php";
+    databaseURL = @"http://www.theartball.com/admin/iOS/getnews.php";
     
     if(![category isEqualToString:@"Home"]) {
         databaseURL = [databaseURL stringByAppendingString:[NSString stringWithFormat:@"?category=%@&archive=0",category]];

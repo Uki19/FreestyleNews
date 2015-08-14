@@ -48,13 +48,13 @@
     for(int i=0;i<jsonArray.count;i++) {
         NSDictionary *newsDictionary = jsonArray[i];
         NewsItem *newsItem = [[NewsItem alloc] init];
-        newsItem.title=newsDictionary[@"Title"];
-        newsItem.content=newsDictionary[@"Content"];
-        newsItem.category=newsDictionary[@"Category"];
-        newsItem.imageURL=newsDictionary[@"Image"];
-        newsItem.author=newsDictionary[@"Author"];
-        newsItem.date=newsDictionary[@"Date"];
-        newsItem.important=[newsDictionary[@"Important"] isEqualToString:@"0"]?NO:YES;
+        newsItem.title=newsDictionary[@"title"];
+        newsItem.content=newsDictionary[@"content"];
+        newsItem.category=newsDictionary[@"category"];
+        newsItem.imageURL=newsDictionary[@"image"];
+        newsItem.author=newsDictionary[@"author"];
+        newsItem.date=newsDictionary[@"date"];
+        newsItem.important=[newsDictionary[@"important"] isEqualToString:@"0"]?NO:YES;
         
         [receivedNews addObject:newsItem];
     }

@@ -84,7 +84,7 @@ static NSString* cellID=@"ArchiveCell";
     loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     loading.center=self.view.center;
     [self.view addSubview:loading];
-    databaseURL=@"http://ineco-posredovanje.co.rs/apptest/getnews.php?archive=1";
+    databaseURL=@"http://www.theartball.com/admin/iOS/getnews.php?archive=1";
     if(![category isEqualToString:@"Home"])
         databaseURL=[databaseURL stringByAppendingString:[NSString stringWithFormat:@"&category=%@",category]];
     [loading startAnimating];

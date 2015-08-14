@@ -18,11 +18,9 @@
 #pragma mark - Connection methods and json serialization
 
 -(void)downloadData{
-    
-    NSURL *jsonURL=[NSURL URLWithString:@"http://ineco-posredovanje.co.rs/apptest/getarticles.php"];
+    NSURL *jsonURL=[NSURL URLWithString:@"http://www.theartball.com/admin/iOS/getarticles.php"];
     NSURLRequest *request=[NSURLRequest requestWithURL:jsonURL];
     [NSURLConnection connectionWithRequest:request delegate:self];
-
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
@@ -49,11 +47,11 @@
     for(int i=0;i<jsonArray.count;i++){
         NSDictionary *articlesDictionary=jsonArray[i];
         NewsItem *article=[[NewsItem alloc] init];
-        article.title=articlesDictionary[@"Title"];
-        article.content=articlesDictionary[@"Content"];
-        article.author=articlesDictionary[@"Author"];
-        article.imageURL=articlesDictionary[@"Image"];
-        article.date=articlesDictionary[@"Date"];
+        article.title=articlesDictionary[@"title"];
+        article.content=articlesDictionary[@"content"];
+        article.author=articlesDictionary[@"author"];
+        article.imageURL=articlesDictionary[@"image"];
+        article.date=articlesDictionary[@"date"];
         [receivedArticles addObject:article];
     }
     
