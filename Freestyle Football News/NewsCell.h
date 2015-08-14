@@ -15,6 +15,7 @@
 @property (strong, nonatomic) UIImageView *newsImage;
 @property (strong, nonatomic) NSString *imageLocation;
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
+@property (strong, nonatomic) UIImageView *playIcon;
 
 
 -(void)reloadLabels;

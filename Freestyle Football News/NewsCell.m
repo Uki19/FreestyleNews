@@ -15,6 +15,7 @@
 @synthesize newsImage;
 @synthesize imageLocation;
 @synthesize gradientLayer;
+@synthesize playIcon;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     
@@ -47,7 +48,10 @@
         gradientLayer.locations=@[@0.50,@0.60,@1.0];
         [self.layer insertSublayer:gradientLayer atIndex:1];
         [self addSubview:title];
-
+        playIcon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"playicon"]];
+        playIcon.frame=CGRectMake(self.frame.size.width/2-self.frame.size.width/4, self.frame.size.height/2-self.frame.size.width/4, self.frame.size.width/2, self.frame.size.width/2);
+        [self addSubview:playIcon];
+        playIcon.hidden=YES;
     }
     return self;
 }
@@ -66,7 +70,9 @@
     [self.title setTextColor:[UIColor whiteColor]];
     NSNumber *shade=[NSNumber numberWithFloat:self.title.frame.origin.y/self.frame.size.height-0.1];
     gradientLayer.locations=@[shade,@([shade floatValue]+0.1),@1.0];
-    
+    if([category.text isEqualToString:@"Videos"])
+        playIcon.hidden=NO;
+    else playIcon.hidden=YES;
 }
 
 

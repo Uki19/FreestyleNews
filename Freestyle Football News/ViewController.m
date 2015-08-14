@@ -250,6 +250,7 @@ static NSString *cellID = @"NewsCell";
     cell.category.text=newsItem.category;
 //    cell.title.attributedText=[[NSAttributedString alloc] initWithData:[newsItem.title dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute:NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.title.text=newsItem.title;
+    
     [cell reloadLabels];
     return cell;
 }
