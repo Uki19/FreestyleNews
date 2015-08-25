@@ -18,8 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    
-    [Pushbots sharedInstanceWithAppId:@"558aa7c217795924738b4567"];
-    [[Pushbots sharedInstance] receivedPush:launchOptions];
+    [Pushbots sharedInstanceWithAppId:@"55cf459c177959475d8b4568"];
+    [self receivedPush:launchOptions];
     [[Pushbots sharedInstance] clearBadgeCount];
     return YES;
 }
@@ -32,12 +32,62 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     //Handle notification when the user click it while app is running in background or foreground.
-    [[Pushbots sharedInstance] receivedPush:userInfo];
+    [self receivedPush:userInfo];
     [[Pushbots sharedInstance] clearBadgeCount];
 }
 
--(void)receivedPush:(NSDictionary*)userInfo{
+-(void) receivedPush:(NSDictionary *)userInfo {
+    NSLog(@"DSADSA");
+    //Try to get Notification from [didReceiveRemoteNotification] dictionary
+    NSDictionary *pushNotification = [userInfo objectForKey:@"aps"];
+    
+    if(!pushNotification) {
+        //Try as launchOptions dictionary
+        userInfo = [userInfo objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        pushNotification = [userInfo objectForKey:@"aps"];
+    }
+    
+    if (!pushNotification)
+        return;
+    
+    //Get notification payload data [Custom fields]
+    
+    //For example: get viewControllerIdentifer for deep linking
+    NSString* notificationViewControllerIdentifer = [userInfo objectForKey:@"notification_identifier"];
+    
+    //Set the default viewController Identifer
+    if(!notificationViewControllerIdentifer)
+        notificationViewControllerIdentifer = @"home";
+    
+    if([UIAlertController class]){
+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"Check it out!" message:[pushNotification valueForKey:@"alert"] preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
+            return;
+        }]];
+                              
+    [self.window.rootViewController presentViewController:alert animated:YES completion:NULL];
+    }
+    else {
+    UIAlertView *message =
+    [[UIAlertView alloc] initWithTitle:@"Check it out!"
+                               message:[pushNotification valueForKey:@"alert"]
+                              delegate:self
+                     cancelButtonTitle:nil
+                     otherButtonTitles: @"Ok",
+     nil];
+    
+    [message show];
+    }
     return;
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if([title isEqualToString:@"OK"])
+    {
+        [[Pushbots sharedInstance] OpenedNotification];
+    }
 }
 
 
@@ -57,6 +107,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[Pushbots sharedInstance] clearBadgeCount];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

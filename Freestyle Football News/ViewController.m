@@ -80,12 +80,18 @@ static NSString *cellID = @"NewsCell";
 -(void)initSegmentedControl{
     segment = [[UISegmentedControl alloc] initWithItems:@[@"All",@"Comps",@"Videos",@"Other"]];
     segment.frame = CGRectMake(-2, 0,self.view.frame.size.width+4, 30);
-    segment.backgroundColor = [UIColor colorWithRed:0.0/255.0 green:138.0/255.0 blue:229.0/255.0 alpha:1];
-    segment.tintColor = [UIColor colorWithRed:0 green:154.0/255.0 blue:255.0/255.0 alpha:1];
+//    segment.backgroundColor = [UIColor colorWithRed:0.0/255.0 green:138.0/255.0 blue:229.0/255.0 alpha:1];
+//    segment.tintColor = [UIColor colorWithRed:0 green:154.0/255.0 blue:255.0/255.0 alpha:1];
+    segment.tintColor=[UIColor colorWithRed:11.0/255.0 green:120.0/255.0 blue:228.0/255.0 alpha:1];
     [segment setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"HelveticaNeue-Thin" size:14]} forState:UIControlStateNormal];
     [segment setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     [segment addTarget:self action:@selector(segmentControlAction:) forControlEvents:UIControlEventValueChanged];
+//    [segment setDividerImage:[UIImage imageNamed:@"segmented-divided-unselected"] forLeftSegmentState:UIControlStateSelected rightSegmentState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    [segment setDividerImage:[UIImage imageNamed:@"segmented-divided-unselected"] forLeftSegmentState:UIControlStateNormal rightSegmentState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [segment setBackgroundImage:[UIImage imageNamed:@"segmented-divided-unselected"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [segment setBackgroundImage:[UIImage imageNamed:@"segment-select"] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
     segment.selectedSegmentIndex = 0;
+    
     [self.view addSubview:segment];
 }
 

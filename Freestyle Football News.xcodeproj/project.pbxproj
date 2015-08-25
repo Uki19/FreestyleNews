@@ -572,13 +572,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
 				INFOPLIST_FILE = "Freestyle Football News/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4c3d6d91-46e1-4287-8318-4d98f3bfb5d1";
+				PROVISIONING_PROFILE = "c35d71f8-8df2-400d-8faf-5681f696fcd1";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -589,13 +589,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
 				INFOPLIST_FILE = "Freestyle Football News/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4c3d6d91-46e1-4287-8318-4d98f3bfb5d1";
+				PROVISIONING_PROFILE = "c35d71f8-8df2-400d-8faf-5681f696fcd1";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

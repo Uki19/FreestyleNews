@@ -43,14 +43,15 @@
         title.frame=CGRectOffset(title.frame, 0, -title.frame.size.height);
         gradientLayer = [CAGradientLayer layer];
         self.backgroundView=newsImage;
+        playIcon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"playicon"]];
+        playIcon.frame=CGRectMake(self.frame.size.width/2-self.frame.size.width/4, self.frame.size.height/2-self.frame.size.width/4, self.frame.size.width/2, self.frame.size.width/2);
+        [self.newsImage addSubview:playIcon];
         gradientLayer.frame = self.bounds;
         gradientLayer.colors = [NSArray arrayWithObjects:(id)[[UIColor clearColor]CGColor],(id)[[UIColor colorWithWhite:0.0f alpha:0.4f]CGColor], (id)[[UIColor blackColor]CGColor], nil];
         gradientLayer.locations=@[@0.50,@0.60,@1.0];
         [self.layer insertSublayer:gradientLayer atIndex:1];
         [self addSubview:title];
-        playIcon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"playicon"]];
-        playIcon.frame=CGRectMake(self.frame.size.width/2-self.frame.size.width/4, self.frame.size.height/2-self.frame.size.width/4, self.frame.size.width/2, self.frame.size.width/2);
-        [self addSubview:playIcon];
+        
         playIcon.hidden=YES;
     }
     return self;
