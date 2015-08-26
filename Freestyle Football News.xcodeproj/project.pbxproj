@@ -30,6 +30,7 @@
 		75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75683A5A1B34AB5000CC4085 /* ArticlesModel.m */; };
 		756D51401B42C735006018C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 756D513F1B42C735006018C4 /* .gitignore */; };
 		75D940351B323BB8008BE45A /* Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D940341B323BB8008BE45A /* Navigation.m */; };
+		75DD84CC1B8DE13400FBB544 /* FullScreenImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD84CB1B8DE13400FBB544 /* FullScreenImageView.m */; };
 		75E053331B42D24900382430 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E053321B42D24900382430 /* iAd.framework */; };
 		75E6EC8A1B41FB270000DA58 /* VideoPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75E6EC891B41FB270000DA58 /* VideoPlayerView.m */; };
 		75EC15001B38A5CB00C5F768 /* ArchiveTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75EC14FF1B38A5CB00C5F768 /* ArchiveTableView.m */; };
@@ -91,6 +92,8 @@
 		75B993BE1B35CBE200A92B6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		75D940331B323BB8008BE45A /* Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigation.h; sourceTree = "<group>"; };
 		75D940341B323BB8008BE45A /* Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Navigation.m; sourceTree = "<group>"; };
+		75DD84CA1B8DE13400FBB544 /* FullScreenImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImageView.h; sourceTree = "<group>"; };
+		75DD84CB1B8DE13400FBB544 /* FullScreenImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenImageView.m; sourceTree = "<group>"; };
 		75E053321B42D24900382430 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		75E6EC881B41FB270000DA58 /* VideoPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPlayerView.h; sourceTree = "<group>"; };
 		75E6EC891B41FB270000DA58 /* VideoPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPlayerView.m; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				754917E21B339C9700D55BD0 /* ArticleTableCell.xib */,
 				7523DD201B345A5B00A7F658 /* ArticleView.h */,
 				7523DD211B345A5B00A7F658 /* ArticleView.m */,
+				75DD84CA1B8DE13400FBB544 /* FullScreenImageView.h */,
+				75DD84CB1B8DE13400FBB544 /* FullScreenImageView.m */,
 			);
 			name = "Article View";
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				754BE7771B318C8000F758C9 /* NewsModel.m in Sources */,
+				75DD84CC1B8DE13400FBB544 /* FullScreenImageView.m in Sources */,
 				754BE7581B318B7900F758C9 /* ViewController.m in Sources */,
 				754917E11B339BEA00D55BD0 /* ArticleCell.m in Sources */,
 				75EC15001B38A5CB00C5F768 /* ArchiveTableView.m in Sources */,

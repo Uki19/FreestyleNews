@@ -33,6 +33,7 @@ static NSString *cellID = @"NewsCell";
 @property NSMutableArray *compNewsImages;
 @property NSMutableArray *otherNewsImages;
 @property NSMutableArray *allNewsImages;
+@property UIRefreshControl *refreshControl;
 
 @end
 
@@ -47,6 +48,7 @@ static NSString *cellID = @"NewsCell";
 @synthesize segment;
 @synthesize swipeGestureRight;
 @synthesize swipeGestureLeft;
+@synthesize refreshControl;
 
 
 #pragma mark - Refresh and Archive buttons and actions
@@ -67,6 +69,19 @@ static NSString *cellID = @"NewsCell";
     }
     
     [newsModel downloadDataAtUrl:databaseURL];
+    
+}
+
+-(void)pullRefreshAction{
+//    [loading startAnimating];
+    databaseURL=@"http://www.theartball.com/admin/iOS/getnews.php";
+    
+    if(![category isEqualToString:@"Home"]) {
+        databaseURL=[databaseURL stringByAppendingString:[NSString stringWithFormat:@"?category=%@&archive=0",category]];
+    }
+    
+    [newsModel downloadDataAtUrl:databaseURL];
+    
 }
 
 -(void)pushArchiveView{
@@ -93,6 +108,17 @@ static NSString *cellID = @"NewsCell";
     segment.selectedSegmentIndex = 0;
     
     [self.view addSubview:segment];
+}
+
+-(void)initRefreshControl{
+    UIView *refreshView=[[UIView alloc] initWithFrame:CGRectMake(0, segment.frame.size.height, 0, 0)];
+    [newsView addSubview:refreshView];
+    
+    self.refreshControl=[[UIRefreshControl alloc] init];
+    [newsView addSubview:refreshControl];
+    newsView.alwaysBounceVertical=YES;
+    
+    [self.refreshControl addTarget:self action:@selector(pullRefreshAction) forControlEvents:UIControlEventValueChanged];
 }
 
 -(void)segmentControlAction:(UISegmentedControl*)sender {
@@ -178,6 +204,7 @@ static NSString *cellID = @"NewsCell";
     flowlayout.sectionInset = UIEdgeInsetsMake(38.0f, 8.0f, 1.0f, 8.0f);
     flowlayout.minimumInteritemSpacing = 3.0f;
     flowlayout.minimumLineSpacing = 3.0f;
+    newsView.showsVerticalScrollIndicator=NO;
     newsView.backgroundColor = [UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1];
     newsView.delegate = self;
    
@@ -192,6 +219,7 @@ static NSString *cellID = @"NewsCell";
     swipeGestureLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
     [swipeGestureLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
     [newsView addGestureRecognizer:swipeGestureLeft];
+    
 }
 
 #pragma mark - Swipe gesture
@@ -362,6 +390,7 @@ static NSString *cellID = @"NewsCell";
     
     [newsView reloadData];
     [loading stopAnimating];
+    [refreshControl endRefreshing];
 }
 
 -(void)failedToDownloadWithError:(NSError *)error {
@@ -432,6 +461,7 @@ static NSString *cellID = @"NewsCell";
     [self initNavbarButtons];
     [self initNewsModelAndData];
     [self initSegmentedControl];
+//    [self initRefreshControl];
 
 }
 
