@@ -31,9 +31,13 @@
     [scrollView setContentSize:imageView.bounds.size];
     scrollView.showsHorizontalScrollIndicator=NO;
     scrollView.showsVerticalScrollIndicator=NO;
-    scrollView.minimumZoomScale=self.view.frame.size.width/imageView.frame.size.width;
+    CGFloat zoomScale;
+    if(imageView.frame.size.width>imageView.frame.size.height)
+        zoomScale=self.view.frame.size.width/imageView.frame.size.width;
+    else
+        zoomScale=self.view.frame.size.height/imageView.frame.size.height;
     scrollView.maximumZoomScale=2.0;
-    
+    scrollView.minimumZoomScale=self.view.frame.size.width/imageView.frame.size.width;
     [scrollView setContentOffset:CGPointMake(self.scrollView.frame.size.width/2,self.scrollView.frame.size.height/2)];
     scrollView.delegate=self;
     self.edgesForExtendedLayout=UIRectEdgeBottom;
@@ -41,15 +45,16 @@
     if([TabBar bannerIsVisible]){
         scrollView.contentInset=UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0);
     }
-    [scrollView setZoomScale:0.3];
+    [scrollView setZoomScale:self.view.frame.size.width/imageView.frame.size.width];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"Image";
+    self.title=@"Pinch to zoom";
     self.view.backgroundColor=[UIColor whiteColor];
     [self initScrollAndImageViews];
+    self.view.backgroundColor=[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1];
     
 }
 
