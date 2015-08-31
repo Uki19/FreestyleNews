@@ -26,6 +26,7 @@
 		754BE7771B318C8000F758C9 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7761B318C8000F758C9 /* NewsModel.m */; };
 		754BE77A1B318CBC00F758C9 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7791B318CBC00F758C9 /* NewsItem.m */; };
 		754BE77D1B319F4800F758C9 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE77C1B319F4800F758C9 /* NewsCell.m */; };
+		7554ECAC1B945B2500F55202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7554ECAB1B945B2500F55202 /* StoreKit.framework */; };
 		755E134F1B53203C00019D48 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E134E1B53203C00019D48 /* AboutViewController.m */; };
 		75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75683A5A1B34AB5000CC4085 /* ArticlesModel.m */; };
 		756D51401B42C735006018C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 756D513F1B42C735006018C4 /* .gitignore */; };
@@ -80,6 +81,7 @@
 		754BE7791B318CBC00F758C9 /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItem.m; sourceTree = "<group>"; };
 		754BE77B1B319F4800F758C9 /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		754BE77C1B319F4800F758C9 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		7554ECAB1B945B2500F55202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		755E134D1B53203C00019D48 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		755E134E1B53203C00019D48 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		75683A591B34AB5000CC4085 /* ArticlesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesModel.h; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7554ECAC1B945B2500F55202 /* StoreKit.framework in Frameworks */,
 				75E053331B42D24900382430 /* iAd.framework in Frameworks */,
 				26B269E9462FF258BE878966 /* libPods.a in Frameworks */,
 			);
@@ -250,6 +253,7 @@
 		75B994161B36384800A92B6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7554ECAB1B945B2500F55202 /* StoreKit.framework */,
 				75E053321B42D24900382430 /* iAd.framework */,
 				75B993BE1B35CBE200A92B6E /* MobileCoreServices.framework */,
 				75B993BC1B35CBD700A92B6E /* CoreText.framework */,
@@ -340,6 +344,7 @@
 				TargetAttributes = {
 					754BE74B1B318B7900F758C9 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = XBDB99CNZ7;
 					};
 					754BE7641B318B7900F758C9 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -578,13 +583,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
 				INFOPLIST_FILE = "Freestyle Football News/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c35d71f8-8df2-400d-8faf-5681f696fcd1";
+				PROVISIONING_PROFILE = "0fd5e514-d5f7-400d-a001-bb9f94acada7";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -595,14 +600,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
 				INFOPLIST_FILE = "Freestyle Football News/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c35d71f8-8df2-400d-8faf-5681f696fcd1";
+				PROVISIONING_PROFILE = "0fd5e514-d5f7-400d-a001-bb9f94acada7";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -610,7 +615,6 @@
 		754BE7731B318B7900F758C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -629,7 +633,6 @@
 		754BE7741B318B7900F758C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

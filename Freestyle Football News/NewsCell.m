@@ -43,7 +43,7 @@
         title.frame=CGRectOffset(title.frame, 0, -title.frame.size.height);
         gradientLayer = [CAGradientLayer layer];
         self.backgroundView=newsImage;
-        playIcon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"playicon"]];
+        playIcon=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"player"]];
         playIcon.frame=CGRectMake(self.frame.size.width/2-self.frame.size.width/4, self.frame.size.height/2-self.frame.size.width/4, self.frame.size.width/2, self.frame.size.width/2);
         [self.newsImage addSubview:playIcon];
         gradientLayer.frame = self.bounds;
