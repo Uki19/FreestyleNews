@@ -113,6 +113,8 @@ static BOOL bannerIsVisible;
     [self.view addSubview:adView];
     if(areAdsRemoved){
         adView.delegate=nil;
+        [adView removeFromSuperview];
+        [removeAdsView removeFromSuperview];
     }
     [self.view bringSubviewToFront:self.tabBar];
     UITapGestureRecognizer *tapRemoveAds=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeAdsAction)];
@@ -187,7 +189,6 @@ static BOOL bannerIsVisible;
 
 -(void)removeAdsAction{
 //    [loading startAnimating];
-    
     productID=@"theartball.removeads";
     if([SKPaymentQueue canMakePayments]){
         SKProductsRequest *request=[[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productID]];
@@ -205,7 +206,6 @@ static BOOL bannerIsVisible;
 }
 
 -(void)restore{
-    NSLog(@"DOSLO DO RESTORE!");
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
@@ -213,7 +213,7 @@ static BOOL bannerIsVisible;
 #pragma mark SKProductsRequestDelegate
 
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
-   
+
     NSArray *products=response.products;
     if(products.count !=0){
         product=products[0];
@@ -242,7 +242,7 @@ static BOOL bannerIsVisible;
 }
 
 -(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
-    NSLog(@"received restored transactions: %lu", queue.transactions.count);
+
     for(SKPaymentTransaction *transaction in queue.transactions){
         if(transaction.transactionState == SKPaymentTransactionStateRestored){
         
