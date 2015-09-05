@@ -51,7 +51,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title=@"Pinch to zoom";
+    self.title=@"Zoom in";
     self.view.backgroundColor=[UIColor whiteColor];
     [self initScrollAndImageViews];
     self.view.backgroundColor=[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1];

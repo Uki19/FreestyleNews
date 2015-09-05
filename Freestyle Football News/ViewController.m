@@ -201,7 +201,7 @@ static NSString *cellID = @"NewsCell";
     UICollectionViewFlowLayout *flowlayout = [[UICollectionViewFlowLayout alloc] init];
    
     newsView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-(segment.frame.size.height+self.navigationController.navigationBar.frame.size.height+20+self.tabBarController.tabBar.frame.size.height)) collectionViewLayout:flowlayout];
-    flowlayout.sectionInset = UIEdgeInsetsMake(38.0f, 8.0f, 1.0f, 8.0f);
+    flowlayout.sectionInset = UIEdgeInsetsMake(38.0f, 8.0f, 8.0f, 8.0f);
     flowlayout.minimumInteritemSpacing = 3.0f;
     flowlayout.minimumLineSpacing = 3.0f;
     newsView.showsVerticalScrollIndicator=NO;

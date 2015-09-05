@@ -204,6 +204,11 @@ static BOOL bannerIsVisible;
     
 }
 
+-(void)restore{
+    NSLog(@"DOSLO DO RESTORE!");
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
+
 #pragma mark _
 #pragma mark SKProductsRequestDelegate
 
@@ -224,12 +229,26 @@ static BOOL bannerIsVisible;
             case SKPaymentTransactionStatePurchased:
                 [self removeAdBanner];
                 [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                
+                break;
+            case SKPaymentTransactionStateRestored:
+                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
                 break;
                 
             default:
                 
                 break;
+        }
+    }
+}
+
+-(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
+    NSLog(@"received restored transactions: %lu", queue.transactions.count);
+    for(SKPaymentTransaction *transaction in queue.transactions){
+        if(transaction.transactionState == SKPaymentTransactionStateRestored){
+        
+            [self removeAdBanner];
+            [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+            break;
         }
     }
 }

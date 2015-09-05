@@ -28,5 +28,6 @@
 
 +(CGRect)adFrame;
 +(BOOL)bannerIsVisible;
+-(void)restore;
 
 @end
