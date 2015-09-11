@@ -133,6 +133,7 @@
         NSString *test=[NSString stringWithFormat:@"%@",[links[i] URL]];
         if(![parsedLinks containsObject:test]){
         if([test rangeOfString:@".jpg"].location != NSNotFound || [test rangeOfString:@".png"].location != NSNotFound){
+            
             result=[result stringByReplacingOccurrencesOfString:test withString:[NSString stringWithFormat:@"<br><img src='%@' width='%f' height='%f' /><span style='color:#878787;' align='center'><small>+Click on image to view in fullscreen</small></span><br>",test,articleContentTextView.frame.size.width,embedHeight]];
         }
         else if([test hasPrefix:@"https://www.youtube.com"] || [test hasPrefix:@"https://youtu.be"]){
@@ -231,16 +232,16 @@
     if ([attachment isKindOfClass:[DTImageTextAttachment class]]) {
         DTLazyImageView *imageView = [[DTLazyImageView alloc] initWithFrame:frame];
         imageView.shouldShowProgressiveDownload=YES;
-        imageView.contentMode=UIViewContentModeScaleAspectFit;
+       
+        imageView.clipsToBounds=YES;
+        [imageView sd_setImageWithURL:attachment.contentURL];
         imageView.delegate = self;
-    
-        //imageView.image = [self imageWithImage:[(DTImageTextAttachment *)attachment image] scaledToSize:CGSizeMake(self.view.frame.size.width, 250)];
         [imageView setAccessibilityValue:@"ASDF"];
-        imageView.image=[UIImage imageWithData:UIImageJPEGRepresentation([(DTImageTextAttachment *)attachment image], 0.6)];
-        imageView.url = attachment.contentURL;
+//        imageView.url = attachment.contentURL;
         UITapGestureRecognizer *tapGesture=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openImageFullScreen:)];
         [imageView setUserInteractionEnabled:YES];
         [imageView addGestureRecognizer:tapGesture];
+        imageView.contentMode=UIViewContentModeScaleAspectFill;
         return imageView;
     }
     
@@ -277,9 +278,11 @@
             didUpdate = YES;
         }
     }
-    
     [articleContentTextView relayoutText];
 }
+
+
+
 
 #pragma mark - Notification Center updates
 

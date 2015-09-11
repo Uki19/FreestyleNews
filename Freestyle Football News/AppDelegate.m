@@ -21,6 +21,8 @@
     [Pushbots sharedInstanceWithAppId:@"55cf459c177959475d8b4568"];
     [self receivedPush:launchOptions];
     [[Pushbots sharedInstance] clearBadgeCount];
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
     return YES;
 }
 
@@ -69,7 +71,7 @@
     }
     else {
     UIAlertView *message =
-    [[UIAlertView alloc] initWithTitle:@"Check it out!"
+    [[UIAlertView alloc] initWithTitle:@"Just added!"
                                message:[pushNotification valueForKey:@"alert"]
                               delegate:self
                      cancelButtonTitle:nil

@@ -10,6 +10,6 @@
 
 @interface Navigation : UINavigationController
 
-
+-(void)removeBottomLine;
 
 @end

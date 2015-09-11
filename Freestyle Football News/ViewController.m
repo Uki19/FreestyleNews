@@ -15,6 +15,7 @@
 #import "YTPlayerView.h"
 #import "VideoPlayerView.h"
 #import "TabBar.h"
+#import "Navigation.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 static NSString *cellID = @"NewsCell";
@@ -221,6 +222,7 @@ static NSString *cellID = @"NewsCell";
     [newsView addGestureRecognizer:swipeGestureLeft];
     
 }
+
 
 #pragma mark - Swipe gesture
 
@@ -453,6 +455,7 @@ static NSString *cellID = @"NewsCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+     [(Navigation*)self.navigationController removeBottomLine];
     self.category=self.title;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];

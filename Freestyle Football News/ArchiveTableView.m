@@ -12,6 +12,7 @@
 #import "ArticleView.h"
 #import "TabBar.h"
 #import "VideoPlayerView.h"
+#import "Navigation.h"
 
 static NSString* cellID=@"ArchiveCell";
 
@@ -51,6 +52,7 @@ static NSString* cellID=@"ArchiveCell";
     
 }
 
+
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchText];
@@ -67,6 +69,7 @@ static NSString* cellID=@"ArchiveCell";
         [self.tableView insertSubview:self.searchDisplayController.searchBar aboveSubview:self.tableView];
     }
 }
+
 
 
 -(void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView{
