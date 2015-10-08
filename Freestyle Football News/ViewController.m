@@ -20,6 +20,7 @@
 
 static NSString *cellID = @"NewsCell";
 
+
 @interface ViewController ()
 
 @property NSMutableDictionary *newsImages;
@@ -35,6 +36,7 @@ static NSString *cellID = @"NewsCell";
 @property NSMutableArray *otherNewsImages;
 @property NSMutableArray *allNewsImages;
 @property UIRefreshControl *refreshControl;
+
 
 @end
 
@@ -56,6 +58,8 @@ static NSString *cellID = @"NewsCell";
 
 -(void)initNavbarButtons{
     UIBarButtonItem *refreshButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(refreshAction)];
+//    UIBarButtonItem *removeAdsButtonItem=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"removeads"] style:UIBarButtonItemStylePlain target:self action:nil];
+//    self.navigationItem.rightBarButtonItems=@[refreshButton,removeAdsButtonItem];
     self.navigationItem.rightBarButtonItem=refreshButton;
     UIBarButtonItem *archiveButton=[[UIBarButtonItem alloc] initWithTitle:@"Archive" style:UIBarButtonItemStylePlain target:self action:@selector(pushArchiveView)];
     self.navigationItem.leftBarButtonItem=archiveButton;
@@ -84,6 +88,7 @@ static NSString *cellID = @"NewsCell";
     [newsModel downloadDataAtUrl:databaseURL];
     
 }
+
 
 -(void)pushArchiveView{
     ArchiveTableView *archiveTableView=[[ArchiveTableView alloc] init];
@@ -259,18 +264,18 @@ static NSString *cellID = @"NewsCell";
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad){
         if(indexPath.row==0 || newsItem.important) {
-            cell.title.font=[UIFont fontWithName:nil size:35];
+            cell.title.font=[UIFont systemFontOfSize:35];
             cell.category.font=[UIFont boldSystemFontOfSize:20];
         } else {
-            cell.title.font=[UIFont fontWithName:nil size:24];
+            cell.title.font=[UIFont systemFontOfSize:24];
             cell.category.font=[UIFont boldSystemFontOfSize:14];
         }
     } else {
         if(indexPath.row==0 || newsItem.important) {
-            cell.title.font=[UIFont fontWithName:nil size:25];
+            cell.title.font=[UIFont systemFontOfSize:25];
             cell.category.font=[UIFont boldSystemFontOfSize:14];
         } else {
-            cell.title.font=[UIFont fontWithName:nil size:14];
+            cell.title.font=[UIFont systemFontOfSize:14];
             cell.category.font=[UIFont boldSystemFontOfSize:8];
         }
         
@@ -467,6 +472,10 @@ static NSString *cellID = @"NewsCell";
 //    [self initRefreshControl];
 
 }
+
+//-(void)viewDidAppear:(BOOL)animated{
+//    [self refreshAction];
+//}
 
 #pragma mark - Notification Center updates
 

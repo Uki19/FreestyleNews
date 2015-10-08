@@ -11,7 +11,9 @@
 #import "NewsModel.h"
 #import "NewsActivityIndicator.h"
 
+
 @interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, Observable, UICollectionViewDelegateFlowLayout, UIAlertViewDelegate>
+
 
 @property (strong, nonatomic) UICollectionView *newsView;
 @property (strong, nonatomic) NSArray *news;
@@ -22,7 +24,6 @@
 @property (strong, nonatomic) UISegmentedControl *segment;
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeGestureLeft;
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeGestureRight;
-
 
 @end
 

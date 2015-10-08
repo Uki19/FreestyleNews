@@ -55,7 +55,7 @@
         newsItem.author=newsDictionary[@"author"];
         newsItem.date=newsDictionary[@"date"];
         newsItem.important=[newsDictionary[@"important"] isEqualToString:@"0"]?NO:YES;
-        
+        newsItem.newsID=newsDictionary[@"id"];
         [receivedNews addObject:newsItem];
     }
     

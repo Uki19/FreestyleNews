@@ -11,7 +11,7 @@
 #import "YTPlayerView.h"
 #import "NewsItem.h"
 
-@interface ArticleView : UIViewController <DTAttributedTextContentViewDelegate,DTLazyImageViewDelegate>
+@interface ArticleView : UIViewController <DTAttributedTextContentViewDelegate,DTLazyImageViewDelegate, NSURLConnectionDataDelegate>
 
 @property (strong, nonatomic) NewsItem* item;
 @property (strong, nonatomic) UIScrollView *articleScrollView;
@@ -20,6 +20,7 @@
 @property (strong, nonatomic) DTAttributedTextContentView *articleContentTextView;
 @property (strong, nonatomic) UIImage *authorImage;
 @property (strong, nonatomic) UILabel *dateLabel;
+@property (strong, nonatomic) UILabel *numberCommentsLabel;
 
 
 @end

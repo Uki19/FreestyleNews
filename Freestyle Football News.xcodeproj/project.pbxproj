@@ -26,6 +26,11 @@
 		754BE7771B318C8000F758C9 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7761B318C8000F758C9 /* NewsModel.m */; };
 		754BE77A1B318CBC00F758C9 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7791B318CBC00F758C9 /* NewsItem.m */; };
 		754BE77D1B319F4800F758C9 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE77C1B319F4800F758C9 /* NewsCell.m */; };
+		7553E9F11BC3E799003A7C86 /* CommentsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9F01BC3E799003A7C86 /* CommentsTableView.m */; settings = {ASSET_TAGS = (); }; };
+		7553E9F31BC3E983003A7C86 /* CommentsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7553E9F21BC3E983003A7C86 /* CommentsViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		7553E9F61BC3E9C6003A7C86 /* CommentsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9F51BC3E9C6003A7C86 /* CommentsViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		7553E9F91BC3F781003A7C86 /* CommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9F81BC3F781003A7C86 /* CommentsModel.m */; settings = {ASSET_TAGS = (); }; };
+		7553E9FC1BC3FCC7003A7C86 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9FB1BC3FCC7003A7C86 /* Comment.m */; settings = {ASSET_TAGS = (); }; };
 		7554ECAC1B945B2500F55202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7554ECAB1B945B2500F55202 /* StoreKit.framework */; };
 		755E134F1B53203C00019D48 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E134E1B53203C00019D48 /* AboutViewController.m */; };
 		75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75683A5A1B34AB5000CC4085 /* ArticlesModel.m */; };
@@ -81,6 +86,15 @@
 		754BE7791B318CBC00F758C9 /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItem.m; sourceTree = "<group>"; };
 		754BE77B1B319F4800F758C9 /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		754BE77C1B319F4800F758C9 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		7553E9EF1BC3E799003A7C86 /* CommentsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableView.h; sourceTree = "<group>"; };
+		7553E9F01BC3E799003A7C86 /* CommentsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableView.m; sourceTree = "<group>"; };
+		7553E9F21BC3E983003A7C86 /* CommentsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewCell.xib; sourceTree = "<group>"; };
+		7553E9F41BC3E9C6003A7C86 /* CommentsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewCell.h; sourceTree = "<group>"; };
+		7553E9F51BC3E9C6003A7C86 /* CommentsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewCell.m; sourceTree = "<group>"; };
+		7553E9F71BC3F781003A7C86 /* CommentsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsModel.h; sourceTree = "<group>"; };
+		7553E9F81BC3F781003A7C86 /* CommentsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsModel.m; sourceTree = "<group>"; };
+		7553E9FA1BC3FCC7003A7C86 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		7553E9FB1BC3FCC7003A7C86 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		7554ECAB1B945B2500F55202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		755E134D1B53203C00019D48 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		755E134E1B53203C00019D48 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
@@ -191,6 +205,7 @@
 				75131EE81B32CF4600457525 /* TabBar.m */,
 				755E134D1B53203C00019D48 /* AboutViewController.h */,
 				755E134E1B53203C00019D48 /* AboutViewController.m */,
+				7553E9EE1BC3E528003A7C86 /* Comments  */,
 				75EC15011B38A5D200C5F768 /* Archive View */,
 				75683A541B34AA5500CC4085 /* News View */,
 				7523DD241B345A9200A7F658 /* News Model */,
@@ -228,6 +243,23 @@
 				754BE76A1B318B7900F758C9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7553E9EE1BC3E528003A7C86 /* Comments  */ = {
+			isa = PBXGroup;
+			children = (
+				7553E9EF1BC3E799003A7C86 /* CommentsTableView.h */,
+				7553E9F01BC3E799003A7C86 /* CommentsTableView.m */,
+				7553E9F21BC3E983003A7C86 /* CommentsViewCell.xib */,
+				7553E9F41BC3E9C6003A7C86 /* CommentsViewCell.h */,
+				7553E9F51BC3E9C6003A7C86 /* CommentsViewCell.m */,
+				7553E9F71BC3F781003A7C86 /* CommentsModel.h */,
+				7553E9F81BC3F781003A7C86 /* CommentsModel.m */,
+				7553E9FA1BC3FCC7003A7C86 /* Comment.h */,
+				7553E9FB1BC3FCC7003A7C86 /* Comment.m */,
+			);
+			name = "Comments ";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		75683A541B34AA5500CC4085 /* News View */ = {
@@ -339,7 +371,7 @@
 		754BE7441B318B7900F758C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Uros Zivaljevic";
 				TargetAttributes = {
 					754BE74B1B318B7900F758C9 = {
@@ -348,6 +380,7 @@
 					};
 					754BE7641B318B7900F758C9 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = XBDB99CNZ7;
 						TestTargetID = 754BE74B1B318B7900F758C9;
 					};
 				};
@@ -376,6 +409,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7553E9F31BC3E983003A7C86 /* CommentsViewCell.xib in Resources */,
 				7539CAE21B38C86000626682 /* ArchiveTableViewCell.xib in Resources */,
 				754BE75B1B318B7900F758C9 /* Main.storyboard in Resources */,
 				754917E31B339C9700D55BD0 /* ArticleTableCell.xib in Resources */,
@@ -434,6 +468,8 @@
 			files = (
 				754BE7771B318C8000F758C9 /* NewsModel.m in Sources */,
 				75DD84CC1B8DE13400FBB544 /* FullScreenImageView.m in Sources */,
+				7553E9F61BC3E9C6003A7C86 /* CommentsViewCell.m in Sources */,
+				7553E9FC1BC3FCC7003A7C86 /* Comment.m in Sources */,
 				754BE7581B318B7900F758C9 /* ViewController.m in Sources */,
 				754917E11B339BEA00D55BD0 /* ArticleCell.m in Sources */,
 				75EC15001B38A5CB00C5F768 /* ArchiveTableView.m in Sources */,
@@ -447,6 +483,8 @@
 				754917DB1B3395B900D55BD0 /* ArticlesTableView.m in Sources */,
 				754BE7551B318B7900F758C9 /* AppDelegate.m in Sources */,
 				7539CAE51B38C9FE00626682 /* ArchiveViewCell.m in Sources */,
+				7553E9F91BC3F781003A7C86 /* CommentsModel.m in Sources */,
+				7553E9F11BC3E799003A7C86 /* CommentsTableView.m in Sources */,
 				754BE77A1B318CBC00F758C9 /* NewsItem.m in Sources */,
 				754BE7521B318B7900F758C9 /* main.m in Sources */,
 				75131EE91B32CF4600457525 /* TabBar.m in Sources */,
@@ -508,10 +546,13 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -532,6 +573,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
+				PROVISIONING_PROFILE = "0fd5e514-d5f7-400d-a001-bb9f94acada7";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -554,9 +596,11 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -571,6 +615,7 @@
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "$(inherited)";
+				PROVISIONING_PROFILE = "0fd5e514-d5f7-400d-a001-bb9f94acada7";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -583,13 +628,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
 				INFOPLIST_FILE = "Freestyle Football News/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.UrosZivaljevic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c35d71f8-8df2-400d-8faf-5681f696fcd1";
+				PROVISIONING_PROFILE = "0fd5e514-d5f7-400d-a001-bb9f94acada7";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -600,14 +647,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
 				INFOPLIST_FILE = "Freestyle Football News/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.UrosZivaljevic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c35d71f8-8df2-400d-8faf-5681f696fcd1";
+				PROVISIONING_PROFILE = "0fd5e514-d5f7-400d-a001-bb9f94acada7";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;
@@ -615,6 +664,8 @@
 		754BE7731B318B7900F758C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -625,7 +676,9 @@
 				);
 				INFOPLIST_FILE = "Freestyle Football NewsTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "UrosZivaljevic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Freestyle Football News.app/Freestyle Football News";
 			};
 			name = Debug;
@@ -633,13 +686,17 @@
 		754BE7741B318B7900F758C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Freestyle Football NewsTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "UrosZivaljevic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Freestyle Football News.app/Freestyle Football News";
 			};
 			name = Release;

@@ -30,7 +30,7 @@ static BOOL bannerIsVisible;
 @synthesize normalImages;
 @synthesize selectedImages;
 @synthesize removeAdsView;
-@synthesize product;
+//@synthesize product;
 @synthesize productID;
 @synthesize productDescription;
 @synthesize productTitle;
@@ -90,8 +90,8 @@ static BOOL bannerIsVisible;
         [tabItem setSelectedImage:[selectedImages objectAtIndex:[self.tabBar.items indexOfObject:tabItem]]];
     }
 
-    areAdsRemoved = [[NSUserDefaults standardUserDefaults] boolForKey:@"areAdsRemoved"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    areAdsRemoved = [[NSUserDefaults standardUserDefaults] boolForKey:@"areAdsRemoved"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     //this will load wether or not they bought the in-app purchase
     
     
@@ -101,24 +101,24 @@ static BOOL bannerIsVisible;
 
     adView.delegate = self;
     bannerIsVisible = NO;
-    removeAdsView=[[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width-100, adFrame.origin.y, 100, 20)];
-    removeAdsView.backgroundColor=[UIColor blackColor];
-    UILabel *removeAdLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
-    removeAdLabel.text=@"Remove Ads";
-    removeAdLabel.font=[UIFont systemFontOfSize:14];
-    removeAdLabel.textAlignment=NSTextAlignmentCenter;
-    [removeAdsView addSubview:removeAdLabel];
-    removeAdLabel.textColor=[UIColor whiteColor];
-    [self.view addSubview:removeAdsView];
+//    removeAdsView=[[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width-100, adFrame.origin.y, 100, 20)];
+//    removeAdsView.backgroundColor=[UIColor blackColor];
+//    UILabel *removeAdLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 20)];
+//    removeAdLabel.text=@"Remove Ads";
+//    removeAdLabel.font=[UIFont systemFontOfSize:14];
+//    removeAdLabel.textAlignment=NSTextAlignmentCenter;
+//    [removeAdsView addSubview:removeAdLabel];
+//    removeAdLabel.textColor=[UIColor whiteColor];
+//    [self.view addSubview:removeAdsView];
     [self.view addSubview:adView];
-    if(areAdsRemoved){
-        adView.delegate=nil;
-        [adView removeFromSuperview];
-        [removeAdsView removeFromSuperview];
-    }
+//    if(areAdsRemoved){
+//        adView.delegate=nil;
+//        [adView removeFromSuperview];
+//        [removeAdsView removeFromSuperview];
+//    }
     [self.view bringSubviewToFront:self.tabBar];
-    UITapGestureRecognizer *tapRemoveAds=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeAdsAction)];
-    [removeAdsView addGestureRecognizer:tapRemoveAds];
+//    UITapGestureRecognizer *tapRemoveAds=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeAdsAction)];
+//    [removeAdsView addGestureRecognizer:tapRemoveAds];
 }
 
 
@@ -163,7 +163,7 @@ static BOOL bannerIsVisible;
     }
 }
 
-- (NSUInteger)supportedInterfaceOrientations{
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
 
@@ -187,81 +187,81 @@ static BOOL bannerIsVisible;
 
 #pragma mark - In App Purchase
 
--(void)removeAdsAction{
-//    [loading startAnimating];
-    productID=@"theartball.removeads";
-    if([SKPaymentQueue canMakePayments]){
-        SKProductsRequest *request=[[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productID]];
-        request.delegate=self;
-        [request start];
-    }
-}
-
--(void)buyAction{
-//    [loading stopAnimating];
-    SKPayment *payment=[SKPayment paymentWithProduct:product];
-    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
-    [[SKPaymentQueue defaultQueue] addPayment:payment];
-    
-}
-
--(void)restore{
-    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-}
-
-#pragma mark _
-#pragma mark SKProductsRequestDelegate
-
--(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
-
-    NSArray *products=response.products;
-    if(products.count !=0){
-        product=products[0];
-        productTitle=product.localizedTitle;
-        productDescription=product.localizedDescription;
-    }
-    [self buyAction];
-}
-
--(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions{
-    for (SKPaymentTransaction *transaction in transactions) {
-        switch (transaction.transactionState) {
-            case SKPaymentTransactionStatePurchased:
-                [self removeAdBanner];
-                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                break;
-            case SKPaymentTransactionStateRestored:
-                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-                break;
-                
-            default:
-                
-                break;
-        }
-    }
-}
-
--(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
-
-    for(SKPaymentTransaction *transaction in queue.transactions){
-        if(transaction.transactionState == SKPaymentTransactionStateRestored){
-        
-            [self removeAdBanner];
-            [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
-            break;
-        }
-    }
-}
-
--(void)removeAdBanner{
-    adView.hidden=YES;
-    bannerIsVisible=NO;
-    areAdsRemoved=YES;
-    [adView removeFromSuperview];
-    [removeAdsView removeFromSuperview];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"adFailedToLoad" object:nil];
-    [[NSUserDefaults standardUserDefaults] setBool:areAdsRemoved forKey:@"areAdsRemoved"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
+//-(void)removeAdsAction{
+////    [loading startAnimating];
+//    productID=@"theartball.removeAdBanner";
+//    if([SKPaymentQueue canMakePayments]){
+//        SKProductsRequest *request=[[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:productID]];
+//        request.delegate=self;
+//        [request start];
+//    }
+//}
+//
+//-(void)buyAction{
+////    [loading stopAnimating];
+//    SKPayment *payment=[SKPayment paymentWithProduct:product];
+//    [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+//    [[SKPaymentQueue defaultQueue] addPayment:payment];
+//    
+//}
+//
+//-(void)restore{
+//    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+//}
+//
+//#pragma mark _
+//#pragma mark SKProductsRequestDelegate
+//
+//-(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
+//
+//    NSArray *products=response.products;
+//    if(products.count !=0){
+//        product=products[0];
+//        productTitle=product.localizedTitle;
+//        productDescription=product.localizedDescription;
+//    }
+//    [self buyAction];
+//}
+//
+//-(void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions{
+//    for (SKPaymentTransaction *transaction in transactions) {
+//        switch (transaction.transactionState) {
+//            case SKPaymentTransactionStatePurchased:
+//                [self removeAdBanner];
+//                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+//                break;
+//            case SKPaymentTransactionStateRestored:
+//                [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+//                break;
+//                
+//            default:
+//                
+//                break;
+//        }
+//    }
+//}
+//
+//-(void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
+//
+//    for(SKPaymentTransaction *transaction in queue.transactions){
+//        if(transaction.transactionState == SKPaymentTransactionStateRestored){
+//        
+//            [self removeAdBanner];
+//            [[SKPaymentQueue defaultQueue] finishTransaction:transaction];
+//            break;
+//        }
+//    }
+//}
+//
+//-(void)removeAdBanner{
+//    adView.hidden=YES;
+//    bannerIsVisible=NO;
+//    areAdsRemoved=YES;
+//    [adView removeFromSuperview];
+//    [removeAdsView removeFromSuperview];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"adFailedToLoad" object:nil];
+//    [[NSUserDefaults standardUserDefaults] setBool:areAdsRemoved forKey:@"areAdsRemoved"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//}
 
 @end

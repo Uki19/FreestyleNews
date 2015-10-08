@@ -12,12 +12,16 @@
 #import "ViewController.h"
 #import "TabBar.h"
 #import "FullScreenImageView.h"
+#import "CommentsTableView.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ArticleView ()
 
 @property NSMutableArray *articleImages;
 @property UIView* articleContentBackground;
+@property NSMutableData* refreshData;
+@property UIView *borderBottom;
+@property NSString *brojKomentara;
 
 @end
 
@@ -31,12 +35,35 @@
 @synthesize authorImage;
 @synthesize item;
 @synthesize dateLabel;
+@synthesize brojKomentara;
+@synthesize numberCommentsLabel;
 
 
 
 -(void)addRadius:(CALayer*)layer angle:(CGFloat)angle{
     [layer setMasksToBounds:YES];
     [layer setCornerRadius:angle];
+}
+
+-(void)initNavbarButtons{
+    UIBarButtonItem *refreshButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(refreshArticle)];
+    UIImage *ci=[UIImage imageNamed:@"comments"];
+    UIButton *imageComments=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, ci.size.width, ci.size.height)];
+    [imageComments setBackgroundImage:ci forState:UIControlStateNormal];
+    numberCommentsLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, imageComments.frame.size.width-20, imageComments.frame.size.height-20)];
+    numberCommentsLabel.font=[UIFont fontWithName:@"HelveticaNeue" size:12];
+    numberCommentsLabel.textColor=[UIColor whiteColor];
+    [numberCommentsLabel sizeToFit];
+    numberCommentsLabel.center=imageComments.center;
+    numberCommentsLabel.frame=CGRectOffset(numberCommentsLabel.frame, 0, -2);
+    [imageComments addSubview:numberCommentsLabel];
+    imageComments.frame=CGRectOffset(imageComments.frame, 10, 0);
+    UIBarButtonItem *commentsButton=[[UIBarButtonItem alloc] initWithCustomView:imageComments];
+    [imageComments addTarget:self action:@selector(openComments) forControlEvents:UIControlEventTouchUpInside];
+    if(item.category)
+       self.navigationItem.rightBarButtonItems=@[refreshButton,commentsButton];
+    else
+        self.navigationItem.rightBarButtonItem=commentsButton;
 }
 
 #pragma mark - Title, category, date and author text init
@@ -54,9 +81,9 @@
     articleTitleLabel.text=item.title;
     [articleTitleLabel sizeToFit];
     CGRect titleFrame=articleTitleLabel.frame;
-    UIView *borderBottom=[[UIView alloc] initWithFrame:CGRectMake(15, titleFrame.size.height+titleFrame.origin.y+10, self.view.frame.size.width-30, 1)];
-    borderBottom.backgroundColor=[UIColor lightGrayColor];
-    [articleScrollView addSubview:borderBottom];
+    self.borderBottom=[[UIView alloc] initWithFrame:CGRectMake(15, titleFrame.size.height+titleFrame.origin.y+10, self.view.frame.size.width-30, 1)];
+    self.borderBottom.backgroundColor=[UIColor lightGrayColor];
+    [articleScrollView addSubview:self.borderBottom];
     [articleScrollView addSubview:articleTitleLabel];
     
 }
@@ -159,7 +186,7 @@
         if(sub.frame.origin.y+sub.frame.size.height>maxHeight)
             maxHeight=sub.frame.origin.y+sub.frame.size.height;
     }
-    [articleScrollView setContentSize:CGSizeMake(self.view.frame.size.width, maxHeight+10)];
+    [articleScrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.articleContentBackground.frame.origin.y+self.articleContentBackground.frame.size.height+10)];
 }
 
 -(void)initScrollView{
@@ -178,20 +205,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor=[UIColor colorWithRed:223.0/255.0 green:223.0/255.0 blue:223.0/255.0 alpha:1];
+    [self initNavbarButtons];
     [self initScrollView];
     [self initArticleTitle];
     [self initArticleAuthor];
     [self initArticleContent];
     
     [self setScrollViewSize];
-    
+  
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
+    
+//    [self getCommentsNumber];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+
+#pragma mark - Comments methods
+
+-(void)openComments{
+    CommentsTableView *commentsView=[[CommentsTableView alloc] init];
+    commentsView.articleID=item.newsID;
+    [self.navigationController pushViewController:commentsView animated:YES];
+}
+
 
 #pragma mark - DTAttributedText parse Links and open them on Click
 
@@ -224,6 +264,7 @@
     if([[UIApplication sharedApplication] canOpenURL:url])
         [[UIApplication sharedApplication] openURL:url];
 }
+
 
 
 #pragma mark - DTAttributedText parse images and videos
@@ -281,8 +322,61 @@
     [articleContentTextView relayoutText];
 }
 
+-(void)resetTitle:(NSString*)newTitle andContent:(NSString*)newContent andCommentsNumber:(NSString*) noOfComments{
+    CGFloat visinaPre=articleTitleLabel.frame.size.height;
+    articleTitleLabel.text=newTitle;
+    articleTitleLabel.frame=CGRectMake(15, 20, self.view.frame.size.width-30, 300);
+    [articleTitleLabel sizeToFit];
+    CGFloat razlika=articleTitleLabel.frame.size.height-visinaPre;
+    NSLog(@"%f",razlika);
+    NSString *content=[self addImgTagsToText:newContent];
+    DTCSSStylesheet *style=[[DTCSSStylesheet alloc] initWithStyleBlock:@"p{font:HelveticaNeue;}"];
+    DTHTMLAttributedStringBuilder *stringBuilder=[[DTHTMLAttributedStringBuilder alloc] initWithHTML:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{DTDefaultTextColor:[UIColor colorWithRed:70.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1],DTDefaultFontSize:@15,DTDefaultFontName:@"HelveticaNeue",DTDefaultLineHeightMultiplier:@1.3,DTDefaultLinkColor:[UIColor colorWithRed:0 green:153.0/255.0 blue:1 alpha:1],DTDefaultStyleSheet:style} documentAttributes:nil];
+    articleContentTextView.attributedString=[stringBuilder generatedAttributedString];
+    articleAuthorLabel.frame=CGRectOffset(articleAuthorLabel.frame, 0, razlika);
+    articleContentTextView.frame=CGRectOffset(articleContentTextView.frame, 0, razlika);
+    self.borderBottom.frame=CGRectOffset(self.borderBottom.frame, 0, razlika);
+    dateLabel.frame=CGRectOffset(dateLabel.frame, 0, razlika);
+    [articleContentTextView sizeToFit];
+    CGFloat labelHeight=articleContentTextView.frame.size.height;
+    CGFloat labelY=articleContentTextView.frame.origin.y;
+    CGRect backFrame=self.articleContentBackground.frame;
+    backFrame.size.height=labelY+labelHeight+30;
+    self.articleContentBackground.frame=backFrame;
+    [articleContentTextView relayoutText];
+    [self setScrollViewSize];
+    numberCommentsLabel.text=[NSString stringWithFormat:@"%@",noOfComments];
+//    [numberCommentsLabel sizeToFit];
+}
 
 
+
+#pragma mark - NSURL Connection
+
+-(void)refreshArticle{
+    NSURL *articleUrl=[NSURL URLWithString:[NSString stringWithFormat:@"http://www.theartball.com/admin/iOS/get-single-article.php?id=%@",item.newsID]];
+    NSURLRequest *request=[NSURLRequest requestWithURL:articleUrl];
+    [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    self.refreshData=[[NSMutableData alloc] init];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+    [self.refreshData appendData:data];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    NSError *error;
+    NSDictionary *jsonArray=[NSJSONSerialization JSONObjectWithData:self.refreshData options:NSJSONReadingAllowFragments error:&error];
+    
+    
+    NSString *newTitle=jsonArray[@"title"];
+    NSString *newContent=jsonArray[@"content"];
+    NSString *commentNo=jsonArray[@"numberOfCom"];
+    [self resetTitle:newTitle andContent:newContent andCommentsNumber:commentNo];
+}
 
 #pragma mark - Notification Center updates
 

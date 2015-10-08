@@ -54,7 +54,7 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (NSUInteger)supportedInterfaceOrientations{
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations{
     return UIInterfaceOrientationMaskPortrait;
 }
 

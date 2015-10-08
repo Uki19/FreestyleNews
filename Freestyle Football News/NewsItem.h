@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSString *imageURL;
 @property (strong, nonatomic) NSString *author;
 @property (strong, nonatomic) NSString *date;
+@property (strong, nonatomic) NSString *newsID;
 @property BOOL important;
 
 
