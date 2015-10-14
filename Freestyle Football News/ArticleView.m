@@ -285,7 +285,7 @@
     if(comments.count==0)
         self.comLabel.text=@"No comments";
     else
-        self.comLabel.text=@"Recent comments";
+        self.comLabel.text=@"Recent comments:";
     [self.viewCommentsButton setTitle:[NSString stringWithFormat:@"View All (%ld)",comments.count] forState:UIControlStateNormal];
 }
 

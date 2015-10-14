@@ -12,6 +12,7 @@
 #import "ArticlesTableView.h"
 #import "ArchiveTableView.h"
 #import "AboutViewController.h"
+#import "FreestyleShopTableView.h"
 
 
 static CGRect adFrame;
@@ -70,7 +71,15 @@ static BOOL bannerIsVisible;
     navigationView=nil;
     [normalImages addObject:[[UIImage imageNamed:@"article"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     [selectedImages addObject:[[UIImage imageNamed:@"article-selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
-  
+    
+    FreestyleShopTableView *freestyleShop=[[FreestyleShopTableView alloc] init];
+    freestyleShop.title=@"Shop";
+    navigationView=[[Navigation alloc] initWithRootViewController:freestyleShop];
+    [navs addObject:navigationView];
+    navigationView=nil;
+    [normalImages addObject:[[UIImage imageNamed:@"shop"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [selectedImages addObject:[[UIImage imageNamed:@"shop-selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    
     AboutViewController *about=[[AboutViewController alloc] init];
     about.title=@"About";
     navigationView=[[Navigation alloc] initWithRootViewController:about];

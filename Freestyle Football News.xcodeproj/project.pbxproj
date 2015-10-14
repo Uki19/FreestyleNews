@@ -37,6 +37,7 @@
 		755E134F1B53203C00019D48 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E134E1B53203C00019D48 /* AboutViewController.m */; };
 		75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75683A5A1B34AB5000CC4085 /* ArticlesModel.m */; };
 		756D51401B42C735006018C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 756D513F1B42C735006018C4 /* .gitignore */; };
+		75B9BAC11BCEF81D00AAB905 /* FreestyleShopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B9BAC01BCEF81D00AAB905 /* FreestyleShopTableView.m */; settings = {ASSET_TAGS = (); }; };
 		75D940351B323BB8008BE45A /* Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D940341B323BB8008BE45A /* Navigation.m */; };
 		75DD84CC1B8DE13400FBB544 /* FullScreenImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD84CB1B8DE13400FBB544 /* FullScreenImageView.m */; };
 		75E053331B42D24900382430 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E053321B42D24900382430 /* iAd.framework */; };
@@ -111,6 +112,8 @@
 		75B993BA1B35CBC900A92B6E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		75B993BC1B35CBD700A92B6E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		75B993BE1B35CBE200A92B6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		75B9BABF1BCEF81D00AAB905 /* FreestyleShopTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreestyleShopTableView.h; sourceTree = "<group>"; };
+		75B9BAC01BCEF81D00AAB905 /* FreestyleShopTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreestyleShopTableView.m; sourceTree = "<group>"; };
 		75D940331B323BB8008BE45A /* Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigation.h; sourceTree = "<group>"; };
 		75D940341B323BB8008BE45A /* Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Navigation.m; sourceTree = "<group>"; };
 		75DD84CA1B8DE13400FBB544 /* FullScreenImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImageView.h; sourceTree = "<group>"; };
@@ -210,6 +213,7 @@
 				75131EE81B32CF4600457525 /* TabBar.m */,
 				755E134D1B53203C00019D48 /* AboutViewController.h */,
 				755E134E1B53203C00019D48 /* AboutViewController.m */,
+				75B9BABE1BCEF7BB00AAB905 /* Freestyle Shop */,
 				7553E9EE1BC3E528003A7C86 /* Comments  */,
 				75EC15011B38A5D200C5F768 /* Archive View */,
 				75683A541B34AA5500CC4085 /* News View */,
@@ -302,6 +306,15 @@
 				75B993B61B35CBB300A92B6E /* libxml2.dylib */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		75B9BABE1BCEF7BB00AAB905 /* Freestyle Shop */ = {
+			isa = PBXGroup;
+			children = (
+				75B9BABF1BCEF81D00AAB905 /* FreestyleShopTableView.h */,
+				75B9BAC01BCEF81D00AAB905 /* FreestyleShopTableView.m */,
+			);
+			name = "Freestyle Shop";
 			sourceTree = "<group>";
 		};
 		75EC15011B38A5D200C5F768 /* Archive View */ = {
@@ -478,6 +491,7 @@
 				754BE7771B318C8000F758C9 /* NewsModel.m in Sources */,
 				75DD84CC1B8DE13400FBB544 /* FullScreenImageView.m in Sources */,
 				7553E9F61BC3E9C6003A7C86 /* CommentsViewCell.m in Sources */,
+				75B9BAC11BCEF81D00AAB905 /* FreestyleShopTableView.m in Sources */,
 				7553E9FC1BC3FCC7003A7C86 /* Comment.m in Sources */,
 				754BE7581B318B7900F758C9 /* ViewController.m in Sources */,
 				754917E11B339BEA00D55BD0 /* ArticleCell.m in Sources */,
