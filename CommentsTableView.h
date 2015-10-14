@@ -18,5 +18,7 @@
 @property (strong, nonatomic) UILabel *noComments;
 @property (strong, nonatomic) UITextField *commentAuthorTextField;
 @property (strong, nonatomic) UITextView *commentTextView;
+@property (strong, nonatomic) NSString *articleTitle;
+@property BOOL addCommentsFlag;
 
 @end

@@ -9,6 +9,8 @@
 #import "CommentsTableView.h"
 #import "CommentsViewCell.h"
 #import "Comment.h"
+#import "TabBar.h"
+#import "CommentsInArticle.h"
 #include <QuartzCore/QuartzCore.h>
 
 NSString *cellID=@"commentsCell";
@@ -31,6 +33,7 @@ NSString *cellID=@"commentsCell";
 @synthesize commentAuthorTextField;
 @synthesize commentTextView;
 @synthesize sendButton;
+@synthesize articleTitle;
 
 -(void)initNavBarButtons{
     UIBarButtonItem *refreshButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(refreshAction)];
@@ -42,12 +45,26 @@ NSString *cellID=@"commentsCell";
     [self.tableView registerNib:[UINib nibWithNibName:@"CommentsViewCell" bundle:nil] forCellReuseIdentifier:cellID];
     self.tableView.backgroundColor=[UIColor colorWithRed:233.0/255.0 green:233.0/255.0 blue:233.0/255.0 alpha:1];
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    self.tableView.bounces=NO;
+    UILabel *headerLabel=[[UILabel alloc] initWithFrame:CGRectMake(16, 10, self.tableView.frame.size.width-32, 0)];
+    headerLabel.text=articleTitle;
+    headerLabel.numberOfLines=0;
+    headerLabel.font=[UIFont boldSystemFontOfSize:18.0];
+    headerLabel.lineBreakMode=NSLineBreakByWordWrapping;
+    [headerLabel sizeToFit];
+    UIView *tvHeaderView=[[UIView alloc] initWithFrame:CGRectMake(16,0, self.tableView.frame.size.width-32, headerLabel.frame.size.height+10)];
+    
+    [tvHeaderView addSubview:headerLabel];
+    [tvHeaderView sizeToFit];
+    self.tableView.tableHeaderView=tvHeaderView;
+
     noComments=[[UILabel alloc] init];
     noComments.text=@"No Comments.";
     noComments.font=[UIFont systemFontOfSize:15];
     [noComments sizeToFit];
+    noComments.textAlignment=NSTextAlignmentCenter;
     noComments.center=self.view.center;
-    noComments.frame=CGRectMake(noComments.frame.origin.x, 20, noComments.frame.size.width,noComments.frame.size.height);
+    noComments.frame=CGRectMake(0, self.tableView.tableHeaderView.frame.size.height+20, self.view.frame.size.width,noComments.frame.size.height);
     noComments.textColor=[UIColor colorWithWhite:0.5 alpha:1];
     [noComments setHidden:YES];
     [self.tableView addSubview:noComments];
@@ -61,10 +78,11 @@ NSString *cellID=@"commentsCell";
     loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     loading.color=[UIColor darkGrayColor];
     loading.center=self.tableView.center;
-    loading.frame=CGRectMake(loading.frame.origin.x, 5, loading.frame.size.width, loading.frame.size.height);
+    loading.frame=CGRectMake(loading.frame.origin.x, self.tableView.tableHeaderView.frame.size.height+5, loading.frame.size.width, loading.frame.size.height);
     [self.view addSubview:loading];
     [loading startAnimating];
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,6 +91,20 @@ NSString *cellID=@"commentsCell";
     [self initNavBarButtons];
     [self initCommentsModel];
     [self initAddCommentView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
+    
+    if([TabBar bannerIsVisible]){
+        [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
+    }
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if(self.addCommentsFlag)
+        [self addCommentAction];
     
 }
 
@@ -88,14 +120,24 @@ NSString *cellID=@"commentsCell";
     return 1;
 }
 
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return comments.count;
 }
 
+UITextView *tmpTextView;
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 155;
+   
+    tmpTextView=[[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-32, 29)];
+    tmpTextView.font=[UIFont systemFontOfSize:14.0];
+    tmpTextView.textAlignment=NSTextAlignmentLeft;
+    tmpTextView.text=[[comments objectAtIndex:indexPath.row] comment];
+    CGSize size = [tmpTextView sizeThatFits:CGSizeMake(tmpTextView.frame.size.width, FLT_MAX)];
+    return 85+size.height;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,22 +145,33 @@ NSString *cellID=@"commentsCell";
     
     Comment *com=(Comment*)[comments objectAtIndex:indexPath.row];
     cell.authorLabel.text=com.author;
-    cell.CommentLabel.text=com.comment;
-    cell.dateLabel.text=com.date;
-   
+    cell.CommentTextView.text=com.comment;
+    cell.dateLabel.text=[com getTime];
+
     return cell;
 }
 
+
+
 #pragma mark - updateWithItems
 
--(void)updateWithItems:(NSArray *)items{
+-(void)updateWithComments:(NSArray *)items{
     comments=items;
     [self.tableView reloadData];
     [loading stopAnimating];
-    if(comments.count==0)
+    if(comments.count==0){
+        noComments.text=@"No Comments.";
         [noComments setHidden:NO];
-    else
+    }
+    else{
         [noComments setHidden:YES];
+    }
+}
+
+-(void)failedToDownloadWithError:(NSError *)error{
+    [noComments setText:@"Unable to load comments. Try refreshing."];
+    [loading stopAnimating];
+    noComments.hidden=NO;
 }
 
 -(void)initAddCommentView{
@@ -137,13 +190,12 @@ NSString *cellID=@"commentsCell";
     
     commentAuthorTextField=[[UITextField alloc] initWithFrame:CGRectMake(20, 30, addCommentView.frame.size.width-40, 25)];
     commentAuthorTextField.backgroundColor=[UIColor whiteColor];
-    commentAuthorTextField.placeholder=@" Anonymous";
+    commentAuthorTextField.placeholder=@"Anonymous";
     commentAuthorTextField.layer.cornerRadius=5.0;
-    commentAuthorTextField.layer.borderWidth=2.0;
-    commentAuthorTextField.delegate=self;
-    commentAuthorTextField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
-    commentAuthorTextField.layer.borderColor=[UIColor colorWithRed:112.0/255.0 green:184.0/255.0 blue:1 alpha:1].CGColor;
+    [commentAuthorTextField setBorderStyle:UITextBorderStyleRoundedRect];
     
+    commentAuthorTextField.delegate=self;
+
     UILabel *commentLabel=[[UILabel alloc] initWithFrame:CGRectMake(20, 60, 100, 20)];
     commentLabel.font=[UIFont fontWithName:@"HelveticaNeue" size:13];
     commentLabel.text=@"Comment:";
@@ -152,9 +204,8 @@ NSString *cellID=@"commentsCell";
     commentTextView=[[UITextView alloc] initWithFrame:CGRectMake(20, 80, addCommentView.frame.size.width-40, 80)];
     commentTextView.layer.cornerRadius=5.0;
     commentTextView.layer.borderWidth=2.0;
-    commentTextView.layer.borderColor=[UIColor colorWithRed:112.0/255.0 green:184.0/255.0 blue:1 alpha:1].CGColor;
+    commentTextView.layer.borderColor=[UIColor clearColor].CGColor;
 
-    
     sendButton=[[UIButton alloc] initWithFrame:CGRectMake(addCommentView.frame.size.width/2-65,175, 60, 30)];
     [sendButton setTitle:@"SEND" forState:UIControlStateNormal];
     sendButton.titleLabel.font=[UIFont fontWithName:@"HelveticaNeue" size:12];
@@ -181,6 +232,7 @@ NSString *cellID=@"commentsCell";
     [addCommentView addSubview:commentTextView];
     [addCommentView addSubview:commentAuthorTextField];
     [self.view addSubview:addCommentView];
+//    [self.navigationController.view bringSubviewToFront:self.navigationController.navigationBar];
     
 }
 
@@ -226,7 +278,7 @@ BOOL completed;
     if(addCommentView.hidden){
         addCommentView.hidden=NO;
         [UIView animateWithDuration:0.25 animations:^(){
-            addCommentView.frame=CGRectOffset(addCommentView.frame, 0, 220);
+            addCommentView.frame=CGRectOffset(addCommentView.frame, 0, self.tableView.contentOffset.y+220);
         } completion:^(BOOL finished){
             completed=true;
         }];
@@ -237,16 +289,17 @@ BOOL completed;
 
 
 -(void)cancelAction{
-    [self.view endEditing:YES];
+    [commentTextView endEditing:YES];
+    [commentAuthorTextField endEditing:YES];
     if(completed) {
     [UIView animateWithDuration:0.25 animations:^(){
-        addCommentView.frame=CGRectOffset(addCommentView.frame, 0, -220);
+        addCommentView.frame=CGRectOffset(addCommentView.frame, 0, -self.tableView.contentOffset.y-220);
     } completion:^(BOOL finished){
         addCommentView.hidden=YES;
         [commentTextView setText:@""];
         [commentAuthorTextField setText:@""];
         [self.tableView setScrollEnabled:YES];
-        commentTextView.layer.borderColor=[UIColor colorWithRed:112.0/255.0 green:184.0/255.0 blue:1 alpha:1].CGColor;
+        commentTextView.layer.borderColor=[UIColor clearColor].CGColor;
         completed=false;
     }];
     }
@@ -259,6 +312,14 @@ BOOL completed;
     
 }
 
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+    UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"Unable to send comment" message:@"Make sure you are connected to internet and try again." preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        return;
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     if(range.length + range.location > textField.text.length)
@@ -268,6 +329,14 @@ BOOL completed;
     
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return newLength <= 20;
+}
+
+-(void)notificationCenterAdLoaded:(NSNotification*) notification{
+    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
+}
+
+-(void)notificationCenterAdFailed:(NSNotification*) notification{
+    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 }
 
 /*

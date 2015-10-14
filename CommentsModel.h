@@ -10,8 +10,8 @@
 
 @protocol ObservableComments <NSObject>
 
--(void)updateWithItems:(NSArray*)items;
-//-(void)failedToDownloadWithError:(NSError*) error;
+-(void)updateWithComments:(NSArray*)items;
+-(void)failedToDownloadWithError:(NSError*) error;
 
 @end
 

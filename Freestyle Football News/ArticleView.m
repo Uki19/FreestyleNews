@@ -13,6 +13,8 @@
 #import "TabBar.h"
 #import "FullScreenImageView.h"
 #import "CommentsTableView.h"
+#import "CommentsInArticle.h"
+#import "CommentsViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ArticleView ()
@@ -22,6 +24,8 @@
 @property NSMutableData* refreshData;
 @property UIView *borderBottom;
 @property NSString *brojKomentara;
+@property UILabel *comLabel;
+@property UIButton *viewCommentsButton;
 
 @end
 
@@ -37,7 +41,9 @@
 @synthesize dateLabel;
 @synthesize brojKomentara;
 @synthesize numberCommentsLabel;
-
+@synthesize commentsModel;
+@synthesize comments;
+@synthesize commentsView;
 
 
 -(void)addRadius:(CALayer*)layer angle:(CGFloat)angle{
@@ -50,10 +56,10 @@
     UIImage *ci=[UIImage imageNamed:@"comments"];
     UIButton *imageComments=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, ci.size.width, ci.size.height)];
     [imageComments setBackgroundImage:ci forState:UIControlStateNormal];
-    numberCommentsLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, imageComments.frame.size.width-20, imageComments.frame.size.height-20)];
+    numberCommentsLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, imageComments.frame.size.width, imageComments.frame.size.height-20)];
     numberCommentsLabel.font=[UIFont fontWithName:@"HelveticaNeue" size:12];
     numberCommentsLabel.textColor=[UIColor whiteColor];
-    [numberCommentsLabel sizeToFit];
+    numberCommentsLabel.textAlignment=NSTextAlignmentCenter;
     numberCommentsLabel.center=imageComments.center;
     numberCommentsLabel.frame=CGRectOffset(numberCommentsLabel.frame, 0, -2);
     [imageComments addSubview:numberCommentsLabel];
@@ -186,7 +192,10 @@
         if(sub.frame.origin.y+sub.frame.size.height>maxHeight)
             maxHeight=sub.frame.origin.y+sub.frame.size.height;
     }
-    [articleScrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.articleContentBackground.frame.origin.y+self.articleContentBackground.frame.size.height+10)];
+    if(!commentsView)
+        [articleScrollView setContentSize:CGSizeMake(self.view.frame.size.width, self.articleContentBackground.frame.origin.y+self.articleContentBackground.frame.size.height+10)];
+    else
+        [articleScrollView setContentSize:CGSizeMake(self.view.frame.size.width, commentsView.frame.origin.y+commentsView.frame.size.height+10)];
 }
 
 -(void)initScrollView{
@@ -200,6 +209,8 @@
 
 }
 
+
+
 #pragma mark - viewDidLoad
 
 - (void)viewDidLoad {
@@ -212,11 +223,11 @@
     [self initArticleContent];
     
     [self setScrollViewSize];
-  
+    [self initCommentsModel];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
     
-//    [self getCommentsNumber];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -226,12 +237,121 @@
 
 #pragma mark - Comments methods
 
--(void)openComments{
-    CommentsTableView *commentsView=[[CommentsTableView alloc] init];
-    commentsView.articleID=item.newsID;
-    [self.navigationController pushViewController:commentsView animated:YES];
+-(void)initCommentsModel{
+    commentsModel=[[CommentsModel alloc] init];
+    commentsModel.delegate=self;
+    [commentsModel downloadDataForArticleID:item.newsID];
 }
 
+
+-(void)initCommentsView{
+    
+    UIView *commentsHeadView=[[UIView alloc] initWithFrame:CGRectMake(self.articleContentBackground.frame.origin.x, self.articleContentBackground.frame.origin.y+self.articleContentBackground.frame.size.height+5, self.articleContentBackground.frame.size.width, 60)];
+    self.comLabel=[[UILabel alloc] initWithFrame:CGRectMake(5,0, commentsHeadView.frame.size.width, 30)];
+    self.comLabel.font=[UIFont fontWithName:@"HelveticaNeue" size:17.0];
+    self.comLabel.textColor=[UIColor colorWithWhite:0.3 alpha:1];
+    self.viewCommentsButton=[[UIButton alloc] initWithFrame:CGRectMake(commentsHeadView.frame.size.width-145, 0, 100, 30)];
+    [self setLabelAndButton];
+    [self.viewCommentsButton setBackgroundColor:[UIColor colorWithRed:11.0/255.0 green:129.0/255.0 blue:228.0/255.0 alpha:1]];
+    [self.viewCommentsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self addRadius:self.viewCommentsButton.layer angle:5.0];
+    self.viewCommentsButton.titleLabel.font=[UIFont fontWithName:@"HelveticaNeue-Light" size:14.0];
+    [self.viewCommentsButton addTarget:self action:@selector(openComments) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *writeCommentButton=[[UIButton alloc] initWithFrame:CGRectMake(commentsHeadView.frame.size.width-40, 0, 40, 30)];
+    [self addRadius:writeCommentButton.layer angle:5.0];
+    [writeCommentButton setBackgroundColor:[UIColor colorWithRed:11.0/255.0 green:129.0/255.0 blue:228.0/255.0 alpha:1]];
+    [writeCommentButton setImage:[UIImage imageNamed:@"pencil"] forState:UIControlStateNormal];
+    [writeCommentButton addTarget:self action:@selector(openCommentsAndAdd) forControlEvents:UIControlEventTouchUpInside];
+    [commentsHeadView addSubview:writeCommentButton];
+    [commentsHeadView addSubview:self.viewCommentsButton];
+    [commentsHeadView addSubview:self.comLabel];
+    
+    [self.articleScrollView addSubview:commentsHeadView];
+    commentsView=[[UITableView alloc] initWithFrame:CGRectMake(self.articleContentBackground.frame.origin.x,commentsHeadView.frame.origin.y+35, self.articleContentBackground.frame.size.width,(comments.count<=2?comments.count:2)*120)];
+    [commentsView registerNib:[UINib nibWithNibName:@"CommentsViewCell" bundle:nil] forCellReuseIdentifier:@"commentsCell"];
+    commentsView.userInteractionEnabled=NO;
+    commentsView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    commentsView.delegate=self;
+    commentsView.dataSource=self;
+    commentsView.scrollEnabled=NO;
+    [self addRadius:commentsView.layer angle:5.0];
+    [articleScrollView addSubview:commentsView];
+    CGRect frameContent=CGRectMake(self.commentsView.frame.origin.x, self.commentsView.frame.origin.y, self.commentsView.frame.size.width,self.commentsView.contentSize.height);
+    self.commentsView.frame=frameContent;
+    [self setScrollViewSize];
+}
+
+-(void)setLabelAndButton{
+    if(comments.count==0)
+        self.comLabel.text=@"No comments";
+    else
+        self.comLabel.text=@"Recent comments";
+    [self.viewCommentsButton setTitle:[NSString stringWithFormat:@"View All (%ld)",comments.count] forState:UIControlStateNormal];
+}
+
+UITextView *tmpCommView;
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    tmpCommView=[[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-32, 29)];
+    tmpCommView.font=[UIFont systemFontOfSize:14.0];
+    tmpCommView.textAlignment=NSTextAlignmentLeft;
+    tmpCommView.text=[[comments objectAtIndex:comments.count-1-indexPath.row] comment];
+    CGSize size = [tmpCommView sizeThatFits:CGSizeMake(tmpCommView.frame.size.width, FLT_MAX)];
+    return 85+size.height;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return comments.count<=2?comments.count:2;
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CommentsViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"commentsCell"];
+    Comment *comm=[comments objectAtIndex:comments.count-1-indexPath.row];
+    
+    cell.authorLabel.text=comm.author;
+    cell.dateLabel.text=[comm getTime];
+    cell.CommentTextView.text=comm.comment;
+    
+    return cell;
+}
+
+-(void)openComments{
+    CommentsTableView *commentsViewController=[[CommentsTableView alloc] init];
+    commentsViewController.articleID=item.newsID;
+    commentsViewController.articleTitle=item.title;
+    [self.navigationController pushViewController:commentsViewController animated:YES];
+}
+
+-(void)openCommentsAndAdd{
+    CommentsTableView *commentsViewController=[[CommentsTableView alloc] init];
+    commentsViewController.articleID=item.newsID;
+    commentsViewController.articleTitle=item.title;
+    commentsViewController.addCommentsFlag=YES;
+    [self.navigationController pushViewController:commentsViewController animated:YES];
+}
+
+-(void)updateWithComments:(NSArray *)items{
+    
+    comments=items;
+    numberCommentsLabel.text=[NSString stringWithFormat:@"%ld",comments.count];
+    if(commentsView){
+        [commentsView reloadData];
+        CGRect frameContent=CGRectMake(self.commentsView.frame.origin.x, self.commentsView.frame.origin.y, self.commentsView.frame.size.width,self.commentsView.contentSize.height);
+        self.commentsView.frame=frameContent;
+        [self setScrollViewSize];
+        [self setLabelAndButton];
+    }
+    else
+        [self initCommentsView];
+}
+
+
+-(void)failedToDownloadWithError:(NSError *)error{
+    
+}
 
 #pragma mark - DTAttributedText parse Links and open them on Click
 
@@ -328,7 +448,6 @@
     articleTitleLabel.frame=CGRectMake(15, 20, self.view.frame.size.width-30, 300);
     [articleTitleLabel sizeToFit];
     CGFloat razlika=articleTitleLabel.frame.size.height-visinaPre;
-    NSLog(@"%f",razlika);
     NSString *content=[self addImgTagsToText:newContent];
     DTCSSStylesheet *style=[[DTCSSStylesheet alloc] initWithStyleBlock:@"p{font:HelveticaNeue;}"];
     DTHTMLAttributedStringBuilder *stringBuilder=[[DTHTMLAttributedStringBuilder alloc] initWithHTML:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{DTDefaultTextColor:[UIColor colorWithRed:70.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1],DTDefaultFontSize:@15,DTDefaultFontName:@"HelveticaNeue",DTDefaultLineHeightMultiplier:@1.3,DTDefaultLinkColor:[UIColor colorWithRed:0 green:153.0/255.0 blue:1 alpha:1],DTDefaultStyleSheet:style} documentAttributes:nil];
@@ -357,6 +476,7 @@
     NSURL *articleUrl=[NSURL URLWithString:[NSString stringWithFormat:@"http://www.theartball.com/admin/iOS/get-single-article.php?id=%@",item.newsID]];
     NSURLRequest *request=[NSURLRequest requestWithURL:articleUrl];
     [NSURLConnection connectionWithRequest:request delegate:self];
+    [commentsModel downloadDataForArticleID:item.newsID];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{

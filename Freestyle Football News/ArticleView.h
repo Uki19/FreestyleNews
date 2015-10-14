@@ -10,8 +10,10 @@
 #import "DTCoreText.h"
 #import "YTPlayerView.h"
 #import "NewsItem.h"
+#import "CommentsModel.h"
+#import "Comment.h"
 
-@interface ArticleView : UIViewController <DTAttributedTextContentViewDelegate,DTLazyImageViewDelegate, NSURLConnectionDataDelegate>
+@interface ArticleView : UIViewController <DTAttributedTextContentViewDelegate,DTLazyImageViewDelegate, NSURLConnectionDataDelegate, ObservableComments, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NewsItem* item;
 @property (strong, nonatomic) UIScrollView *articleScrollView;
@@ -21,6 +23,8 @@
 @property (strong, nonatomic) UIImage *authorImage;
 @property (strong, nonatomic) UILabel *dateLabel;
 @property (strong, nonatomic) UILabel *numberCommentsLabel;
-
+@property (strong, nonatomic) CommentsModel *commentsModel;
+@property (strong, nonatomic) NSArray *comments;
+@property (strong, nonatomic) UITableView *commentsView;
 
 @end

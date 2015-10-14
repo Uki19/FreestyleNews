@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0C7B09D61B4D23C50001CC6A /* NewsActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B09D51B4D23C50001CC6A /* NewsActivityIndicator.m */; };
 		26B269E9462FF258BE878966 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFDE6CEA17FB2B8F8075FAF /* libPods.a */; };
+		7504B9F71BCC84C000DC9DB2 /* CommentsInArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7504B9F61BCC84C000DC9DB2 /* CommentsInArticleView.xib */; settings = {ASSET_TAGS = (); }; };
+		7504B9FA1BCC85D300DC9DB2 /* CommentsInArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7504B9F91BCC85D300DC9DB2 /* CommentsInArticle.m */; settings = {ASSET_TAGS = (); }; };
 		75131EE91B32CF4600457525 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75131EE81B32CF4600457525 /* TabBar.m */; };
 		7523DD221B345A5B00A7F658 /* ArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7523DD211B345A5B00A7F658 /* ArticleView.m */; };
 		7539CAE21B38C86000626682 /* ArchiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7539CAE11B38C86000626682 /* ArchiveTableViewCell.xib */; };
@@ -55,6 +57,9 @@
 /* Begin PBXFileReference section */
 		0C7B09D41B4D23C50001CC6A /* NewsActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsActivityIndicator.h; sourceTree = "<group>"; };
 		0C7B09D51B4D23C50001CC6A /* NewsActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsActivityIndicator.m; sourceTree = "<group>"; };
+		7504B9F61BCC84C000DC9DB2 /* CommentsInArticleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsInArticleView.xib; sourceTree = "<group>"; };
+		7504B9F81BCC85D300DC9DB2 /* CommentsInArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsInArticle.h; sourceTree = "<group>"; };
+		7504B9F91BCC85D300DC9DB2 /* CommentsInArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsInArticle.m; sourceTree = "<group>"; };
 		75131EE71B32CF4600457525 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
 		75131EE81B32CF4600457525 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
 		7523DD201B345A5B00A7F658 /* ArticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleView.h; sourceTree = "<group>"; };
@@ -257,6 +262,9 @@
 				7553E9F81BC3F781003A7C86 /* CommentsModel.m */,
 				7553E9FA1BC3FCC7003A7C86 /* Comment.h */,
 				7553E9FB1BC3FCC7003A7C86 /* Comment.m */,
+				7504B9F61BCC84C000DC9DB2 /* CommentsInArticleView.xib */,
+				7504B9F81BCC85D300DC9DB2 /* CommentsInArticle.h */,
+				7504B9F91BCC85D300DC9DB2 /* CommentsInArticle.m */,
 			);
 			name = "Comments ";
 			path = ..;
@@ -415,6 +423,7 @@
 				754917E31B339C9700D55BD0 /* ArticleTableCell.xib in Resources */,
 				754BE7601B318B7900F758C9 /* LaunchScreen.xib in Resources */,
 				756D51401B42C735006018C4 /* .gitignore in Resources */,
+				7504B9F71BCC84C000DC9DB2 /* CommentsInArticleView.xib in Resources */,
 				754BE75D1B318B7900F758C9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -482,6 +491,7 @@
 				0C7B09D61B4D23C50001CC6A /* NewsActivityIndicator.m in Sources */,
 				754917DB1B3395B900D55BD0 /* ArticlesTableView.m in Sources */,
 				754BE7551B318B7900F758C9 /* AppDelegate.m in Sources */,
+				7504B9FA1BCC85D300DC9DB2 /* CommentsInArticle.m in Sources */,
 				7539CAE51B38C9FE00626682 /* ArchiveViewCell.m in Sources */,
 				7553E9F91BC3F781003A7C86 /* CommentsModel.m in Sources */,
 				7553E9F11BC3E799003A7C86 /* CommentsTableView.m in Sources */,

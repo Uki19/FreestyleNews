@@ -18,14 +18,16 @@
     NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"http://www.theartball.com/admin/iOS/getcomments.php?article_id=%@",articleID]];
     NSURLRequest *request=[NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
-    
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     downloadedData=[[NSMutableData alloc] init];
 }
 
-
+-(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+    if(self.delegate)
+        [self.delegate failedToDownloadWithError:error];
+}
 
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
     [downloadedData appendData:data];
@@ -40,13 +42,13 @@
         NSDictionary *commentDict=jsonArray[i];
         Comment *comment=[[Comment alloc] init];
         comment.author=commentDict[@"author"];
-        comment.date=commentDict[@"time"];
+        comment.time=commentDict[@"time"];
         comment.comment=commentDict[@"comment"];
         [comments addObject:comment];
     }
     
     if(self.delegate){
-        [self.delegate updateWithItems:comments];
+        [self.delegate updateWithComments:comments];
     }
 }
 

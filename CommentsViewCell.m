@@ -18,6 +18,7 @@
     [backgroundView.layer setCornerRadius:4.0];
     self.backgroundView.layer.borderColor=[UIColor colorWithWhite:0.73 alpha:1].CGColor;
     self.backgroundView.layer.borderWidth=1.0;
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) NSString *author;
 @property (strong, nonatomic) NSString *comment;
-@property (strong, nonatomic) NSString *date;
+@property (strong, nonatomic) NSString *time;
+
+-(NSString*)getTime;
 
 @end
