@@ -62,9 +62,9 @@
 /* Begin PBXFileReference section */
 		0C7B09D41B4D23C50001CC6A /* NewsActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsActivityIndicator.h; sourceTree = "<group>"; };
 		0C7B09D51B4D23C50001CC6A /* NewsActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsActivityIndicator.m; sourceTree = "<group>"; };
-		7504B9F61BCC84C000DC9DB2 /* CommentsInArticleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsInArticleView.xib; sourceTree = "<group>"; };
-		7504B9F81BCC85D300DC9DB2 /* CommentsInArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsInArticle.h; sourceTree = "<group>"; };
-		7504B9F91BCC85D300DC9DB2 /* CommentsInArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsInArticle.m; sourceTree = "<group>"; };
+		7504B9F61BCC84C000DC9DB2 /* CommentsInArticleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommentsInArticleView.xib; path = "Freestyle Football News/CommentsInArticleView.xib"; sourceTree = "<group>"; };
+		7504B9F81BCC85D300DC9DB2 /* CommentsInArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsInArticle.h; path = "Freestyle Football News/CommentsInArticle.h"; sourceTree = "<group>"; };
+		7504B9F91BCC85D300DC9DB2 /* CommentsInArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsInArticle.m; path = "Freestyle Football News/CommentsInArticle.m"; sourceTree = "<group>"; };
 		75131EE71B32CF4600457525 /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
 		75131EE81B32CF4600457525 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
 		7523DD201B345A5B00A7F658 /* ArticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleView.h; sourceTree = "<group>"; };
@@ -96,15 +96,15 @@
 		754BE7791B318CBC00F758C9 /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItem.m; sourceTree = "<group>"; };
 		754BE77B1B319F4800F758C9 /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
 		754BE77C1B319F4800F758C9 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
-		7553E9EF1BC3E799003A7C86 /* CommentsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsTableView.h; sourceTree = "<group>"; };
-		7553E9F01BC3E799003A7C86 /* CommentsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsTableView.m; sourceTree = "<group>"; };
-		7553E9F21BC3E983003A7C86 /* CommentsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentsViewCell.xib; sourceTree = "<group>"; };
-		7553E9F41BC3E9C6003A7C86 /* CommentsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsViewCell.h; sourceTree = "<group>"; };
-		7553E9F51BC3E9C6003A7C86 /* CommentsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsViewCell.m; sourceTree = "<group>"; };
-		7553E9F71BC3F781003A7C86 /* CommentsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentsModel.h; sourceTree = "<group>"; };
-		7553E9F81BC3F781003A7C86 /* CommentsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentsModel.m; sourceTree = "<group>"; };
-		7553E9FA1BC3FCC7003A7C86 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
-		7553E9FB1BC3FCC7003A7C86 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		7553E9EF1BC3E799003A7C86 /* CommentsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsTableView.h; path = "Freestyle Football News/CommentsTableView.h"; sourceTree = "<group>"; };
+		7553E9F01BC3E799003A7C86 /* CommentsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsTableView.m; path = "Freestyle Football News/CommentsTableView.m"; sourceTree = "<group>"; };
+		7553E9F21BC3E983003A7C86 /* CommentsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CommentsViewCell.xib; path = "Freestyle Football News/CommentsViewCell.xib"; sourceTree = "<group>"; };
+		7553E9F41BC3E9C6003A7C86 /* CommentsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsViewCell.h; path = "Freestyle Football News/CommentsViewCell.h"; sourceTree = "<group>"; };
+		7553E9F51BC3E9C6003A7C86 /* CommentsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsViewCell.m; path = "Freestyle Football News/CommentsViewCell.m"; sourceTree = "<group>"; };
+		7553E9F71BC3F781003A7C86 /* CommentsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsModel.h; path = "Freestyle Football News/CommentsModel.h"; sourceTree = "<group>"; };
+		7553E9F81BC3F781003A7C86 /* CommentsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsModel.m; path = "Freestyle Football News/CommentsModel.m"; sourceTree = "<group>"; };
+		7553E9FA1BC3FCC7003A7C86 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Comment.h; path = "Freestyle Football News/Comment.h"; sourceTree = "<group>"; };
+		7553E9FB1BC3FCC7003A7C86 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Comment.m; path = "Freestyle Football News/Comment.m"; sourceTree = "<group>"; };
 		7554ECAB1B945B2500F55202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		755E134D1B53203C00019D48 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		755E134E1B53203C00019D48 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
