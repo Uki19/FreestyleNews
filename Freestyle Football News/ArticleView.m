@@ -253,8 +253,10 @@ BOOL isArticle;
 
 -(void)initCommentsModel{
     
-    
-    self.navigationItem.rightBarButtonItems=@[self.navigationItem.rightBarButtonItems[0],self.loadingButton];
+    if(item.category)
+        self.navigationItem.rightBarButtonItems=@[self.navigationItem.rightBarButtonItems[0],self.loadingButton];
+    else
+        self.navigationItem.rightBarButtonItem=self.loadingButton;
     [self.loading startAnimating];
     commentsModel=[[CommentsModel alloc] init];
     commentsModel.delegate=self;
@@ -370,7 +372,10 @@ UITextView *tmpCommView;
     else{
         [self initCommentsView];
     }
-    self.navigationItem.rightBarButtonItems=@[self.navigationItem.rightBarButtonItems[0],self.commentsButton];
+    if(item.category)
+        self.navigationItem.rightBarButtonItems=@[self.navigationItem.rightBarButtonItems[0],self.commentsButton];
+    else
+        self.navigationItem.rightBarButtonItem=self.commentsButton;
     [self.loading stopAnimating];
 }
 
