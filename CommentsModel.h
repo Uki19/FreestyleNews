@@ -20,6 +20,6 @@
 @property id<ObservableComments> delegate;
 @property (strong, nonatomic) NSMutableData *downloadedData;
 
--(void)downloadDataForArticleID:(NSString*)articleID;
+-(void)downloadDataForArticleID:(NSString*)articleID isArticle:(BOOL)isArticle;
 
 @end

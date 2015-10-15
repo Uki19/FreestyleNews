@@ -7,6 +7,10 @@
 //
 
 #import "FreestyleShopTableView.h"
+#import "FreestyleShopTableCell.h"
+#import "TabBar.h"
+
+NSString *shopCellID=@"shopCell";
 
 @interface FreestyleShopTableView ()
 
@@ -16,10 +20,15 @@
 
 -(void)initTableView{
     
-    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(5, 5, self.view.frame.size.width-10, 100)];
+    [self.tableView registerNib:[UINib nibWithNibName:@"FreestyleShopCell" bundle:nil] forCellReuseIdentifier:shopCellID];
+    self.tableView.backgroundColor=[UIColor colorWithWhite:233.0/255.0 alpha:1];
+//    [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1]];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(5, 5, self.view.frame.size.width-10, 70)];
     UILabel *headerLabel=[[UILabel alloc] initWithFrame:headerView.frame];
     headerLabel.text=@"Welcome to Freestyle Shop! Here you can see what freestylers from all over the world are selling, also you can sell your freestyle stuff!";
     headerLabel.numberOfLines=0;
+    headerLabel.font=[UIFont fontWithName:@"HelveticaNeue-Light" size:14];
     headerLabel.textAlignment=NSTextAlignmentCenter;
     headerLabel.textColor=[UIColor colorWithWhite:0.6 alpha:1];
     headerView.frame=headerLabel.frame;
@@ -32,11 +41,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
+
+    
+    if([TabBar bannerIsVisible]){
+        [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
+    }
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,67 +60,37 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+
+    return 5;
 }
 
-/*
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 103;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    FreestyleShopTableCell *cell = [tableView dequeueReusableCellWithIdentifier:shopCellID forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.priceLabel.text=@"50e";
+    cell.itemNameLabel.text=@"ovo je prodaja ovo je prodaja ovo je prodaja ovo je prodaja ovo je prodaja ovo je prodaja ovo je prodaja";
+    cell.sellerLabel.text=@"Nikola djota milosevic";
+    cell.itemImageView.image=[UIImage imageNamed:@"triangle"];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+-(void)notificationCenterAdLoaded:(NSNotification*) notification{
+    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, [TabBar adFrame].size.height, 0)];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(void)notificationCenterAdFailed:(NSNotification*) notification{
+    [self.tableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

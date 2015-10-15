@@ -20,5 +20,6 @@
 @property (strong, nonatomic) UITextView *commentTextView;
 @property (strong, nonatomic) NSString *articleTitle;
 @property BOOL addCommentsFlag;
+@property BOOL commentsForArticle;
 
 @end

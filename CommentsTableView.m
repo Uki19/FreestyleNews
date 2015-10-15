@@ -74,7 +74,7 @@ NSString *cellID=@"commentsCell";
 -(void)initCommentsModel{
     model=[[CommentsModel alloc] init];
     model.delegate=self;
-    [model downloadDataForArticleID:articleID];
+    [model downloadDataForArticleID:articleID isArticle:self.commentsForArticle];
     loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     loading.color=[UIColor darkGrayColor];
     loading.center=self.tableView.center;
@@ -239,7 +239,7 @@ UITextView *tmpTextView;
 -(void)refreshAction{
     [noComments setHidden:YES];
     [loading startAnimating];
-    [model downloadDataForArticleID:articleID];
+    [model downloadDataForArticleID:articleID isArticle:self.commentsForArticle];
 }
 
 
@@ -257,12 +257,15 @@ UITextView *tmpTextView;
     }
     
     urlString=[urlString stringByAppendingString:[NSString stringWithFormat:@"?author=%@&comment=%@&article_id=%@",author,comment,articleID]];
+    if(self.commentsForArticle)
+        urlString=[urlString stringByAppendingString:@"&forArticles=1"];
     NSURL *url=[NSURL URLWithString:urlString];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
     [urlRequest setTimeoutInterval:30.0f];
     [urlRequest setHTTPMethod:@"POST"];
     NSString *httpBody=[NSString stringWithFormat:@"author=%@&comment=%@&article_id=%@",author,comment,articleID];
-
+    if(self.commentsForArticle)
+        httpBody=[httpBody stringByAppendingString:@"&forArticles=1"];
     [urlRequest setHTTPBody:[httpBody dataUsingEncoding:NSUTF8StringEncoding]];
 
 

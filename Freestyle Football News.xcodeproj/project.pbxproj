@@ -35,9 +35,13 @@
 		7553E9FC1BC3FCC7003A7C86 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9FB1BC3FCC7003A7C86 /* Comment.m */; settings = {ASSET_TAGS = (); }; };
 		7554ECAC1B945B2500F55202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7554ECAB1B945B2500F55202 /* StoreKit.framework */; };
 		755E134F1B53203C00019D48 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E134E1B53203C00019D48 /* AboutViewController.m */; };
+		7564CF671BCFF09B00414664 /* ShopItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7564CF661BCFF09B00414664 /* ShopItem.m */; settings = {ASSET_TAGS = (); }; };
+		7564CF6A1BD003E400414664 /* FreestyleShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7564CF691BD003E400414664 /* FreestyleShopModel.m */; settings = {ASSET_TAGS = (); }; };
 		75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75683A5A1B34AB5000CC4085 /* ArticlesModel.m */; };
 		756D51401B42C735006018C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 756D513F1B42C735006018C4 /* .gitignore */; };
 		75B9BAC11BCEF81D00AAB905 /* FreestyleShopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B9BAC01BCEF81D00AAB905 /* FreestyleShopTableView.m */; settings = {ASSET_TAGS = (); }; };
+		75C4F05D1BCF0D6D00F88C1C /* FreestyleShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75C4F05C1BCF0D6D00F88C1C /* FreestyleShopCell.xib */; settings = {ASSET_TAGS = (); }; };
+		75C4F0601BCF0E6E00F88C1C /* FreestyleShopTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F05F1BCF0E6D00F88C1C /* FreestyleShopTableCell.m */; settings = {ASSET_TAGS = (); }; };
 		75D940351B323BB8008BE45A /* Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D940341B323BB8008BE45A /* Navigation.m */; };
 		75DD84CC1B8DE13400FBB544 /* FullScreenImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD84CB1B8DE13400FBB544 /* FullScreenImageView.m */; };
 		75E053331B42D24900382430 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E053321B42D24900382430 /* iAd.framework */; };
@@ -104,6 +108,10 @@
 		7554ECAB1B945B2500F55202 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		755E134D1B53203C00019D48 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		755E134E1B53203C00019D48 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		7564CF651BCFF09B00414664 /* ShopItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopItem.h; sourceTree = "<group>"; };
+		7564CF661BCFF09B00414664 /* ShopItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopItem.m; sourceTree = "<group>"; };
+		7564CF681BD003E400414664 /* FreestyleShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreestyleShopModel.h; sourceTree = "<group>"; };
+		7564CF691BD003E400414664 /* FreestyleShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreestyleShopModel.m; sourceTree = "<group>"; };
 		75683A591B34AB5000CC4085 /* ArticlesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticlesModel.h; sourceTree = "<group>"; };
 		75683A5A1B34AB5000CC4085 /* ArticlesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticlesModel.m; sourceTree = "<group>"; };
 		756D513F1B42C735006018C4 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -114,6 +122,9 @@
 		75B993BE1B35CBE200A92B6E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		75B9BABF1BCEF81D00AAB905 /* FreestyleShopTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreestyleShopTableView.h; sourceTree = "<group>"; };
 		75B9BAC01BCEF81D00AAB905 /* FreestyleShopTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreestyleShopTableView.m; sourceTree = "<group>"; };
+		75C4F05C1BCF0D6D00F88C1C /* FreestyleShopCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FreestyleShopCell.xib; sourceTree = "<group>"; };
+		75C4F05E1BCF0E6D00F88C1C /* FreestyleShopTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreestyleShopTableCell.h; sourceTree = "<group>"; };
+		75C4F05F1BCF0E6D00F88C1C /* FreestyleShopTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreestyleShopTableCell.m; sourceTree = "<group>"; };
 		75D940331B323BB8008BE45A /* Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Navigation.h; sourceTree = "<group>"; };
 		75D940341B323BB8008BE45A /* Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Navigation.m; sourceTree = "<group>"; };
 		75DD84CA1B8DE13400FBB544 /* FullScreenImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FullScreenImageView.h; sourceTree = "<group>"; };
@@ -313,6 +324,13 @@
 			children = (
 				75B9BABF1BCEF81D00AAB905 /* FreestyleShopTableView.h */,
 				75B9BAC01BCEF81D00AAB905 /* FreestyleShopTableView.m */,
+				75C4F05C1BCF0D6D00F88C1C /* FreestyleShopCell.xib */,
+				75C4F05E1BCF0E6D00F88C1C /* FreestyleShopTableCell.h */,
+				75C4F05F1BCF0E6D00F88C1C /* FreestyleShopTableCell.m */,
+				7564CF651BCFF09B00414664 /* ShopItem.h */,
+				7564CF661BCFF09B00414664 /* ShopItem.m */,
+				7564CF681BD003E400414664 /* FreestyleShopModel.h */,
+				7564CF691BD003E400414664 /* FreestyleShopModel.m */,
 			);
 			name = "Freestyle Shop";
 			sourceTree = "<group>";
@@ -434,6 +452,7 @@
 				7539CAE21B38C86000626682 /* ArchiveTableViewCell.xib in Resources */,
 				754BE75B1B318B7900F758C9 /* Main.storyboard in Resources */,
 				754917E31B339C9700D55BD0 /* ArticleTableCell.xib in Resources */,
+				75C4F05D1BCF0D6D00F88C1C /* FreestyleShopCell.xib in Resources */,
 				754BE7601B318B7900F758C9 /* LaunchScreen.xib in Resources */,
 				756D51401B42C735006018C4 /* .gitignore in Resources */,
 				7504B9F71BCC84C000DC9DB2 /* CommentsInArticleView.xib in Resources */,
@@ -494,6 +513,7 @@
 				75B9BAC11BCEF81D00AAB905 /* FreestyleShopTableView.m in Sources */,
 				7553E9FC1BC3FCC7003A7C86 /* Comment.m in Sources */,
 				754BE7581B318B7900F758C9 /* ViewController.m in Sources */,
+				7564CF671BCFF09B00414664 /* ShopItem.m in Sources */,
 				754917E11B339BEA00D55BD0 /* ArticleCell.m in Sources */,
 				75EC15001B38A5CB00C5F768 /* ArchiveTableView.m in Sources */,
 				7523DD221B345A5B00A7F658 /* ArticleView.m in Sources */,
@@ -504,7 +524,9 @@
 				755E134F1B53203C00019D48 /* AboutViewController.m in Sources */,
 				0C7B09D61B4D23C50001CC6A /* NewsActivityIndicator.m in Sources */,
 				754917DB1B3395B900D55BD0 /* ArticlesTableView.m in Sources */,
+				7564CF6A1BD003E400414664 /* FreestyleShopModel.m in Sources */,
 				754BE7551B318B7900F758C9 /* AppDelegate.m in Sources */,
+				75C4F0601BCF0E6E00F88C1C /* FreestyleShopTableCell.m in Sources */,
 				7504B9FA1BCC85D300DC9DB2 /* CommentsInArticle.m in Sources */,
 				7539CAE51B38C9FE00626682 /* ArchiveViewCell.m in Sources */,
 				7553E9F91BC3F781003A7C86 /* CommentsModel.m in Sources */,

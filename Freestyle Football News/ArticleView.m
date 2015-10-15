@@ -17,6 +17,8 @@
 #import "CommentsViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
+BOOL isArticle;
+
 @interface ArticleView ()
 
 @property NSMutableArray *articleImages;
@@ -66,10 +68,14 @@
     imageComments.frame=CGRectOffset(imageComments.frame, 10, 0);
     UIBarButtonItem *commentsButton=[[UIBarButtonItem alloc] initWithCustomView:imageComments];
     [imageComments addTarget:self action:@selector(openComments) forControlEvents:UIControlEventTouchUpInside];
-    if(item.category)
+    if(item.category){
        self.navigationItem.rightBarButtonItems=@[refreshButton,commentsButton];
-    else
+        isArticle=NO;
+    }
+    else{
         self.navigationItem.rightBarButtonItem=commentsButton;
+        isArticle=YES;
+    }
 }
 
 #pragma mark - Title, category, date and author text init
@@ -223,6 +229,7 @@
     [self initArticleContent];
     
     [self setScrollViewSize];
+  
     [self initCommentsModel];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
@@ -240,7 +247,7 @@
 -(void)initCommentsModel{
     commentsModel=[[CommentsModel alloc] init];
     commentsModel.delegate=self;
-    [commentsModel downloadDataForArticleID:item.newsID];
+    [commentsModel downloadDataForArticleID:item.newsID isArticle:isArticle];
 }
 
 
@@ -252,6 +259,7 @@
     self.comLabel.textColor=[UIColor colorWithWhite:0.3 alpha:1];
     self.viewCommentsButton=[[UIButton alloc] initWithFrame:CGRectMake(commentsHeadView.frame.size.width-145, 0, 100, 30)];
     [self setLabelAndButton];
+   
     [self.viewCommentsButton setBackgroundColor:[UIColor colorWithRed:11.0/255.0 green:129.0/255.0 blue:228.0/255.0 alpha:1]];
     [self.viewCommentsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self addRadius:self.viewCommentsButton.layer angle:5.0];
@@ -286,7 +294,10 @@
         self.comLabel.text=@"No comments";
     else
         self.comLabel.text=@"Recent comments:";
-    [self.viewCommentsButton setTitle:[NSString stringWithFormat:@"View All (%ld)",comments.count] forState:UIControlStateNormal];
+    [self.viewCommentsButton setTitle:[NSString stringWithFormat:@"View All (%ld)",(unsigned long)comments.count] forState:UIControlStateNormal];
+    if (floor(NSFoundationVersionNumber) < NSFoundationVersionNumber_iOS_8_0) {
+        [self refreshArticle];
+    }
 }
 
 UITextView *tmpCommView;
@@ -314,7 +325,6 @@ UITextView *tmpCommView;
     cell.authorLabel.text=comm.author;
     cell.dateLabel.text=[comm getTime];
     cell.CommentTextView.text=comm.comment;
-    
     return cell;
 }
 
@@ -322,6 +332,7 @@ UITextView *tmpCommView;
     CommentsTableView *commentsViewController=[[CommentsTableView alloc] init];
     commentsViewController.articleID=item.newsID;
     commentsViewController.articleTitle=item.title;
+    commentsViewController.commentsForArticle=isArticle;
     [self.navigationController pushViewController:commentsViewController animated:YES];
 }
 
@@ -330,13 +341,14 @@ UITextView *tmpCommView;
     commentsViewController.articleID=item.newsID;
     commentsViewController.articleTitle=item.title;
     commentsViewController.addCommentsFlag=YES;
+    commentsViewController.commentsForArticle=isArticle;
     [self.navigationController pushViewController:commentsViewController animated:YES];
 }
 
 -(void)updateWithComments:(NSArray *)items{
     
     comments=items;
-    numberCommentsLabel.text=[NSString stringWithFormat:@"%ld",comments.count];
+    numberCommentsLabel.text=[NSString stringWithFormat:@"%ld",(unsigned long)comments.count];
     if(commentsView){
         [commentsView reloadData];
         CGRect frameContent=CGRectMake(self.commentsView.frame.origin.x, self.commentsView.frame.origin.y, self.commentsView.frame.size.width,self.commentsView.contentSize.height);
@@ -344,8 +356,10 @@ UITextView *tmpCommView;
         [self setScrollViewSize];
         [self setLabelAndButton];
     }
-    else
+    else{
         [self initCommentsView];
+    }
+    
 }
 
 
@@ -476,7 +490,7 @@ UITextView *tmpCommView;
     NSURL *articleUrl=[NSURL URLWithString:[NSString stringWithFormat:@"http://www.theartball.com/admin/iOS/get-single-article.php?id=%@",item.newsID]];
     NSURLRequest *request=[NSURLRequest requestWithURL:articleUrl];
     [NSURLConnection connectionWithRequest:request delegate:self];
-    [commentsModel downloadDataForArticleID:item.newsID];
+    [commentsModel downloadDataForArticleID:item.newsID isArticle:isArticle];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{

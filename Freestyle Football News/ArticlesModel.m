@@ -52,6 +52,7 @@
         article.author=articlesDictionary[@"author"];
         article.imageURL=articlesDictionary[@"image"];
         article.date=articlesDictionary[@"date"];
+        article.newsID=articlesDictionary[@"id"];
         [receivedArticles addObject:article];
     }
     
