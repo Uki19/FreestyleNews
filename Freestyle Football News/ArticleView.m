@@ -28,6 +28,10 @@ BOOL isArticle;
 @property NSString *brojKomentara;
 @property UILabel *comLabel;
 @property UIButton *viewCommentsButton;
+@property UIActivityIndicatorView *loading;
+
+@property UIBarButtonItem *loadingButton;
+@property UIBarButtonItem *commentsButton;
 
 @end
 
@@ -48,6 +52,7 @@ BOOL isArticle;
 @synthesize commentsView;
 
 
+
 -(void)addRadius:(CALayer*)layer angle:(CGFloat)angle{
     [layer setMasksToBounds:YES];
     [layer setCornerRadius:angle];
@@ -56,6 +61,8 @@ BOOL isArticle;
 -(void)initNavbarButtons{
     UIBarButtonItem *refreshButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(refreshArticle)];
     UIImage *ci=[UIImage imageNamed:@"comments"];
+    self.loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    self.loadingButton=[[UIBarButtonItem alloc] initWithCustomView:self.loading];
     UIButton *imageComments=[[UIButton alloc] initWithFrame:CGRectMake(0, 0, ci.size.width, ci.size.height)];
     [imageComments setBackgroundImage:ci forState:UIControlStateNormal];
     numberCommentsLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, imageComments.frame.size.width, imageComments.frame.size.height-20)];
@@ -66,14 +73,14 @@ BOOL isArticle;
     numberCommentsLabel.frame=CGRectOffset(numberCommentsLabel.frame, 0, -2);
     [imageComments addSubview:numberCommentsLabel];
     imageComments.frame=CGRectOffset(imageComments.frame, 10, 0);
-    UIBarButtonItem *commentsButton=[[UIBarButtonItem alloc] initWithCustomView:imageComments];
+    self.commentsButton=[[UIBarButtonItem alloc] initWithCustomView:imageComments];
     [imageComments addTarget:self action:@selector(openComments) forControlEvents:UIControlEventTouchUpInside];
     if(item.category){
-       self.navigationItem.rightBarButtonItems=@[refreshButton,commentsButton];
+       self.navigationItem.rightBarButtonItems=@[refreshButton,self.commentsButton];
         isArticle=NO;
     }
     else{
-        self.navigationItem.rightBarButtonItem=commentsButton;
+        self.navigationItem.rightBarButtonItem=self.commentsButton;
         isArticle=YES;
     }
 }
@@ -245,6 +252,10 @@ BOOL isArticle;
 #pragma mark - Comments methods
 
 -(void)initCommentsModel{
+    
+    
+    self.navigationItem.rightBarButtonItems=@[self.navigationItem.rightBarButtonItems[0],self.loadingButton];
+    [self.loading startAnimating];
     commentsModel=[[CommentsModel alloc] init];
     commentsModel.delegate=self;
     [commentsModel downloadDataForArticleID:item.newsID isArticle:isArticle];
@@ -359,7 +370,8 @@ UITextView *tmpCommView;
     else{
         [self initCommentsView];
     }
-    
+    self.navigationItem.rightBarButtonItems=@[self.navigationItem.rightBarButtonItems[0],self.commentsButton];
+    [self.loading stopAnimating];
 }
 
 
