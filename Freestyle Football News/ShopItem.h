@@ -16,5 +16,7 @@
 @property (strong, nonatomic) NSString *itemContact;
 @property (strong, nonatomic) NSMutableArray *itemImages;
 @property (strong, nonatomic) NSString *itemSeller;
+@property (strong, nonatomic) NSString *itemDate;
+@property (strong, nonatomic) NSString *itemLocation;
 
 @end

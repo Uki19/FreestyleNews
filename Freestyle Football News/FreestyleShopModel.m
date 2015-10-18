@@ -14,7 +14,7 @@
 @synthesize downloadedData;
 
 -(void)downloadData{
-    NSString *urlString=[NSString stringWithFormat:@"http://www.theartball.com/admin/iOS/get-shop-items.php"];
+    NSString *urlString=[NSString stringWithFormat:@"http://www.theartball.com/admin/iOS/getlistings.php"];
     NSURL *url=[NSURL URLWithString:urlString];
     NSURLRequest *request=[NSURLRequest requestWithURL:url];
     [NSURLConnection connectionWithRequest:request delegate:self];
@@ -46,9 +46,12 @@
         shopItem.itemPrice=itemDict[@"price"];
         shopItem.itemSeller=itemDict[@"seller"];
         shopItem.itemContact=itemDict[@"contact"];
-        [shopItem.itemImages addObject:itemDict[@"image1"]];
-        [shopItem.itemImages addObject:itemDict[@"image2"]];
-        [shopItem.itemImages addObject:itemDict[@"image3"]];
+        shopItem.itemDate=itemDict[@"date"];
+        shopItem.itemLocation=itemDict[@"location"];
+        
+        [shopItem.itemImages addObject:@"http://www.theartball.com/images/freestyle-football-shirt-guido.jpg"];
+        [shopItem.itemImages addObject:@"http://www.theartball.com/images/guido-freestyle-shirt.jpg"];
+        [shopItem.itemImages addObject:@"http://www.theartball.com/images/adidas-cafusa-ball.jpg"];
         
         [shopItemsArray addObject:shopItem];
     }

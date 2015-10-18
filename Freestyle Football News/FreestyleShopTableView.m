@@ -9,14 +9,28 @@
 #import "FreestyleShopTableView.h"
 #import "FreestyleShopTableCell.h"
 #import "TabBar.h"
+#import "FreestyleShopItemView.h"
+#import "ShopItem.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 NSString *shopCellID=@"shopCell";
 
 @interface FreestyleShopTableView ()
 
+@property UIActivityIndicatorView *loading;
+
 @end
 
 @implementation FreestyleShopTableView
+
+@synthesize model;
+@synthesize shopItems;
+
+-(void)initNavBarButtons{
+     UIBarButtonItem *refreshButton=[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"refresh"] style:UIBarButtonItemStylePlain target:self action:@selector(refreshAction)];
+    UIBarButtonItem *addBarButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addSellItemAction)];
+    self.navigationItem.rightBarButtonItems=@[addBarButton,refreshButton];
+}
 
 -(void)initTableView{
     
@@ -24,9 +38,9 @@ NSString *shopCellID=@"shopCell";
     self.tableView.backgroundColor=[UIColor colorWithWhite:233.0/255.0 alpha:1];
 //    [self.tableView setSeparatorColor:[UIColor colorWithRed:200.0/255.0 green:200.0/255.0 blue:200.0/255.0 alpha:1]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(5, 5, self.view.frame.size.width-10, 70)];
+    UIView *headerView=[[UIView alloc] initWithFrame:CGRectMake(5, 5, self.view.frame.size.width-10, 80)];
     UILabel *headerLabel=[[UILabel alloc] initWithFrame:headerView.frame];
-    headerLabel.text=@"Welcome to Freestyle Shop! Here you can see what freestylers from all over the world are selling, also you can sell your freestyle stuff!";
+    headerLabel.text=@"Welcome to Freestyle Shop! Here you can see what freestylers from all over the world are selling, also you can sell your freestyle stuff. Just click + button to add item!";
     headerLabel.numberOfLines=0;
     headerLabel.font=[UIFont fontWithName:@"HelveticaNeue-Light" size:14];
     headerLabel.textAlignment=NSTextAlignmentCenter;
@@ -34,14 +48,25 @@ NSString *shopCellID=@"shopCell";
     headerView.frame=headerLabel.frame;
     
     [headerView addSubview:headerLabel];
-    
     self.tableView.tableHeaderView=headerView;
+    
+    self.loading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.loading.center=CGPointMake(self.tableView.center.x, 150);
+    [self.tableView addSubview:self.loading];
+}
+
+-(void)initShopModel{
+    model=[[FreestyleShopModel alloc] init];
+    model.delegate=self;
+    [model downloadData];
+    [self.loading startAnimating];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initTableView];
-    
+    [self initNavBarButtons];
+    [self initShopModel];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
 
@@ -51,6 +76,49 @@ NSString *shopCellID=@"shopCell";
     }
 
 }
+
+-(void)updateWithItems:(NSArray *)items{
+    shopItems=items;
+    [self.tableView reloadData];
+    [self.loading stopAnimating];
+}
+
+-(void)failedToDownloadWithError:(NSError *)error{
+    
+}
+
+-(void)refreshAction{
+    [model downloadData];
+    [self.loading startAnimating];
+}
+
+-(void)addSellItemAction{
+    if([UIAlertController class]){
+        UIAlertController *popup=[UIAlertController alertControllerWithTitle:@"You want to sell something?" message:@"Open webpage for adding advertisement in Safari?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [popup addAction:[UIAlertAction actionWithTitle:@"Open" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.theartball.com/add-listing.php"]];
+        }]];
+        [popup addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            return;
+        }]];
+        [self presentViewController:popup animated:YES completion:nil];
+    }
+    else{
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"You want to sell something?" message:@"Open webpage for adding advertisement in Safari?" delegate:self cancelButtonTitle:@"Open" otherButtonTitles:@"Cancel", nil];
+        alert.delegate=self;
+        [alert show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex==0)
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.theartball.com/add-listing.php"]];
+
+    else return;
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -66,21 +134,33 @@ NSString *shopCellID=@"shopCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 5;
+    return shopItems.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 103;
+    return 101;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    FreestyleShopItemView *fsShopItemView=[[FreestyleShopItemView alloc] init];
+    
+    fsShopItemView.shopItem=[shopItems objectAtIndex:indexPath.row];
+    
+    [self.navigationController pushViewController:fsShopItemView animated:YES];
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     FreestyleShopTableCell *cell = [tableView dequeueReusableCellWithIdentifier:shopCellID forIndexPath:indexPath];
     
-    cell.priceLabel.text=@"50e";
-    cell.itemNameLabel.text=@"ovo je prodaja ovo je prodaja ovo je prodaja ovo je prodaja ovo je prodaja ovo je prodaja ovo je prodaja";
-    cell.sellerLabel.text=@"Nikola djota milosevic";
-    cell.itemImageView.image=[UIImage imageNamed:@"triangle"];
+    ShopItem *shopItem=[shopItems objectAtIndex:indexPath.row];
+    
+    cell.itemNameLabel.text=shopItem.itemTitle;
+    cell.priceLabel.text=[NSString stringWithFormat:@"%@€",shopItem.itemPrice];
+    cell.sellerLabel.text=shopItem.itemSeller;
+    [cell.itemImageView sd_setImageWithURL:[NSURL URLWithString:shopItem.itemImages[0]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     return cell;
 }

@@ -64,7 +64,6 @@
     if([UIAlertController class]){
     UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"Check it out!" message:[pushNotification valueForKey:@"alert"] preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction* action){
-            return;
         }]];
                               
     [self.window.rootViewController presentViewController:alert animated:YES completion:NULL];

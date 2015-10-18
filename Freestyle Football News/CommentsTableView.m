@@ -190,7 +190,12 @@ UITextView *tmpTextView;
     
     commentAuthorTextField=[[UITextField alloc] initWithFrame:CGRectMake(20, 30, addCommentView.frame.size.width-40, 25)];
     commentAuthorTextField.backgroundColor=[UIColor whiteColor];
-    commentAuthorTextField.placeholder=@"Anonymous";
+//    commentAuthorTextField.placeholder=@"Anonymous";
+    NSString *savedUsername=[[NSUserDefaults standardUserDefaults] stringForKey:@"Username"];
+    if(savedUsername)
+        commentAuthorTextField.text=savedUsername;
+    else
+        commentAuthorTextField.placeholder=@"Anonymous";
     commentAuthorTextField.layer.cornerRadius=5.0;
     [commentAuthorTextField setBorderStyle:UITextBorderStyleRoundedRect];
     
@@ -248,6 +253,8 @@ UITextView *tmpTextView;
     
     NSString *urlString=@"http://www.theartball.com/admin/iOS/addcomment.php";
     NSString *author=[commentAuthorTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [[NSUserDefaults standardUserDefaults] setObject:commentAuthorTextField.text forKey:@"Username"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     if(author.length==0) author=@"Anonymous";
     NSString *comment=[commentTextView.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     

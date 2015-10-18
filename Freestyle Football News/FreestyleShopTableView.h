@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FreestyleShopModel.h"
 
-@interface FreestyleShopTableView : UITableViewController
+@interface FreestyleShopTableView : UITableViewController <UIAlertViewDelegate, ObservableShop>
+
+@property (strong, nonatomic) FreestyleShopModel *model;
+@property (strong, nonatomic) NSArray *shopItems;
 
 @end

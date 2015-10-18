@@ -13,6 +13,7 @@
 		7504B9FA1BCC85D300DC9DB2 /* CommentsInArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7504B9F91BCC85D300DC9DB2 /* CommentsInArticle.m */; settings = {ASSET_TAGS = (); }; };
 		75131EE91B32CF4600457525 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75131EE81B32CF4600457525 /* TabBar.m */; };
 		7523DD221B345A5B00A7F658 /* ArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7523DD211B345A5B00A7F658 /* ArticleView.m */; };
+		753761341BD0662F00A009B9 /* FreestyleShopItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753761331BD0662F00A009B9 /* FreestyleShopItemView.m */; settings = {ASSET_TAGS = (); }; };
 		7539CAE21B38C86000626682 /* ArchiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7539CAE11B38C86000626682 /* ArchiveTableViewCell.xib */; };
 		7539CAE51B38C9FE00626682 /* ArchiveViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7539CAE41B38C9FE00626682 /* ArchiveViewCell.m */; };
 		754917DB1B3395B900D55BD0 /* ArticlesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 754917DA1B3395B900D55BD0 /* ArticlesTableView.m */; };
@@ -69,6 +70,8 @@
 		75131EE81B32CF4600457525 /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
 		7523DD201B345A5B00A7F658 /* ArticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArticleView.h; sourceTree = "<group>"; };
 		7523DD211B345A5B00A7F658 /* ArticleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArticleView.m; sourceTree = "<group>"; };
+		753761321BD0662F00A009B9 /* FreestyleShopItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreestyleShopItemView.h; sourceTree = "<group>"; };
+		753761331BD0662F00A009B9 /* FreestyleShopItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreestyleShopItemView.m; sourceTree = "<group>"; };
 		7539CAE11B38C86000626682 /* ArchiveTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArchiveTableViewCell.xib; sourceTree = "<group>"; };
 		7539CAE31B38C9FE00626682 /* ArchiveViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveViewCell.h; sourceTree = "<group>"; };
 		7539CAE41B38C9FE00626682 /* ArchiveViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveViewCell.m; sourceTree = "<group>"; };
@@ -331,6 +334,8 @@
 				7564CF661BCFF09B00414664 /* ShopItem.m */,
 				7564CF681BD003E400414664 /* FreestyleShopModel.h */,
 				7564CF691BD003E400414664 /* FreestyleShopModel.m */,
+				753761321BD0662F00A009B9 /* FreestyleShopItemView.h */,
+				753761331BD0662F00A009B9 /* FreestyleShopItemView.m */,
 			);
 			name = "Freestyle Shop";
 			sourceTree = "<group>";
@@ -524,6 +529,7 @@
 				755E134F1B53203C00019D48 /* AboutViewController.m in Sources */,
 				0C7B09D61B4D23C50001CC6A /* NewsActivityIndicator.m in Sources */,
 				754917DB1B3395B900D55BD0 /* ArticlesTableView.m in Sources */,
+				753761341BD0662F00A009B9 /* FreestyleShopItemView.m in Sources */,
 				7564CF6A1BD003E400414664 /* FreestyleShopModel.m in Sources */,
 				754BE7551B318B7900F758C9 /* AppDelegate.m in Sources */,
 				75C4F0601BCF0E6E00F88C1C /* FreestyleShopTableCell.m in Sources */,

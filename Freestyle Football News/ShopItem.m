@@ -10,4 +10,12 @@
 
 @implementation ShopItem
 
+-(instancetype)init{
+    self=[super init];
+    if(self){
+        self.itemImages=[[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 @end

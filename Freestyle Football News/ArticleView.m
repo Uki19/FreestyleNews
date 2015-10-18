@@ -32,6 +32,7 @@ BOOL isArticle;
 
 @property UIBarButtonItem *loadingButton;
 @property UIBarButtonItem *commentsButton;
+@property UIView *commentsHeadView;
 
 @end
 
@@ -50,6 +51,7 @@ BOOL isArticle;
 @synthesize commentsModel;
 @synthesize comments;
 @synthesize commentsView;
+@synthesize commentsHeadView;
 
 
 
@@ -266,14 +268,13 @@ BOOL isArticle;
 
 -(void)initCommentsView{
     
-    UIView *commentsHeadView=[[UIView alloc] initWithFrame:CGRectMake(self.articleContentBackground.frame.origin.x, self.articleContentBackground.frame.origin.y+self.articleContentBackground.frame.size.height+5, self.articleContentBackground.frame.size.width, 60)];
+    commentsHeadView=[[UIView alloc] initWithFrame:CGRectMake(self.articleContentBackground.frame.origin.x, self.articleContentBackground.frame.origin.y+self.articleContentBackground.frame.size.height+5, self.articleContentBackground.frame.size.width, 30)];
     self.comLabel=[[UILabel alloc] initWithFrame:CGRectMake(5,0, commentsHeadView.frame.size.width, 30)];
     self.comLabel.font=[UIFont fontWithName:@"HelveticaNeue" size:17.0];
     self.comLabel.textColor=[UIColor colorWithWhite:0.3 alpha:1];
     self.viewCommentsButton=[[UIButton alloc] initWithFrame:CGRectMake(commentsHeadView.frame.size.width-145, 0, 100, 30)];
     [self setLabelAndButton];
-   
-    [self.viewCommentsButton setBackgroundColor:[UIColor colorWithRed:11.0/255.0 green:129.0/255.0 blue:228.0/255.0 alpha:1]];
+        [self.viewCommentsButton setBackgroundColor:[UIColor colorWithRed:11.0/255.0 green:129.0/255.0 blue:228.0/255.0 alpha:1]];
     [self.viewCommentsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self addRadius:self.viewCommentsButton.layer angle:5.0];
     self.viewCommentsButton.titleLabel.font=[UIFont fontWithName:@"HelveticaNeue-Light" size:14.0];
@@ -494,8 +495,12 @@ UITextView *tmpCommView;
     backFrame.size.height=labelY+labelHeight+30;
     self.articleContentBackground.frame=backFrame;
     [articleContentTextView relayoutText];
+    
+    commentsHeadView.frame=CGRectMake(commentsHeadView.frame.origin.x, self.articleContentBackground.frame.origin.y+self.articleContentBackground.frame.size.height+5, commentsHeadView.frame.size.width, commentsHeadView.frame.size.height);
+     commentsView.frame=CGRectMake(commentsView.frame.origin.x,commentsHeadView.frame.origin.y+35, commentsView.frame.size.width,commentsView.frame.size.height);
+    
     [self setScrollViewSize];
-    numberCommentsLabel.text=[NSString stringWithFormat:@"%@",noOfComments];
+
 //    [numberCommentsLabel sizeToFit];
 }
 
