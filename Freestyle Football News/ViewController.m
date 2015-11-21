@@ -36,6 +36,7 @@ static NSString *cellID = @"NewsCell";
 @property NSMutableArray *otherNewsImages;
 @property NSMutableArray *allNewsImages;
 @property UIRefreshControl *refreshControl;
+@property BOOL isChanged;
 
 
 @end
@@ -88,6 +89,7 @@ static NSString *cellID = @"NewsCell";
     [newsModel downloadDataAtUrl:databaseURL];
     
 }
+
 
 
 -(void)pushArchiveView{
@@ -317,6 +319,7 @@ static NSString *cellID = @"NewsCell";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ArticleView *newsItemView=[[ArticleView alloc] init];
+    newsItemView.changeDelegate=self;
     NewsItem *item=[news objectAtIndex:indexPath.row];
     newsItemView.item=item;
     newsItemView.title=@"News";
@@ -423,6 +426,20 @@ static NSString *cellID = @"NewsCell";
     
 }
 
+-(void)setChanged:(BOOL)changed{
+    
+    self.isChanged=changed;
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    if(self.isChanged){
+        [super viewDidAppear:animated];
+        [self refreshAction];
+        self.isChanged=NO;
+    }
+    
+}
+
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex==[alertView cancelButtonIndex]) {
@@ -460,7 +477,7 @@ static NSString *cellID = @"NewsCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-     [(Navigation*)self.navigationController removeBottomLine];
+    [(Navigation*)self.navigationController removeBottomLine];
     self.category=self.title;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];

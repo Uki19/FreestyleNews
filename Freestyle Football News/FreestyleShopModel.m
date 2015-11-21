@@ -41,6 +41,7 @@
     for(int i=0;i<jsonArray.count;i++){
         NSDictionary *itemDict=jsonArray[i];
         ShopItem *shopItem=[[ShopItem alloc] init];
+        shopItem.listingID=itemDict[@"id"];
         shopItem.itemTitle=itemDict[@"title"];
         shopItem.itemDescription=itemDict[@"description"];
         shopItem.itemPrice=itemDict[@"price"];
@@ -48,13 +49,11 @@
         shopItem.itemContact=itemDict[@"contact"];
         shopItem.itemDate=itemDict[@"date"];
         shopItem.itemLocation=itemDict[@"location"];
-        
-        [shopItem.itemImages addObject:@"http://www.theartball.com/images/freestyle-football-shirt-guido.jpg"];
-        [shopItem.itemImages addObject:@"http://www.theartball.com/images/guido-freestyle-shirt.jpg"];
-        [shopItem.itemImages addObject:@"http://www.theartball.com/images/adidas-cafusa-ball.jpg"];
+        shopItem.mainImage=itemDict[@"image"];
         
         [shopItemsArray addObject:shopItem];
-    }
+        
+        }
     
     if(self.delegate){
         [self.delegate updateWithItems:shopItemsArray];

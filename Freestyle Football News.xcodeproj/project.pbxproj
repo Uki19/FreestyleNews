@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		0C7B09D61B4D23C50001CC6A /* NewsActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B09D51B4D23C50001CC6A /* NewsActivityIndicator.m */; };
 		26B269E9462FF258BE878966 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BFDE6CEA17FB2B8F8075FAF /* libPods.a */; };
-		7504B9F71BCC84C000DC9DB2 /* CommentsInArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7504B9F61BCC84C000DC9DB2 /* CommentsInArticleView.xib */; settings = {ASSET_TAGS = (); }; };
-		7504B9FA1BCC85D300DC9DB2 /* CommentsInArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7504B9F91BCC85D300DC9DB2 /* CommentsInArticle.m */; settings = {ASSET_TAGS = (); }; };
+		7504B9F71BCC84C000DC9DB2 /* CommentsInArticleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7504B9F61BCC84C000DC9DB2 /* CommentsInArticleView.xib */; };
+		7504B9FA1BCC85D300DC9DB2 /* CommentsInArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 7504B9F91BCC85D300DC9DB2 /* CommentsInArticle.m */; };
 		75131EE91B32CF4600457525 /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 75131EE81B32CF4600457525 /* TabBar.m */; };
 		7523DD221B345A5B00A7F658 /* ArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7523DD211B345A5B00A7F658 /* ArticleView.m */; };
-		753761341BD0662F00A009B9 /* FreestyleShopItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753761331BD0662F00A009B9 /* FreestyleShopItemView.m */; settings = {ASSET_TAGS = (); }; };
+		753761341BD0662F00A009B9 /* FreestyleShopItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 753761331BD0662F00A009B9 /* FreestyleShopItemView.m */; };
 		7539CAE21B38C86000626682 /* ArchiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7539CAE11B38C86000626682 /* ArchiveTableViewCell.xib */; };
 		7539CAE51B38C9FE00626682 /* ArchiveViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7539CAE41B38C9FE00626682 /* ArchiveViewCell.m */; };
 		754917DB1B3395B900D55BD0 /* ArticlesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 754917DA1B3395B900D55BD0 /* ArticlesTableView.m */; };
@@ -29,20 +29,20 @@
 		754BE7771B318C8000F758C9 /* NewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7761B318C8000F758C9 /* NewsModel.m */; };
 		754BE77A1B318CBC00F758C9 /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE7791B318CBC00F758C9 /* NewsItem.m */; };
 		754BE77D1B319F4800F758C9 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754BE77C1B319F4800F758C9 /* NewsCell.m */; };
-		7553E9F11BC3E799003A7C86 /* CommentsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9F01BC3E799003A7C86 /* CommentsTableView.m */; settings = {ASSET_TAGS = (); }; };
-		7553E9F31BC3E983003A7C86 /* CommentsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7553E9F21BC3E983003A7C86 /* CommentsViewCell.xib */; settings = {ASSET_TAGS = (); }; };
-		7553E9F61BC3E9C6003A7C86 /* CommentsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9F51BC3E9C6003A7C86 /* CommentsViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		7553E9F91BC3F781003A7C86 /* CommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9F81BC3F781003A7C86 /* CommentsModel.m */; settings = {ASSET_TAGS = (); }; };
-		7553E9FC1BC3FCC7003A7C86 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9FB1BC3FCC7003A7C86 /* Comment.m */; settings = {ASSET_TAGS = (); }; };
+		7553E9F11BC3E799003A7C86 /* CommentsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9F01BC3E799003A7C86 /* CommentsTableView.m */; };
+		7553E9F31BC3E983003A7C86 /* CommentsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7553E9F21BC3E983003A7C86 /* CommentsViewCell.xib */; };
+		7553E9F61BC3E9C6003A7C86 /* CommentsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9F51BC3E9C6003A7C86 /* CommentsViewCell.m */; };
+		7553E9F91BC3F781003A7C86 /* CommentsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9F81BC3F781003A7C86 /* CommentsModel.m */; };
+		7553E9FC1BC3FCC7003A7C86 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7553E9FB1BC3FCC7003A7C86 /* Comment.m */; };
 		7554ECAC1B945B2500F55202 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7554ECAB1B945B2500F55202 /* StoreKit.framework */; };
 		755E134F1B53203C00019D48 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 755E134E1B53203C00019D48 /* AboutViewController.m */; };
-		7564CF671BCFF09B00414664 /* ShopItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7564CF661BCFF09B00414664 /* ShopItem.m */; settings = {ASSET_TAGS = (); }; };
-		7564CF6A1BD003E400414664 /* FreestyleShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7564CF691BD003E400414664 /* FreestyleShopModel.m */; settings = {ASSET_TAGS = (); }; };
+		7564CF671BCFF09B00414664 /* ShopItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7564CF661BCFF09B00414664 /* ShopItem.m */; };
+		7564CF6A1BD003E400414664 /* FreestyleShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7564CF691BD003E400414664 /* FreestyleShopModel.m */; };
 		75683A5B1B34AB5000CC4085 /* ArticlesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 75683A5A1B34AB5000CC4085 /* ArticlesModel.m */; };
 		756D51401B42C735006018C4 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 756D513F1B42C735006018C4 /* .gitignore */; };
-		75B9BAC11BCEF81D00AAB905 /* FreestyleShopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B9BAC01BCEF81D00AAB905 /* FreestyleShopTableView.m */; settings = {ASSET_TAGS = (); }; };
-		75C4F05D1BCF0D6D00F88C1C /* FreestyleShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75C4F05C1BCF0D6D00F88C1C /* FreestyleShopCell.xib */; settings = {ASSET_TAGS = (); }; };
-		75C4F0601BCF0E6E00F88C1C /* FreestyleShopTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F05F1BCF0E6D00F88C1C /* FreestyleShopTableCell.m */; settings = {ASSET_TAGS = (); }; };
+		75B9BAC11BCEF81D00AAB905 /* FreestyleShopTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B9BAC01BCEF81D00AAB905 /* FreestyleShopTableView.m */; };
+		75C4F05D1BCF0D6D00F88C1C /* FreestyleShopCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75C4F05C1BCF0D6D00F88C1C /* FreestyleShopCell.xib */; };
+		75C4F0601BCF0E6E00F88C1C /* FreestyleShopTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C4F05F1BCF0E6D00F88C1C /* FreestyleShopTableCell.m */; };
 		75D940351B323BB8008BE45A /* Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D940341B323BB8008BE45A /* Navigation.m */; };
 		75DD84CC1B8DE13400FBB544 /* FullScreenImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75DD84CB1B8DE13400FBB544 /* FullScreenImageView.m */; };
 		75E053331B42D24900382430 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75E053321B42D24900382430 /* iAd.framework */; };
@@ -598,8 +598,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -625,7 +625,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PROVISIONING_PROFILE = "0fd5e514-d5f7-400d-a001-bb9f94acada7";
+				PROVISIONING_PROFILE = "c35d71f8-8df2-400d-8faf-5681f696fcd1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -648,8 +648,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -667,7 +667,7 @@
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "$(inherited)";
-				PROVISIONING_PROFILE = "0fd5e514-d5f7-400d-a001-bb9f94acada7";
+				PROVISIONING_PROFILE = "c35d71f8-8df2-400d-8faf-5681f696fcd1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -680,8 +680,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
 				INFOPLIST_FILE = "Freestyle Football News/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -699,9 +699,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Uros Zivaljevic (6779JZUDW9)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
 				INFOPLIST_FILE = "Freestyle Football News/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -716,8 +716,8 @@
 		754BE7731B318B7900F758C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -730,7 +730,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UrosZivaljevic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0fd5e514-d5f7-400d-a001-bb9f94acada7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Freestyle Football News.app/Freestyle Football News";
 			};
 			name = Debug;
@@ -738,8 +738,8 @@
 		754BE7741B318B7900F758C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Uros Zivaljevic (XBDB99CNZ7)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -748,7 +748,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "UrosZivaljevic.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "0fd5e514-d5f7-400d-a001-bb9f94acada7";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Freestyle Football News.app/Freestyle Football News";
 			};
 			name = Release;

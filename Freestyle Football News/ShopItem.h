@@ -18,5 +18,7 @@
 @property (strong, nonatomic) NSString *itemSeller;
 @property (strong, nonatomic) NSString *itemDate;
 @property (strong, nonatomic) NSString *itemLocation;
+@property (strong, nonatomic) NSString *listingID;
+@property (strong, nonatomic) NSString *mainImage;
 
 @end

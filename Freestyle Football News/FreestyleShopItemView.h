@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ShopItem.h"
 
-@interface FreestyleShopItemView : UIViewController
+@interface FreestyleShopItemView : UIViewController <NSURLConnectionDataDelegate>
 
 @property (strong, nonatomic) ShopItem *shopItem;
 @property (strong, nonatomic) UILabel *titleLabel;

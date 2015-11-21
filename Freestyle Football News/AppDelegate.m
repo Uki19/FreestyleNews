@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "TabBar.h"
+#import "Navigation.h"
 #import <Pushbots/Pushbots.h>
 
 @interface AppDelegate ()
@@ -39,7 +41,7 @@
 }
 
 -(void) receivedPush:(NSDictionary *)userInfo {
-    NSLog(@"DSADSA");
+    
     //Try to get Notification from [didReceiveRemoteNotification] dictionary
     NSDictionary *pushNotification = [userInfo objectForKey:@"aps"];
     

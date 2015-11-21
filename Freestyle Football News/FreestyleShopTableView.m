@@ -94,7 +94,7 @@ NSString *shopCellID=@"shopCell";
 
 -(void)addSellItemAction{
     if([UIAlertController class]){
-        UIAlertController *popup=[UIAlertController alertControllerWithTitle:@"You want to sell something?" message:@"Open webpage for adding advertisement in Safari?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *popup=[UIAlertController alertControllerWithTitle:@"Open webpage in Safari?" message:@"You are about to add item you want to sell, click Open to continue." preferredStyle:UIAlertControllerStyleAlert];
         
         [popup addAction:[UIAlertAction actionWithTitle:@"Open" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.theartball.com/add-listing.php"]];
@@ -105,7 +105,7 @@ NSString *shopCellID=@"shopCell";
         [self presentViewController:popup animated:YES completion:nil];
     }
     else{
-        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"You want to sell something?" message:@"Open webpage for adding advertisement in Safari?" delegate:self cancelButtonTitle:@"Open" otherButtonTitles:@"Cancel", nil];
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Open webpage in Safari?" message:@"You are about to add item you want to sell, click Open to continue." delegate:self cancelButtonTitle:@"Open" otherButtonTitles:@"Cancel", nil];
         alert.delegate=self;
         [alert show];
     }
@@ -160,7 +160,7 @@ NSString *shopCellID=@"shopCell";
     cell.itemNameLabel.text=shopItem.itemTitle;
     cell.priceLabel.text=[NSString stringWithFormat:@"%@€",shopItem.itemPrice];
     cell.sellerLabel.text=shopItem.itemSeller;
-    [cell.itemImageView sd_setImageWithURL:[NSURL URLWithString:shopItem.itemImages[0]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [cell.itemImageView sd_setImageWithURL:[NSURL URLWithString:shopItem.mainImage] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     return cell;
 }

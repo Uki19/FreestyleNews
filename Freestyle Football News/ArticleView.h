@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Uros Zivaljevic. All rights reserved.
 //
 
+
+
 #import <UIKit/UIKit.h>
 #import "DTCoreText.h"
 #import "YTPlayerView.h"
@@ -13,7 +15,15 @@
 #import "CommentsModel.h"
 #import "Comment.h"
 
+@protocol ChangeListener <NSObject>
+
+-(void)setChanged:(BOOL)changed;
+
+@end
+
 @interface ArticleView : UIViewController <DTAttributedTextContentViewDelegate,DTLazyImageViewDelegate, NSURLConnectionDataDelegate, ObservableComments, UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) id<ChangeListener> changeDelegate;
 
 @property (strong, nonatomic) NewsItem* item;
 @property (strong, nonatomic) UIScrollView *articleScrollView;

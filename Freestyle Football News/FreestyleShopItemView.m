@@ -13,6 +13,10 @@
 
 @interface FreestyleShopItemView ()
 
+@property NSMutableData *downloadedImagesData;
+@property UILabel *imagesLabel;
+@property UIActivityIndicatorView *imagesLoading;
+
 @end
 
 @implementation FreestyleShopItemView
@@ -25,6 +29,8 @@
 @synthesize shopScrollView;
 @synthesize locationLabel;
 @synthesize shopItem;
+@synthesize imagesLabel;
+@synthesize imagesLoading;
 
 
 -(void)initScrollView{
@@ -110,8 +116,8 @@
     priceLabel.backgroundColor=[UIColor colorWithRed:11.0/255.0 green:120.0/255.0 blue:228.0/255.0 alpha:1];
     [shopScrollView addSubview:priceLabel];
     
-    UILabel *imagesLabel=[[UILabel alloc] initWithFrame:CGRectOffset(priceLabel.frame, 10, priceLabel.frame.size.height+10)];
-    imagesLabel.text=[NSString stringWithFormat:@"Images (%ld):",shopItem.itemImages.count];
+    imagesLabel=[[UILabel alloc] initWithFrame:CGRectOffset(priceLabel.frame, 10, priceLabel.frame.size.height+10)];
+    imagesLabel.text=@"Images:";
     imagesLabel.font=[UIFont fontWithName:@"HelveticaNeue-Light" size:19];
     imagesLabel.textColor=[UIColor colorWithRed:11.0/255.0 green:120.0/255.0 blue:228.0/255.0 alpha:1];
     [imagesLabel sizeToFit];
@@ -120,18 +126,14 @@
     CGFloat velicinaSlike=(self.view.frame.size.width-40)/3;
     UIView *backgroundViewImages=[[UIView alloc] initWithFrame:CGRectMake(0,imagesLabel.frame.origin.y+imagesLabel.frame.size.height+10 , self.view.frame.size.width, velicinaSlike+20)];
     backgroundViewImages.backgroundColor=[UIColor colorWithWhite:244.0/255.0 alpha:1];
+    
+    imagesLoading=[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    imagesLoading.frame=CGRectMake(backgroundViewImages.frame.size.width/2-50, backgroundViewImages.frame.size.height/2-50, 100, 100);
+    [backgroundViewImages addSubview:imagesLoading];
+    [imagesLoading startAnimating];
     [shopScrollView addSubview:backgroundViewImages];
     
-    for(int i=0;i<shopItem.itemImages.count;i++){
-        UIImageView *itemImageView=[[UIImageView alloc] initWithFrame:CGRectMake(i*(velicinaSlike+10)+10, imagesLabel.frame.origin.y+imagesLabel.frame.size.height+20, velicinaSlike,velicinaSlike)];
-        [itemImageView sd_setImageWithURL:[NSURL URLWithString:shopItem.itemImages[i]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-        itemImageView.clipsToBounds=YES;
-        UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openImage:)];
-        itemImageView.userInteractionEnabled=YES;
-        [itemImageView addGestureRecognizer:tap];
-        itemImageView.contentMode=UIViewContentModeScaleAspectFill;
-        [shopScrollView addSubview:itemImageView];
-    }
+    
     
     UIButton *contactSellerButton=[[UIButton alloc] initWithFrame:CGRectMake((self.view.frame.size.width-200)/2, backgroundViewImages.frame.size.height+backgroundViewImages.frame.origin.y+10, 200, 35)];
     contactSellerButton.backgroundColor=[UIColor colorWithRed:11.0/255.0 green:120.0/255.0 blue:228.0/255.0 alpha:1];
@@ -166,10 +168,53 @@
     self.view.backgroundColor=[UIColor colorWithWhite:236.0/255.0 alpha:1];
     [self initScrollView];
     [self initLabels];
-    
+    [self downloadImages];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdLoaded:) name:@"adIsLoaded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCenterAdFailed:) name:@"adFailedToLoad" object:nil];
 
+}
+
+-(void)downloadImages{
+    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"http://www.theartball.com/admin/iOS/get-listing-images.php?listing_id=%@",shopItem.listingID]];
+    NSURLRequest *req=[NSURLRequest requestWithURL:url];
+    [NSURLConnection connectionWithRequest:req delegate:self];
+}
+
+-(void)setImages{
+    CGFloat velicinaSlike=(self.view.frame.size.width-40)/3;
+    for(int i=0;i<shopItem.itemImages.count;i++){
+        UIImageView *itemImageView=[[UIImageView alloc] initWithFrame:CGRectMake(i*(velicinaSlike+10)+10, imagesLabel.frame.origin.y+imagesLabel.frame.size.height+20, velicinaSlike,velicinaSlike)];
+        [itemImageView sd_setImageWithURL:[NSURL URLWithString:shopItem.itemImages[i]] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        itemImageView.clipsToBounds=YES;
+        UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openImage:)];
+        itemImageView.userInteractionEnabled=YES;
+        [itemImageView addGestureRecognizer:tap];
+        itemImageView.contentMode=UIViewContentModeScaleAspectFill;
+        [shopScrollView addSubview:itemImageView];
+    }
+    [imagesLoading stopAnimating];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    self.downloadedImagesData=[[NSMutableData alloc] init];
+}
+
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+    [self.downloadedImagesData appendData:data];
+}
+
+-(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+    NSError *error;
+    NSArray *jsonArray=[NSJSONSerialization JSONObjectWithData:self.downloadedImagesData options:NSJSONReadingAllowFragments error:&error];
+    NSMutableArray *downloadedImages=[[NSMutableArray alloc] init];
+    
+    for(int i=0;i<jsonArray.count;i++){
+        NSDictionary *imgDict=jsonArray[i];
+        [downloadedImages addObject:imgDict[@"image"]];
+    }
+    shopItem.itemImages=downloadedImages;
+    [self setImages];
 }
 
 - (void)didReceiveMemoryWarning {

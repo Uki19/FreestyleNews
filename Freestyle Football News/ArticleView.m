@@ -38,6 +38,7 @@ BOOL isArticle;
 
 @implementation ArticleView
 
+@synthesize changeDelegate;
 
 @synthesize articleTitleLabel;
 @synthesize articleScrollView;
@@ -334,7 +335,7 @@ UITextView *tmpCommView;
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentsViewCell *cell=[tableView dequeueReusableCellWithIdentifier:@"commentsCell"];
-    Comment *comm=[comments objectAtIndex:comments.count-1-indexPath.row];
+    Comment *comm=[comments objectAtIndex:indexPath.row];
     
     cell.authorLabel.text=comm.author;
     cell.dateLabel.text=[comm getTime];
@@ -476,6 +477,12 @@ UITextView *tmpCommView;
 
 -(void)resetTitle:(NSString*)newTitle andContent:(NSString*)newContent andCommentsNumber:(NSString*) noOfComments{
     CGFloat visinaPre=articleTitleLabel.frame.size.height;
+    if(![articleTitleLabel.text isEqualToString:newTitle]){
+        if([self.changeDelegate respondsToSelector:@selector(setChanged:)])
+        {
+            [self.changeDelegate setChanged:YES];
+        }
+    }
     articleTitleLabel.text=newTitle;
     articleTitleLabel.frame=CGRectMake(15, 20, self.view.frame.size.width-30, 300);
     [articleTitleLabel sizeToFit];
@@ -483,6 +490,12 @@ UITextView *tmpCommView;
     NSString *content=[self addImgTagsToText:newContent];
     DTCSSStylesheet *style=[[DTCSSStylesheet alloc] initWithStyleBlock:@"p{font:HelveticaNeue;}"];
     DTHTMLAttributedStringBuilder *stringBuilder=[[DTHTMLAttributedStringBuilder alloc] initWithHTML:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{DTDefaultTextColor:[UIColor colorWithRed:70.0/255.0 green:70.0/255.0 blue:70.0/255.0 alpha:1],DTDefaultFontSize:@15,DTDefaultFontName:@"HelveticaNeue",DTDefaultLineHeightMultiplier:@1.3,DTDefaultLinkColor:[UIColor colorWithRed:0 green:153.0/255.0 blue:1 alpha:1],DTDefaultStyleSheet:style} documentAttributes:nil];
+    if(![[stringBuilder generatedAttributedString].string isEqualToString:articleContentTextView.attributedString.string]){
+        if([self.changeDelegate respondsToSelector:@selector(setChanged:)])
+        {
+            [self.changeDelegate setChanged:YES];
+        }
+    }
     articleContentTextView.attributedString=[stringBuilder generatedAttributedString];
     articleAuthorLabel.frame=CGRectOffset(articleAuthorLabel.frame, 0, razlika);
     articleContentTextView.frame=CGRectOffset(articleContentTextView.frame, 0, razlika);
@@ -512,7 +525,8 @@ UITextView *tmpCommView;
     NSURL *articleUrl=[NSURL URLWithString:[NSString stringWithFormat:@"http://www.theartball.com/admin/iOS/get-single-article.php?id=%@",item.newsID]];
     NSURLRequest *request=[NSURLRequest requestWithURL:articleUrl];
     [NSURLConnection connectionWithRequest:request delegate:self];
-    [commentsModel downloadDataForArticleID:item.newsID isArticle:isArticle];
+   
+   
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
@@ -527,10 +541,10 @@ UITextView *tmpCommView;
     NSError *error;
     NSDictionary *jsonArray=[NSJSONSerialization JSONObjectWithData:self.refreshData options:NSJSONReadingAllowFragments error:&error];
     
-    
     NSString *newTitle=jsonArray[@"title"];
     NSString *newContent=jsonArray[@"content"];
     NSString *commentNo=jsonArray[@"numberOfCom"];
+    [commentsModel downloadDataForArticleID:item.newsID isArticle:isArticle];
     [self resetTitle:newTitle andContent:newContent andCommentsNumber:commentNo];
 }
 

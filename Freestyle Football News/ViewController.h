@@ -10,9 +10,10 @@
 #import <iAd/iAd.h>
 #import "NewsModel.h"
 #import "NewsActivityIndicator.h"
+#import "ArticleView.h"
 
 
-@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, Observable, UICollectionViewDelegateFlowLayout, UIAlertViewDelegate>
+@interface ViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, Observable, UICollectionViewDelegateFlowLayout, UIAlertViewDelegate, ChangeListener>
 
 
 @property (strong, nonatomic) UICollectionView *newsView;
@@ -24,6 +25,7 @@
 @property (strong, nonatomic) UISegmentedControl *segment;
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeGestureLeft;
 @property (strong, nonatomic) UISwipeGestureRecognizer *swipeGestureRight;
+
 
 @end
 

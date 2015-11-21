@@ -19,6 +19,7 @@ NSString *cellID=@"commentsCell";
 
 @property UIView *addCommentView;
 @property UIButton *sendButton;
+@property NSMutableData *addedCommData;
 
 @end
 
@@ -307,7 +308,7 @@ BOOL completed;
     } completion:^(BOOL finished){
         addCommentView.hidden=YES;
         [commentTextView setText:@""];
-        [commentAuthorTextField setText:@""];
+//        [commentAuthorTextField setText:@""];
         [self.tableView setScrollEnabled:YES];
         commentTextView.layer.borderColor=[UIColor clearColor].CGColor;
         completed=false;
@@ -316,18 +317,53 @@ BOOL completed;
 }
 
 
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+    self.addedCommData=[[NSMutableData alloc] init];
+}
+
+-(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+    [self.addedCommData appendData:data];
+}
+
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{
+//    if([UIAlertController class]){
+//        UIAlertController *alert=[UIAlertController alertControllerWithTitle:[[NSString alloc] initWithData:self.addedCommData encoding:NSUTF8StringEncoding] message: @""preferredStyle:UIAlertControllerStyleAlert];
+//        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+//           
+//        }]];
+//        [self presentViewController:alert animated:YES completion:nil];
+//    }
+//    else
+//    {
+//        UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:[[NSString alloc] initWithData:self.addedCommData encoding:NSUTF8StringEncoding] message:@"" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//        [alertView setAlertViewStyle:UIAlertViewStyleDefault];
+//        
+//        [alertView show];
+//    }
+
     [self cancelAction];
     [self refreshAction];
     
 }
 
 -(void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"Unable to send comment" message:@"Make sure you are connected to internet and try again." preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        return;
-    }]];
-    [self presentViewController:alert animated:YES completion:nil];
+    if([UIAlertController class]){
+        UIAlertController *alert=[UIAlertController alertControllerWithTitle:@"Unable to send comment" message:@"Make sure you are connected to internet and try again." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+            return;
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else
+    {
+        
+        UIAlertView *alertView=[[UIAlertView alloc] initWithTitle:@"Unable to send comment" message:@"Make sure you are connected to internet and try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView setAlertViewStyle:UIAlertViewStyleDefault];
+        
+        [alertView show];
+
+    }
+    
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
